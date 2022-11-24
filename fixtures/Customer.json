@@ -1,0 +1,178 @@
+[
+{
+    "model": "customer.customer",
+    "pk": 2,
+    "fields": {
+        "last_login": "2022-11-07T08:45:38Z",
+        "is_superuser": true,
+        "name": "Nguyen Huu Phuong",
+        "email": "admin@gmail.com",
+        "password": "pbkdf2_sha256$390000$PnWoEPK43FgKOU1XwYOver$C3iaEcR03YKpZ6YTLzFKQ9ZOrBtcMPi5ZFkZf9P+2Gk=",
+        "phone": "0967207313",
+        "address": "TP.HCM",
+        "created": "2022-10-27T07:01:17.468Z",
+        "status": false,
+        "avatar": "image/Frame_3.png",
+        "age": 0,
+        "sex": "U",
+        "is_active": true,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 14,
+    "fields": {
+        "last_login": "2022-11-17T07:47:11.354Z",
+        "is_superuser": false,
+        "name": "Nguyen Huu Phuong",
+        "email": "huuphuong130301@gmail.com",
+        "password": "123456",
+        "phone": "0967207313",
+        "address": "TP.HCM",
+        "created": "2022-11-07T03:57:33.283Z",
+        "status": false,
+        "avatar": "image/SeerLight__on_Twitter.png",
+        "age": 0,
+        "sex": "U",
+        "is_active": true,
+        "is_staff": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 15,
+    "fields": {
+        "last_login": "2022-11-17T03:47:32.942Z",
+        "is_superuser": false,
+        "name": "Nguyen Huu Phuong",
+        "email": "bruce.nguyen.goldenowl@gmail.com",
+        "password": "!87aUNW3FKW3LeiGLWFHbYz4jDadQEIakB6OeYZsX",
+        "phone": "113",
+        "address": "hcm",
+        "created": "2022-11-07T03:58:31.792Z",
+        "status": false,
+        "avatar": "image/hou-china-6_axk6M5Q.jpg",
+        "age": 23,
+        "sex": "M",
+        "is_active": true,
+        "is_staff": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 16,
+    "fields": {
+        "last_login": "2022-11-15T04:57:43.052Z",
+        "is_superuser": false,
+        "name": "",
+        "email": "kawashishu@gmail.com",
+        "password": "!3MGu4h3rtY3Ckh7qTN1NzkBBsNBGN6pNudnMfZSv",
+        "phone": "",
+        "address": "",
+        "created": "2022-11-07T04:02:48.441Z",
+        "status": false,
+        "avatar": "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
+        "age": 0,
+        "sex": "U",
+        "is_active": true,
+        "is_staff": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 17,
+    "fields": {
+        "last_login": "2022-11-16T15:35:34Z",
+        "is_superuser": true,
+        "name": "Nguyen Huu Phuong",
+        "email": "huuphuo@gmail.com",
+        "password": "pbkdf2_sha256$390000$k2kc0rJJ3cqZNs1kBD4Wps$t/Q3PvQo1sXA8plK61TwyiKJbEc6rjoKH8HEDq1bxWM=",
+        "phone": "0967207313",
+        "address": "TP.HCM",
+        "created": "2022-11-15T07:50:18.804Z",
+        "status": false,
+        "avatar": "image/user.jpg",
+        "age": 0,
+        "sex": "U",
+        "is_active": true,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 18,
+    "fields": {
+        "last_login": "2022-11-17T02:49:19Z",
+        "is_superuser": true,
+        "name": "admin",
+        "email": "admin1@gmail.com",
+        "password": "123456",
+        "phone": "admin",
+        "address": "HCM city",
+        "created": "2022-11-17T02:48:48.528Z",
+        "status": false,
+        "avatar": "image/img_avatar2.png",
+        "age": 0,
+        "sex": "U",
+        "is_active": true,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 19,
+    "fields": {
+        "last_login": "2022-11-17T07:47:26.518Z",
+        "is_superuser": true,
+        "name": "Nguyen Huu Phuong",
+        "email": "admineee@gmail.com",
+        "password": "pbkdf2_sha256$390000$Z6hogZ0apKNblBfnmkD0KC$f+CR9awtRsraAWvaKBQZVOwNlbmsEXa1YAwPFl3Xmzo=",
+        "phone": "0967207313",
+        "address": "TP.HCM",
+        "created": "2022-11-17T03:28:48.960Z",
+        "status": false,
+        "avatar": "image/hou-china-6_Kr2MkJQ.jpg",
+        "age": 123,
+        "sex": "M",
+        "is_active": true,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 52,
+    "fields": {
+        "last_login": "2022-11-24T03:48:23.342Z",
+        "is_superuser": true,
+        "name": "admin",
+        "email": "admin",
+        "password": "pbkdf2_sha256$390000$TvymYNk59AYfpVSVcRTaCW$tICEp/4SLg4/+rEIlC/ObXAhObl6sGqGym7VCeYa6Os=",
+        "phone": "admin",
+        "address": "",
+        "created": "2022-11-23T15:57:25.406Z",
+        "status": false,
+        "avatar": "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
+        "age": 0,
+        "sex": "U",
+        "is_active": true,
+        "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

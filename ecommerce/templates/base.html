@@ -1,0 +1,383 @@
+
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title>MultiShop - Online Shop Website Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free HTML Templates" name="keywords">
+        <meta content="Free HTML Templates" name="description">
+    
+    
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    
+        <!-- Libraries Stylesheet -->
+        <link href=" {% static 'lib/animate/animate.min.css' %} " rel="stylesheet">
+        <link href=" {% static 'lib/owlcarousel/assets/owl.carousel.min.css' %} " rel="stylesheet">
+    
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        
+        <script src="https://jsuites.net/v4/jsuites.js"></script>
+        <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" /> 
+        
+    
+</head>
+<body>
+        <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-1 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center h-100">
+                    <a class="text-body mr-3" href="">{% trans "About"%}</a>
+                    <a class="text-body mr-3" href="">{% trans "Contact"%}</a>
+                    <a class="text-body mr-3" href="">{% trans "Help" %}</a>
+                    <a class="text-body mr-3" href="">{% trans "FAQs"%}</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <div class="btn-group mt-2 mr-5"  >
+                        <p>1 USD / {{currency}} {{currency_name}}</p>
+                    </div>
+                    <div class="btn-group">
+                        {% if user.is_authenticated %}
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{ user.email }}</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{% url 'logout' %}">{% trans "Logout"%}</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">{% trans "Profile"%}</a>
+                            {% else %}
+                            <a href="{% url 'register' %}" class="dropdown-item" type="button">{% trans "Sign In"%} / {% trans "Sign Up"%}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="btn-group mx-2">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{currency_name}}</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="{% url 'change_currency' 'USD' %}" class="dropdown-item {% if currency_name == 'USD' %}active {% endif  %}" type="button">USD</a>
+                            <a href="{% url 'change_currency' 'EUR' %}" class="dropdown-item {% if currency_name == 'EUR' %}active {% endif  %}" type="button">EUR</a>
+                            <a href="{% url 'change_currency' 'GBP' %}" class="dropdown-item {% if currency_name == 'GBP' %}active {% endif  %}" type="button">GBP</a>
+                            <a href="{% url 'change_currency' 'JPY' %}" class="dropdown-item {% if currency_name == 'JPY' %}active {% endif  %}" type="button">JPY</a>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            {% for language in languages %}
+                                <form action="{% url 'set_language' %}" method="post" id="form_{{ language.code }}" style="display:inline!important;">
+                                {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ redirect_to }}" />
+                                    <input name="language" type="hidden" value="{{ language.code }}" />
+                                </form>
+                                <button class="lang-button dropdown-item" type="submit" form="form_{{ language.code }}" value="Submit">{{ language.code }}</button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-inline-flex align-items-center d-block d-lg-none">
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-heart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-heart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                    
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-shopping-cart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+            <div class="col-lg-4">
+                <a href="{% url 'index' %}" class="text-decoration-none">
+                    <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
+                </a>
+            </div>
+            <div class="col-lg-4 col-6 text-left">
+                
+
+                <div class="currency-row-outer">
+                    <div class="currency-converter">              
+                      <div class="field grid-50-50">
+                        <div class="colmun col-left">
+                          <input type="number" class="form-input" id="number" placeholder="00000">
+                        </div>
+                        <div class="colmun col-right">
+                          <div class="select">
+                            <select name="currency" class="currency" onchange="updatevalue()"></select>
+                          </div>
+                          
+                        </div>
+                      </div>
+                  
+                      <div class="field grid-50-50">
+                        <div class="colmun col-left">
+                          <input type="text" class="form-input" id="output" placeholder="00000" disabled>
+                        </div>
+                        <div class="colmun col-right">
+                          <div class="select">
+                            <select name="currency" class="currency" onchange="updatevalue()"></select>
+                          </div>
+                        </div>
+                      </div>
+                  
+                    </div>
+                  </div>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="col-lg-4 col-6 text-right">
+                <p class="m-0">{% trans "Wellcome"%} {{ user.email }} {% trans "to Shop"%}</p>
+                <h5 class="m-0">{{user.phone}}</h5>
+            </div>
+            {% else %}
+            <div class="col-lg-4 col-6 text-right">
+                <p class="m-0">{% trans "Welcome Guest"%}</p>
+                <h5 class="m-0">{% trans "Sign in or Register"%}</h5>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Topbar End -->
+    
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-dark mb-30">
+        <div class="row px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
+                        <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0 navbar-index">
+                            {% url '/' as main_url %}
+                            <a href=" {% url 'index' %} " class="nav-item nav-link ml-3 {% if request.path != main_url %}active{% endif %} ">{% trans "Home"%}</a>
+                            {% url 'cart' as main_url %}
+                            <a href="{% url 'cart' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Shopping Cart"%}</a>
+                            {% url 'checkout' as main_url %}
+                            <a href="{% url 'checkout' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Checkout"%}</a>
+                            {% url 'contact' as main_url %}
+                            <a href="{% url 'contact' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Contact"%}</a>
+                            {% url 'billing' as main_url %}
+                            <a href="{% url 'billing' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Bill"%}</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0 d-none d-lg-block dropdown">
+                            <a data-toggle="dropdown" href="" class="btn px-0 dropdown-toggle">
+                                <i class="fas fa-bell text-primary  "></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"> {{ notifications }}</span>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    {% for n in noti %}
+                                    <a href="#" class="dropdown-item">{{n.content}}</a>
+                                    {% endfor %}
+                                </div>
+                            </a>
+
+                            <a href="#" class="btn px-0 ml-5">
+                                <i class="fas fa-heart text-primary"></i>
+                                <span class="wishlist badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{wishlist}}</span>
+                            </a>
+                            <a href="{% url 'cart' %}" class="btn px-0 ml-5 dropdown-toggle"  >
+                                <i class="fas fa-shopping-cart text-primary "></i>
+                                <span class=" shopping-cart badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{ carts }}</span>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    {% for n in noti %}
+                                    <a href="#" class="dropdown-item">{{n.content}}</a>
+                                    {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+        {% block content %}
+
+        {% endblock %}
+
+    
+        <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
+                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-secondary text-uppercase mb-4">{% trans "Quick Shop"%}</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Our Shop"%}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shop Detail"%}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shopping Cart"%}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Checkout"%}</a>
+                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Contact Us"%}</a>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Home"%}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Our Shop"%}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shop Detail"%}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shopping Cart"%}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Checkout"%}</a>
+                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Contact Us"%}</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-secondary text-uppercase mb-4">{% trans "Newsletter"%}</h5>
+                        <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Your Email Address">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">{% trans "Sign Up"%}</button>
+                                </div>
+                            </div>
+                        </form>
+                        <h6 class="text-secondary text-uppercase mt-4 mb-3">{% trans "Follow Us"%}</h6>
+                        <div class="d-flex">
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+            <div class="col-md-6 px-xl-0">
+                <p class="mb-md-0 text-center text-md-left text-secondary">
+                    <p>{% trans "All Rights Reserved. Designed by Bruce"%}  </p>
+            </div>
+            <div class="col-md-6 px-xl-0 text-center text-md-right">
+                <img class="img-fluid" src="{% static 'img/payments.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+        
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+    
+    <script src=" {% static 'lib/easing/easing.min.js' %} "></script>
+    <script src=" {% static 'lib/owlcarousel/owl.carousel.min.js' %} "></script>
+    
+
+    <!-- Contact Javascript File -->
+    <script src=" {% static 'mail/jqBootstrapValidation.min.js' %} "></script>
+    <script src=" {% static 'mail/contact.js' %} "></script>
+
+    <!-- Template Javascript -->
+    <script src=" {% static 'js/main.js' %} "></script>
+    <script src="{% static 'js/pagination.js' %}"></script>
+    
+    <script>
+
+    const select = document.querySelectorAll('.currency');
+    const number = document.getElementById("number");
+    const output = document.getElementById("output");
+
+    fetch('https://api.frankfurter.app/currencies').then((data) => data.json())
+      .then((data) => {
+        display(data);
+      });
+
+    function display(data) {
+      const entries = Object.entries(data);
+      for (var i = 0; i < entries.length; i++) {
+        select[0].innerHTML += `<option value="${entries[i][0]}">${entries[i][0]} : ${entries[i][1]}</option>`;
+        select[1].innerHTML += `<option value="${entries[i][0]}">${entries[i][0]} : ${entries[i][1]}</option>`;
+      }
+    }
+
+    function updatevalue() {
+      let currency1 = select[0].value;
+      let currency2 = select[1].value;
+
+      let value = number.value;
+
+      if (currency1 != currency2) {
+        convert(currency1, currency2, value);
+      } else {
+        alert("Choose Diffrent Currency");
+      }
+    }
+
+
+    function convert(currency1, currency2, value) {
+      const host = "api.frankfurter.app";
+
+      fetch(`https://${host}/latest?amount=${value}&from=${currency1}&to=${currency2}`)
+        .then((val) => val.json())
+        .then((val) => {
+          console.log(Object.values(val.rates)[0]);
+          output.value = Object.values(val.rates)[0];
+        });
+    }
+
+    $(".navbar-nav .nav-link").on("click", function(){
+        $(".nav-link").find(".active").removeClass("active");
+        $(this).addClass("active");
+        console.log($(this))
+        e.preventDefault();
+     });
+
+     $(document).ready(function() {
+        $(".tab").click(function () {
+            $(".tab").removeClass("active");
+            // $(".tab").addClass("active"); // instead of this do the below 
+            $(this).addClass("active");   
+        });
+        });
+
+    </script>
+
+
+</body>
+
+
+
+
+</html>

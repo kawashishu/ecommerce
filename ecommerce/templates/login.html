@@ -1,0 +1,154 @@
+{% load socialaccount%} 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+     
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action=" {% url 'register' %} " method="POST" id="sign-up">
+                {% csrf_token %}
+                <h1>Create Account</h1>
+                <span>or use your email for registration</span>
+                {{ form.name }}
+                {{ form.email }}
+                {{ form.phone}}
+                {{ form.password }}
+                {{ form.confirm_password }}
+                {{ form.captcha }}
+                <button type="submit">Sign Up</button>
+                {{ form.email.errors }}
+                {{ form.non_field_errors }}
+            </form>
+        </div>
+
+         
+        <div class="form-container sign-in-container">
+            <form action=" {% url 'login' %} " id="sign-in" method="post">
+                {% csrf_token %}
+                <h1>Sign in</h1>
+                  
+                <div class="social-container">  
+                    <a href="{% provider_login_url 'facebook' method='oauth2' %}" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href=" {% provider_login_url 'google' method='oauth2' %} " class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="{% provider_login_url 'github' method='oauth2' %}" class="social"><i class="fab fa-github"></i></a>
+                </div>
+                <span>or use your account</span>
+                {{ form.email }}
+                {{ form.password }}
+
+                <a href=" {% url 'forgot_password' %} ">Forgot your password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>
+                        To keep connected with us please login with your personal info
+                    </p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-to-home">
+        <a href="/"><i class="fas fa-home" style="font-size:50px;color:white"></i></a>
+    </div>
+
+    <script>
+        const signUpButton = document.getElementById('signUp')
+        const signInButton = document.getElementById('signIn')
+        const container = document.getElementById('container')
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add('right-panel-active')
+        })
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove('right-panel-active')
+        })
+    </script>
+
+    <!-- jquery validator -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sign-in').validate({
+                rules: {
+                    "email": {
+                        required: true,
+                        email: true
+                    },
+                    "password": {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    "email": {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email"
+                    },
+                    "password": {
+                        required: "Please enter your password",
+                        minlength: "Password must be at least 6 characters"
+                    }
+                }
+            })
+        })
+
+        $(document).ready(function() {
+            $('#sign-up').validate({
+                rules: {
+                    "email": {
+                        required: true,
+                        email: true
+                    },
+                    "password": {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    "email": {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email"
+                    },
+                    "password": {
+                        required: "Please enter your password",
+                        minlength: "Password must be at least 6 characters"
+                    }
+                }
+            })
+        })
+       
+
+
+       
+    </script>
+
+
+    <!--  -->
+</body>
+
+</html>

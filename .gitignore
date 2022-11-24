@@ -1,0 +1,8 @@
+venv
+__pycache__
+./.vscode
+lib
+package-lock.json
+static
+data
+db.sql
