@@ -314,7 +314,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 
 # Celery setting
-CELERY_BROKER_URL = 'redis://red-ce02q1arrk09es9afk00:6379'
+CELERY_BROKER_URL = 'redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -330,7 +330,7 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://red-ce02q1arrk09es9afk00:6379',
+        'LOCATION': 'redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
