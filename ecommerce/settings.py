@@ -339,6 +339,17 @@ CACHES = {
     }
 }
 
+CACHES.update({
+    "redis": {
+        "BACKEND": "redis_cache.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+             "PASSWORD": "ViUsQvKFSeRXHmCZbtjlcGaM1oAaqnOt",
+             "CLIENT_CLASS": "redis_cache.client.DefaultClient",
+        },
+    },
+})
+
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
 }
