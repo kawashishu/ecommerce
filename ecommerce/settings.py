@@ -228,13 +228,12 @@ AUTH_USER_MODEL = 'customer.Customer'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'bruce.nguyen.goldenowl@gmail.com'
-EMAIL_HOST_PASSWORD = 'gsgpagurqlgfsrmx'
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587 
 
 # captcha
-RECAPTCHA_PUBLIC_KEY = '6LegCokiAAAAAI_6FRb0DMb6sQ3_ITXZ-ogNPWLT'
-RECAPTCHA_PRIVATE_KEY = '6LegCokiAAAAAJgKYtar63U2w9vL8b-nnkl3ACZf'
-
+RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 
 # login with social account
 
@@ -314,7 +313,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 
 # Celery setting
-CELERY_BROKER_URL = 'redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334'
+CELERY_BROKER_URL = env('REDIS_URL')
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -330,10 +329,10 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334',
+        'LOCATION': env('REDIS_URL'),
         'OPTIONS': {
-            'PASSWORD': 'ViUsQvKFSeRXHmCZbtjlcGaM1oAaqnOt',
-            'USERNAME': 'default',
+            'PASSWORD': env('PASSWORD') ,
+            'USERNAME': env('USERNAME'),
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
@@ -342,9 +341,9 @@ CACHES = {
 CACHES.update({
     "redis": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334",
+        "LOCATION": env('REDIS_URL'),
         "OPTIONS": {
-             "PASSWORD": "ViUsQvKFSeRXHmCZbtjlcGaM1oAaqnOt",
+             "PASSWORD": env('PASSWORD') ,
              "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     },
