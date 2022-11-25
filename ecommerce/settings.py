@@ -342,5 +342,5 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
 }
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = None
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
