@@ -341,11 +341,11 @@ CACHES = {
 
 CACHES.update({
     "redis": {
-        "BACKEND": "redis_cache.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334",
         "OPTIONS": {
              "PASSWORD": "ViUsQvKFSeRXHmCZbtjlcGaM1oAaqnOt",
-             "CLIENT_CLASS": "redis_cache.client.DefaultClient",
+             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     },
 })
