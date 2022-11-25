@@ -332,6 +332,8 @@ CACHES = {
         'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': 'redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334',
         'OPTIONS': {
+            'PASSWORD': 'ViUsQvKFSeRXHmCZbtjlcGaM1oAaqnOt',
+            'USERNAME': 'default',
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
