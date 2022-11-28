@@ -20,8 +20,6 @@ class ProductDetail(DetailView):
         context['comments'] = Comment.objects.filter(productid=self.object)
         self.object.views += 1
         return context
-
-
 class CreateComment(View):
     def post(self, request, pk):
         content = request.POST.get('content')

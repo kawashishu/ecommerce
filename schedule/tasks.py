@@ -32,7 +32,7 @@ def send_email():
 def super_sales():
     products = Product.objects.all()
     for product in products:
-        product.price = product.price * 0.5
+        product.price *= 0.5
         product.save()
     return "done"
 
@@ -40,7 +40,7 @@ def super_sales():
 def reset_product():
     products = Product.objects.all()
     for product in products:
-        product.price = product.price * 2
+        product.price *= 2
         product.save()
     return "done"
 

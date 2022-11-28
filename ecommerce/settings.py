@@ -297,6 +297,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 SOCIALACCOUNT_LOGIN_ON_GET=True
+# mantory
+ACCOUNT_VERIFICATION_REQUIRED = 'mandatory'
 
 
 # Celery setting
@@ -323,16 +325,6 @@ CACHES = {
     }
 }
 
-CACHES.update({
-    "redis": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": env('REDIS_URL'),
-        "OPTIONS": {
-             "PASSWORD": env('PASSWORD') ,
-             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
-    },
-})
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,

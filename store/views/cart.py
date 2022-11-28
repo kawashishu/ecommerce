@@ -5,8 +5,9 @@ from cart.views import views
 from cart.views.views import SHIPPING_CHARGE
 from store.models import Product
 
+
 class WishlistView(View):
-    def post(self,request):
+    def post(self, request):
         id = int(request.POST.get('id'))
         if 'wishlist' in request.session:
             if id in request.session['wishlist']:
@@ -16,8 +17,8 @@ class WishlistView(View):
         else:
             request.session['wishlist'] = [id]
         request.session.modified = True
-        print(request.session['wishlist'])
         return HttpResponse(len(request.session['wishlist']))
+
 
 class CartView(View):
     def post(self, request):
@@ -31,13 +32,10 @@ class CartView(View):
         carts = request.session.get('cart-duplicate')
         total = 0
         try:
-            quanlity = {i:carts.count(i) for i in carts}
+            quanlity = {i: carts.count(i) for i in carts}
             products = Product.objects.filter(id__in=carts)
             for product in products:
                 total += product.price * quanlity[product.id]
         except:
             total = 0
-
-
         return HttpResponse(total)
-        

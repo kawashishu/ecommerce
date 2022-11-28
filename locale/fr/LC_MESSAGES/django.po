@@ -39,7 +39,7 @@ msgstr "Thời trang trẻ em"
 
 #: .\ecommerce\templates\translate.html:4
 msgid "Save"
-msgstr "Giảm"
+msgstr "Lưu"
 
 #: .\ecommerce\templates\translate.html:5
 msgid "Special Offer"

@@ -24,7 +24,7 @@ def getAllProducts(request):
 
 @api_view(['GET'])
 def view_cached_products(request):
-        return HttpResponse(cache.get('products'))
+    return HttpResponse(cache.get('products'))
 
 def view_cached_customer(request):
     return HttpResponse(cache.get('customers'))
