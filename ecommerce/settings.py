@@ -80,7 +80,7 @@ INSTALLED_APPS = [
 # 
 
 
-SITE_ID = 2
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -318,8 +318,6 @@ CACHES = {
         'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': env('REDIS_URL'),
         'OPTIONS': {
-            'PASSWORD': env('PASSWORD') ,
-            'USERNAME': env('USERNAME'),
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
