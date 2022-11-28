@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
 {% load post_tags %}
@@ -309,40 +310,37 @@
 ></script>
 
 <script>
-    console.log("hello")
     function AppendComment(data){
         comment = data.comment
         var target = event.target;
         let htmls = ''
           htmls += `
           <li class="list-group-item  container-comment">
-                                            <div class="media mb-4">
-                                                <img src="{% static 'img/user.jpg' %}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                                <div class="media-body">
-                                                    <h6>{{comment.customerid}}<small> - <i>${comment[0].customerid}</i></small></h6>
-                                                    <div class="text-primary mb-2">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                        <i class="far fa-star"></i>
-                                                    </div>
-                                                    <p>${comment[0].content}</p>
-                                                    {% if request.user == comment.customerid %}
-                                                    <button onclick="deleteComment('${comment[0].content}', '${comment[0].productid}')" class="btn btn-sm btn-danger">Delete</button>
-                                                    {% endif %}
-                                                
-                                                </div>
-                                            </div>
-                                        </li>
+            <div class="media mb-4">
+                <img src="{% static 'img/user.jpg' %}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                <div class="media-body">
+                    <h6>{{comment.customerid}}<small> - <i>${comment[0].customerid}</i></small></h6>
+                    <div class="text-primary mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>${comment[0].content}</p>
+                    {% if request.user == comment.customerid %}
+                    <button onclick="deleteComment('${comment[0].content}', '${comment[0].productid}')" class="btn btn-sm btn-danger">Delete</button>
+                    {% endif %}
+                
+                </div>
+            </div>
+            </li>
           `
-
           $('.container-comments').append(htmls)
         }
                   
 
     function addComment(product_id, user_id){
-        console.log(product_id, user_id)
         var message = $('#message').val()
         var url = "{% url 'create_comment' 1 %} "
         url.replace('1', product_id)

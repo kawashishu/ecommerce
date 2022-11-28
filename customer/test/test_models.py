@@ -12,7 +12,6 @@ class ModelTest(TestCase):
             password = '123456',
         )        
     def test_customer_model(self):
-        print(self.Customer)
         self.assertEqual(self.Customer.name, 'test')
         self.assertEqual(self.Customer.email, 'test@gmail.com')
         

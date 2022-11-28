@@ -1,3 +1,4 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
  (function ($) {
      "use strict";
     
@@ -94,10 +95,53 @@
       })
     }
      
-
+    // Cart
+        
     //  ajax call 
      
  })(jQuery);
 
+function removeCart(id){
+    const object = event.target
+    
+    $.ajax({
+      url:  "{% url 'cart-list' %}",
+      type: 'POST',
+        data: {
+            'id': id,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+      success: function(response){
+        $(object).closest('tr').remove()
+        $('.total').html(response)
+        $('.sumtotal').html(response)
+      }
+    })
+  }
+
+  function add(id){
+    const object = event.target
+    $.ajax({
+      url:  "{% url 'btn' %}",
+      type: 'POST',
+        data: {
+            'id': id,
+            'btn': object.className,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+      success: function(total){
+        $('.total').html(total)
+        var total = parseInt(total) + 10
+        $('.sumtotal').html(total)
+        
+        if ( object.className == "fa fa-plus") {
+            object.closest('td').querySelector('.countInput').value = parseInt(object.closest('td').querySelector('.countInput').value) + 1
+        }
+        else {
+            object.closest('td').querySelector('.countInput').value = parseInt(object.closest('td').querySelector('.countInput').value) - 1
+        }
+      }
+ })
+}
 
 

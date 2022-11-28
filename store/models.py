@@ -1,6 +1,7 @@
 from django.db import models
 from category.models import Category
 from customer.models import Customer
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class Product(models.Model):
@@ -17,6 +18,7 @@ class Product(models.Model):
     
     class Meta:
         db_table = 'product'
+        verbose_name = _('Product')
     def __str__(self):
         return f"{self.name}, {self.categoryid}, {self.decripstion}, {self.quanlity}, {self.discount}, {self.status}, {self.title}, {self.price}, {self.views}, {self.avatar}"
     def to_json(self):
@@ -40,3 +42,4 @@ class Notification(models.Model):
 
     class Meta:
         db_table = 'notification'
+        verbose_name = _('Notification')

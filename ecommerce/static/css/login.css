@@ -68,6 +68,17 @@ button:focus {
 button.ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;
+	margin-top: 20px;
+}
+
+button.signup-register {
+	background-color: #FF4B2B;
+	border-color: #FF4B2B;
+	margin-top: 20px;
+}
+
+iframe {
+	margin-top: 10px;
 }
 
 form {
@@ -76,7 +87,7 @@ form {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding: 0 50px;
+	padding: 0 30px;
 	height: 100%;
 	text-align: center;
 }
@@ -96,9 +107,10 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
+	width: 60%;
 	max-width: 100%;
-	min-height: 480px;
+	min-height: 95%;
+	margin-top: 20px;
 }
 
 .form-container {
@@ -228,8 +240,8 @@ input {
 
 .back-to-home {
 	position: absolute;
-	bottom: 20px;
-	left: 46.5%;
+	bottom: 30px;
+	right: 30px;
 	background-color: gray;
 	width: 100px;
 	height: 100px;

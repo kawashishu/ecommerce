@@ -1,7 +1,6 @@
 
 from django.urls import path
 from . import views
-import admin_notifications
 
 
 urlpatterns = [

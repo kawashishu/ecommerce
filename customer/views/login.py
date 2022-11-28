@@ -71,9 +71,7 @@ class LoginView(View):
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = auth.authenticate(email=email, password=password)
-        print("point 1")
         if user is not None:
-            print("point 2")
             auth.login(request=request, user=user)
             messages.success(request=request, message="Login successful!")
             return redirect('index')
@@ -88,10 +86,8 @@ def login(request):
         password = request.POST.get('password')
         user = auth.authenticate(email=email, password=password)
         if user is not None:
-            print('AAAAAAAAAAAAAA', user)
             auth.login(request=request, user=user)
             messages.success(request=request, message="Login successful!")
-            print(messages)
         else:
             messages.error(request=request, message="Login failed!")
     context = {

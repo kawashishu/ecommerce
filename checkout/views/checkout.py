@@ -54,6 +54,5 @@ class CheckoutView(View):
                 order.save()
                 return redirect("billing")
         except ObjectDoesNotExist:
-                print("You do not have an active order")
                 messages.error(self.request, "You do not have an active order")
                 return redirect("billing")

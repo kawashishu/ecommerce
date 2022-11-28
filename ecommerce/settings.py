@@ -181,7 +181,7 @@ LOCALE_PATHS = [
 
 LANGUAGES = (
     ('en', _('English')),
-    ('fr', _('French')),
+    ('vi', _('Vietnamese')),
 )
 
 # Turned on by default

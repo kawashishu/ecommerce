@@ -1,5 +1,5 @@
 from django.urls import path
-from .views.views import CategoryView
+from .views.category import CategoryView
 
 
 urlspatterns = [

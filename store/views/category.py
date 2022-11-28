@@ -18,14 +18,13 @@ class CategoryView(DetailView):
         try:
             contacts = paginator.page(page_number)
         except PageNotAnInteger:
-            # Nếu page_number không thuộc kiểu integer, trả về page đầu tiên
             contacts = paginator.page(1)
         except EmptyPage:
-            # Nếu page không có item nào, trả về page cuối cùng
             contacts = paginator.page(paginator.num_pages)
         print(contacts)
         context['products'] = contacts
         return context
+
 
 class CategorySortView(DetailView):
     model = Product
@@ -38,8 +37,10 @@ class CategorySortView(DetailView):
         attr = self.kwargs['attr']
 
         if sort == 'asc':
-            context['products'] = Product.objects.filter(categoryid=self.kwargs['pk']).order_by(attr)
+            context['products'] = Product.objects.filter(
+                categoryid=self.kwargs['pk']).order_by(attr)
         else:
-            context['products'] = Product.objects.filter(categoryid=self.kwargs['pk']).order_by(f'-{attr}')
+            context['products'] = Product.objects.filter(
+                categoryid=self.kwargs['pk']).order_by(f'-{attr}')
 
         return context

@@ -1,0 +1,384 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-29 02:29+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\category\models.py:12
+#, fuzzy
+#| msgid "Categories"
+msgid "Category"
+msgstr "Categories"
+
+#: .\checkout\models.py:18
+#, fuzzy
+#| msgid "Billing Address"
+msgid "BillingAddress"
+msgstr "Billing Address"
+
+#: .\comment\models.py:20
+msgid "Comment"
+msgstr ""
+
+#: .\customer\models.py:73
+msgid "Customer"
+msgstr "Khách hàng"
+
+#: .\ecommerce\settings.py:183
+msgid "English"
+msgstr "English"
+
+#: .\ecommerce\settings.py:184
+msgid "Vietnamese"
+msgstr "Vietnamese"
+
+#: .\ecommerce\templates\base.html:43
+msgid "About"
+msgstr "About"
+
+#: .\ecommerce\templates\base.html:44 .\ecommerce\templates\base.html:184
+#: .\ecommerce\templates\contact.html:13
+msgid "Contact"
+msgstr "Contact"
+
+#: .\ecommerce\templates\base.html:45
+msgid "Help"
+msgstr "Help"
+
+#: .\ecommerce\templates\base.html:46
+msgid "FAQs"
+msgstr "FAQs"
+
+#: .\ecommerce\templates\base.html:59
+msgid "Logout"
+msgstr "Logout"
+
+#: .\ecommerce\templates\base.html:60
+msgid "Profile"
+msgstr "Profile"
+
+#: .\ecommerce\templates\base.html:62
+msgid "Sign In"
+msgstr "Sign In"
+
+#: .\ecommerce\templates\base.html:62 .\ecommerce\templates\base.html:267
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: .\ecommerce\templates\base.html:147
+msgid "Wellcome"
+msgstr "Wellcome"
+
+#: .\ecommerce\templates\base.html:147
+msgid "to Shop"
+msgstr "to Shop"
+
+#: .\ecommerce\templates\base.html:152
+msgid "Welcome Guest"
+msgstr "Welcome Guest"
+
+#: .\ecommerce\templates\base.html:153
+msgid "Sign in or Register"
+msgstr "Sign in or Register"
+
+#: .\ecommerce\templates\base.html:178 .\ecommerce\templates\base.html:240
+#: .\ecommerce\templates\base.html:252 .\ecommerce\templates\cart.html:12
+#: .\ecommerce\templates\checkout.html:16
+#: .\ecommerce\templates\contact.html:12
+msgid "Home"
+msgstr "Home"
+
+#: .\ecommerce\templates\base.html:180 .\ecommerce\templates\base.html:243
+#: .\ecommerce\templates\base.html:255 .\ecommerce\templates\cart.html:14
+msgid "Shopping Cart"
+msgstr "Shopping Cart"
+
+#: .\ecommerce\templates\base.html:182 .\ecommerce\templates\base.html:244
+#: .\ecommerce\templates\base.html:256 .\ecommerce\templates\checkout.html:18
+msgid "Checkout"
+msgstr "Checkout"
+
+#: .\ecommerce\templates\base.html:186
+msgid "Bill"
+msgstr "Bill"
+
+#: .\ecommerce\templates\base.html:229
+msgid "Get In Touch"
+msgstr ""
+
+#: .\ecommerce\templates\base.html:238
+msgid "Quick Shop"
+msgstr "Quick Shop"
+
+#: .\ecommerce\templates\base.html:241 .\ecommerce\templates\base.html:253
+msgid "Our Shop"
+msgstr "Our Shop"
+
+#: .\ecommerce\templates\base.html:242 .\ecommerce\templates\base.html:254
+msgid "Shop Detail"
+msgstr "Shop Detail"
+
+#: .\ecommerce\templates\base.html:245 .\ecommerce\templates\base.html:257
+#: .\ecommerce\templates\contact.html:23
+msgid "Contact Us"
+msgstr "Contact Us"
+
+#: .\ecommerce\templates\base.html:250
+msgid "My Account"
+msgstr "Tài khoản của tôi"
+
+#: .\ecommerce\templates\base.html:261
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: .\ecommerce\templates\base.html:262
+msgid "Duo stet tempor ipsum sit amet magna ipsum tempor est"
+msgstr "Give me your money!"
+
+#: .\ecommerce\templates\base.html:271
+msgid "Follow Us"
+msgstr "Follow Us"
+
+#: .\ecommerce\templates\base.html:285
+msgid "All Rights Reserved. Designed by Bruce"
+msgstr "All Rights Reserved. Designed by Bruce"
+
+#: .\ecommerce\templates\billing.html:12
+msgid "ORDER"
+msgstr "ORDER"
+
+#: .\ecommerce\templates\billing.html:15
+msgid "Expected Arrival"
+msgstr "Expected Arrival"
+
+#: .\ecommerce\templates\billing.html:38 .\ecommerce\templates\billing.html:44
+#: .\ecommerce\templates\billing.html:50 .\ecommerce\templates\billing.html:56
+#: .\order\models.py:17
+msgid "Order"
+msgstr "Order"
+
+#: .\ecommerce\templates\billing.html:38
+msgid "Processed"
+msgstr "Processed"
+
+#: .\ecommerce\templates\billing.html:44
+#, fuzzy
+#| msgid "Shopping Cart"
+msgid "Shipped"
+msgstr "Shipped"
+
+#: .\ecommerce\templates\billing.html:50
+msgid "En Route"
+msgstr "En Route"
+
+#: .\ecommerce\templates\billing.html:56
+msgid "Arrived"
+msgstr "Arrived"
+
+#: .\ecommerce\templates\cart.html:13 .\ecommerce\templates\checkout.html:17
+#, fuzzy
+#| msgid "to Shop"
+msgid "Shop"
+msgstr "to Shop"
+
+#: .\ecommerce\templates\cart.html:29 .\ecommerce\templates\checkout.html:84
+msgid "Products"
+msgstr "Products"
+
+#: .\ecommerce\templates\cart.html:30
+#, fuzzy
+#| msgid "Profile"
+msgid "Price"
+msgstr "Price"
+
+#: .\ecommerce\templates\cart.html:31
+msgid "Quantity"
+msgstr "Quantity"
+
+#: .\ecommerce\templates\cart.html:32 .\ecommerce\templates\cart.html:87
+#: .\ecommerce\templates\checkout.html:104
+msgid "Total"
+msgstr "Total"
+
+#: .\ecommerce\templates\cart.html:33
+msgid "Remove"
+msgstr "Remove"
+
+#: .\ecommerce\templates\cart.html:69
+msgid "Apply Coupon"
+msgstr "Apply Coupon"
+
+#: .\ecommerce\templates\cart.html:73
+msgid "Cart Summary"
+msgstr "Cart Summary"
+
+#: .\ecommerce\templates\cart.html:77 .\ecommerce\templates\checkout.html:94
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: .\ecommerce\templates\cart.html:81 .\ecommerce\templates\checkout.html:98
+#, fuzzy
+#| msgid "Shopping Cart"
+msgid "Shipping"
+msgstr "Shipping"
+
+#: .\ecommerce\templates\cart.html:90
+msgid "Proceed To Checkout"
+msgstr "Proceed To Checkout"
+
+#: .\ecommerce\templates\checkout.html:32
+msgid "Billing Address"
+msgstr "Billing Address"
+
+#: .\ecommerce\templates\checkout.html:36
+msgid "First Name"
+msgstr "First Name"
+
+#: .\ecommerce\templates\checkout.html:40
+msgid "Last Name"
+msgstr "Last Name"
+
+#: .\ecommerce\templates\checkout.html:44
+msgid "Mobile No"
+msgstr "Mobile No"
+
+#: .\ecommerce\templates\checkout.html:48
+msgid "Address Line 1"
+msgstr "Address Line 1"
+
+#: .\ecommerce\templates\checkout.html:52
+msgid "A"
+msgstr "A"
+
+#: .\ecommerce\templates\checkout.html:56
+msgid "Country"
+msgstr "Country"
+
+#: .\ecommerce\templates\checkout.html:60
+msgid "ZIP Code"
+msgstr "ZIP Code"
+
+#: .\ecommerce\templates\checkout.html:66
+msgid "Save information in next time"
+msgstr "Save information in next time"
+
+#: .\ecommerce\templates\checkout.html:73
+msgid "Shipping address is the same as my billing address"
+msgstr "Shipping address is the same as my billing address"
+
+#: .\ecommerce\templates\checkout.html:81
+msgid "Order Total"
+msgstr "Order Total"
+
+#: .\ecommerce\templates\checkout.html:110
+msgid "Payment"
+msgstr "Payment"
+
+#: .\ecommerce\templates\checkout.html:121
+msgid "Place Order"
+msgstr "Place Order"
+
+#: .\ecommerce\templates\contact.html:51
+msgid "Send Message"
+msgstr "Send Message"
+
+#: .\ecommerce\templates\index.html:26
+msgid "Men Fashion"
+msgstr "Men Fashion"
+
+#: .\ecommerce\templates\index.html:27 .\ecommerce\templates\index.html:37
+#: .\ecommerce\templates\index.html:47
+msgid ""
+"Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet "
+"ndiam elitr ipsum diam"
+msgstr ""
+
+#: .\ecommerce\templates\index.html:36
+msgid "Women Fashion"
+msgstr "Women Fashion"
+
+#: .\ecommerce\templates\index.html:46
+msgid "Kids Fashion"
+msgstr "Kids Fashion"
+
+#: .\ecommerce\templates\index.html:59 .\ecommerce\templates\index.html:67
+msgid "Save"
+msgstr "Save"
+
+#: .\ecommerce\templates\index.html:60 .\ecommerce\templates\index.html:68
+msgid "Special Offer"
+msgstr "Special Offer"
+
+#: .\ecommerce\templates\index.html:77
+msgid "Categories"
+msgstr "Categories"
+
+#: .\ecommerce\templates\index.html:99
+msgid "Page"
+msgstr "Page"
+
+#: .\ecommerce\templates\index.html:99
+msgid "of"
+msgstr "of"
+
+#: .\ecommerce\templates\index.html:102
+msgid "Next"
+msgstr "Next"
+
+#: .\ecommerce\templates\index.html:114
+msgid "Quality Product"
+msgstr "Quality Product"
+
+#: .\ecommerce\templates\index.html:120
+msgid "Free Shipping"
+msgstr "Free Shipping"
+
+#: .\ecommerce\templates\index.html:126
+msgid "Day Return"
+msgstr "Day Return"
+
+#: .\ecommerce\templates\index.html:132
+msgid "Support"
+msgstr "Support"
+
+#: .\ecommerce\templates\index.html:143
+msgid "Featured Products"
+msgstr "Featured Products"
+
+#: .\ecommerce\templates\index.html:207
+#, fuzzy
+#| msgid "Products"
+msgid "Recent Products"
+msgstr "Products"
+
+#: .\order\models.py:35
+#, fuzzy
+#| msgid "Order Total"
+msgid "OrderDetail"
+msgstr "Order Total"
+
+#: .\store\models.py:21
+#, fuzzy
+#| msgid "Products"
+msgid "Product"
+msgstr "Products"
+
+#: .\store\models.py:45
+msgid "Notification"
+msgstr "Notification"
+
+#~ msgid "customer"
+#~ msgstr "customer"

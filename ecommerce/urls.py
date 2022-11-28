@@ -1,5 +1,6 @@
 
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 from django.urls import include, path
 from . import views
 from django.views.i18n import JavaScriptCatalog
@@ -10,7 +11,7 @@ from django.conf import settings
 import admin_notifications
 admin_notifications.autodiscover()
 
-urlpatterns = [
+urlpatterns = i18n_patterns (
     path('admin/', admin.site.urls),
     path('', views.Index.as_view() ,name='index'),
     path('customer/', include('customer.urls')),
@@ -24,4 +25,4 @@ urlpatterns = [
     path('schedule/', include('schedule.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('rosetta/', include('rosetta.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

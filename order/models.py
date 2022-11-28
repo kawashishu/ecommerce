@@ -2,6 +2,7 @@ from django.db import models
 from customer.models import Customer
 from store.models import Product
 from checkout.models import BillingAddress
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -13,9 +14,12 @@ class Order(models.Model):
     email = models.CharField(max_length=200)
     class Meta:
         db_table = 'order'
+        verbose_name = _('Order')
 
     def __str__(self):
         return self.email
+    
+    
 
 class OrderDetail(models.Model):
     quanlity = models.IntegerField()
@@ -28,4 +32,5 @@ class OrderDetail(models.Model):
 
     class Meta:
         db_table = 'orderdetail'
+        verbose_name = _('OrderDetail')
 

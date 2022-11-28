@@ -15,7 +15,6 @@ from customer.models import Customer
 class BillingView(View):
     def get(self,*args, **kwargs):
         order = Order.objects.all()
-        print(order)
         context = {
             'order': order,
         }

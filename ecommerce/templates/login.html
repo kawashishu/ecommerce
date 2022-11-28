@@ -20,14 +20,16 @@
             <form action=" {% url 'register' %} " method="POST" id="sign-up">
                 {% csrf_token %}
                 <h1>Create Account</h1>
+                <br>
                 <span>or use your email for registration</span>
+                <br>
                 {{ form.name }}
                 {{ form.email }}
                 {{ form.phone}}
                 {{ form.password }}
                 {{ form.confirm_password }}
                 {{ form.captcha }}
-                <button type="submit">Sign Up</button>
+                <button class="signup-register" type="submit">Sign Up</button>
                 {{ form.email.errors }}
                 {{ form.non_field_errors }}
             </form>
@@ -45,9 +47,10 @@
                     <a href="{% provider_login_url 'github' method='oauth2' %}" class="social"><i class="fab fa-github"></i></a>
                 </div>
                 <span>or use your account</span>
+                <br>
                 {{ form.email }}
                 {{ form.password }}
-
+                <br>
                 <a href=" {% url 'forgot_password' %} ">Forgot your password?</a>
                 <button type="submit">Sign In</button>
             </form>
@@ -118,17 +121,25 @@
         })
 
         $(document).ready(function() {
-            $('#sign-up').validate({
+            $('#sign-up').validate(
                 rules: {
                     "email": {
                         required: true,
                         email: true
-                    },
+                    },                   
+
                     "password": {
                         required: true,
-                        minlength: 6
-                    }
-                },
+                        minlength: 6,
+                        maxlength: 20,
+                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                    },
+
+                    "confirm_password": {
+                        required: true,
+                        equalTo: "#id_password"
+                    },
+
                 messages: {
                     "email": {
                         required: "Please enter your email",
@@ -136,7 +147,7 @@
                     },
                     "password": {
                         required: "Please enter your password",
-                        minlength: "Password must be at least 6 characters"
+                        minlength: "Password must have 1-9, A-Z, special character"
                     }
                 }
             })
