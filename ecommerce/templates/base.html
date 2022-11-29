@@ -46,27 +46,6 @@
                     <a class="text-body mr-3" href="">{% trans "FAQs"%}</a>
                 </div>
             </div>
-            <div id="fb-root"></div>
-    <div id="fb-customer-chat" class="fb-customerchat"></div>
-    <script>
-      var chatbox = document.getElementById("fb-customer-chat");
-      chatbox.setAttribute("page_id", "PAGE-ID");
-      chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
-    <script>
-      window.fbAsyncInit = function () {
-        FB.init({ xfbml: true, version: "API-VERSION" });
-      };
-      (function (d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "facebook-jssdk");
-    </script>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group mt-2 mr-5"  >
@@ -312,6 +291,36 @@
     <!-- Footer End -->
         
     <!-- Back to Top -->
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "100569799202511");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v15.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
     
