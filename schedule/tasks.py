@@ -56,7 +56,6 @@ def get_notification():
     notifications = Notification.objects.all()[:10]
     cache.set('notifications', notifications, timeout=CACHE_TTL)
     
-    return HttpResponse(status=200)
 
 @shared_task
 def get_api_currency():
@@ -76,5 +75,3 @@ def get_api_currency():
             {"api": "Cannot load API response"}, 
             status=status.HTTP_400_BAD_REQUEST
         )
-
-    return HttpResponse(status=200)
