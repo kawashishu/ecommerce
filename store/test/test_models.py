@@ -22,7 +22,6 @@ class TestModel(TestCase):
             avatar='testAvatar',
             categoryid=category,
         )
-        print('setUp success')
 
     def test_product(self):
         self.assertEqual(self.Product.name, 'testName')

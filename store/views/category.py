@@ -14,17 +14,14 @@ class CategoryView(DetailView):
         products = Product.objects.filter(categoryid=self.kwargs['pk'])
         paginator = Paginator(products, self.paginate_by)
         page_number = self.request.GET.get("page")
-        print(page_number)
         try:
             contacts = paginator.page(page_number)
         except PageNotAnInteger:
             contacts = paginator.page(1)
         except EmptyPage:
             contacts = paginator.page(paginator.num_pages)
-        print(contacts)
         context['products'] = contacts
         return context
-
 
 class CategorySortView(DetailView):
     model = Product

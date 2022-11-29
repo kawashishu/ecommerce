@@ -374,12 +374,4 @@ msgstr "Sản phẩm"
 
 #: .\store\models.py:45
 msgid "Notification"
-msgstr ""
-
-#, fuzzy
-#~| msgid "Customer"
-#~ msgid "customer"
-#~ msgstr "Khách hàng"
-
-#~ msgid "Customers"
-#~ msgstr "Khách hàng"
+msgstr "Thông báo"

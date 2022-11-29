@@ -19,9 +19,7 @@
         <div class="form-container sign-up-container">
             <form action=" {% url 'register' %} " method="POST" id="sign-up">
                 {% csrf_token %}
-                <h1>Create Account</h1>
-                <br>
-                <span>or use your email for registration</span>
+                <h1>Create Account</h1>     
                 <br>
                 {{ form.name }}
                 {{ form.email }}
@@ -93,7 +91,7 @@
 
     <!-- jquery validator -->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#sign-in').validate({
@@ -120,41 +118,64 @@
             })
         })
 
-        $(document).ready(function() {
-            $('#sign-up').validate(
-                rules: {
-                    "email": {
-                        required: true,
-                        email: true
-                    },                   
+        var value = $("#id_password").val();
 
-                    "password": {
-                        required: true,
-                        minlength: 6,
-                        maxlength: 20,
-                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-                    },
-
-                    "confirm_password": {
-                        required: true,
-                        equalTo: "#id_password"
-                    },
-
-                messages: {
-                    "email": {
-                        required: "Please enter your email",
-                        email: "Please enter a valid email"
-                    },
-                    "password": {
-                        required: "Please enter your password",
-                        minlength: "Password must have 1-9, A-Z, special character"
-                    }
-                }
-            })
-        })
-       
-
-
+        $.validator.addMethod("checklower", function(value) {
+          return /[a-z]/.test(value);
+        });
+        $.validator.addMethod("checkupper", function(value) {
+          return /[A-Z]/.test(value);
+        });
+        $.validator.addMethod("checkdigit", function(value) {
+          return /[0-9]/.test(value);
+        });
+        $.validator.addMethod("pwcheck", function(value) {
+          return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) && /[a-z]/.test(value) && /\d/.test(value) && /[A-Z]/.test(value);
+        });
+        
+        $('#sign-up').validate({
+          rules: {
+            password: {
+              minlength: 6,
+              maxlength: 30,
+              required: true,
+              //pwcheck: true,
+              checklower: true,
+              checkupper: true,
+              checkdigit: true
+            },
+            confirm_password: {
+              equalTo: "#id_password",
+            },
+          },
+          messages: {
+            password: {
+              pwcheck: "Password is not strong enough",
+              checklower: "Need atleast 1 lowercase alphabet",
+              checkupper: "Need atleast 1 uppercase alphabet",
+              checkdigit: "Need atleast 1 digit"
+            }
+          },
+          highlight: function(element) {
+            $(element).removeClass('has-success').addClass('has-error');
+    
+          },
+          unhighlight: function(element) {
+            $(element).removeClass('has-error').addClass('has-success');
+            $('#confirm_password').attr('disabled', false);
+          },
+          errorElement: 'span',
+          errorClass: 'validate_cus',
+          errorPlacement: function(error, element) {
+            x = element.length;
+            if (element.length) {
+              error.insertAfter(element);
+            } else {
+              error.insertAfter(element);
+            }
+          }
+        
+        });
        
     </script>
 

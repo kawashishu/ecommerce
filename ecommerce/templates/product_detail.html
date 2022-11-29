@@ -342,8 +342,8 @@
 
     function addComment(product_id, user_id){
         var message = $('#message').val()
-        var url = "{% url 'create_comment' 1 %} "
-        url.replace('1', product_id)
+        var url = "{% url 'create_comment' any %} "
+        url.replace('any', product_id)
         var data = {
             'content': message,
             'product_id': product_id,
@@ -361,8 +361,8 @@
     }
 
     function deleteComment(comment, product_id){
-        var url = "{% url 'delete_comment' 1 %} "
-        url.replace('1', product_id)
+        var url = "{% url 'delete_comment' any %} "
+        url.replace('any', product_id)
         console.log(comment)
         const object = event.target
        $.ajax({
