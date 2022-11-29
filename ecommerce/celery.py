@@ -24,6 +24,7 @@ app.conf.beat_schedule = {
             'task': 'schedule.tasks.get_notification',
             'schedule': 10.0,
                 },
+
             'get_api_currency': {
             'task': 'schedule.tasks.get_api_currency',
             'schedule': 10,
