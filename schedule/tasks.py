@@ -31,7 +31,6 @@ def send_email():
             return HttpResponse(status=200)
         except SMTPException as e:
              print('There was an error sending an email: ', e) 
-             return HttpResponse(status=400)
 
 @shared_task
 def super_sales():
@@ -49,7 +48,6 @@ def reset_product():
         product.price *= 2
         product.save()
         
-    return HttpResponse(status=200)
 
 @shared_task
 def get_notification():
