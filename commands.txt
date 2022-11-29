@@ -1,0 +1,2 @@
+celery -A ecommerce.celery worker --pool=solo -l info
+celery -A ecommerce beat -l info

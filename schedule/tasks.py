@@ -52,20 +52,6 @@ def reset_product():
     return HttpResponse(status=200)
 
 @shared_task
-def reset_cache_customer():
-    customers = Customer.objects.all()
-    cache.set('customers', customers, timeout=CACHE_TTL)
-    
-    return HttpResponse(status=200)
-
-@shared_task
-def reset_cache_product():
-    products = Product.objects.all()
-    cache.set('products', products, timeout=CACHE_TTL)
-    
-    return HttpResponse(status=200)
-
-@shared_task
 def get_notification():
     notifications = Notification.objects.all()[:10]
     cache.set('notifications', notifications, timeout=CACHE_TTL)

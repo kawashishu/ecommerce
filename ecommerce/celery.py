@@ -20,32 +20,10 @@ app.autodiscover_tasks()
 
 # CELERY BEAT SETTINGS
 app.conf.beat_schedule = {
-           'send-email-every-day-at-8': {
-            'task': 'schedule.tasks.send_email',
-            'schedule': crontab(hour=15, minute=49),
-           },
-           'reset_cache_customer': {
-            'task': 'schedule.tasks.reset_cache_customer',
-            'schedule': 180.0,
-            # crontab(hour=0, minute=15),
-              },
-              'reset_cache_product': {
-            'task': 'schedule.tasks.reset_cache_product',
-            'schedule': 180.0,
-            # crontab(hour=0, minute=0),
-                },
                 'get_notification': {
             'task': 'schedule.tasks.get_notification',
             'schedule': 10.0,
                 },
-            'super_sales': {
-            'task': 'schedule.tasks.super_sales',
-            'schedule': crontab(hour=11, minute=0),
-            },
-            'reset_product': {
-            'task': 'schedule.tasks.reset_product',
-            'schedule': crontab(hour=11, minute=2),
-            },
             'get_api_currency': {
             'task': 'schedule.tasks.get_api_currency',
             'schedule': 10,
