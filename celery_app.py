@@ -22,9 +22,6 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 app = Celery('tasks')
 app.config_from_object(config)    #this configures your celery app. Take a look at the config.py file
 
-app.config_from_object(config)
-
-
 @shared_task
 def get_notification():
     notifications = Notification.objects.all()[:10]
