@@ -5,7 +5,6 @@ from customer.models import Customer
 
 from checkout.models import BillingAddress
 
-
 class TestModelCategory(TestCase):
     def setUp(self):
         category = Category.objects.create(
