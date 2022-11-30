@@ -14,7 +14,6 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
-
     class Meta:
         db_table = 'comment'
         verbose_name = _('Comment')

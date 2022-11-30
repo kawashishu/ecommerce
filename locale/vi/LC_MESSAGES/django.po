@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-29 17:00+0700\n"
+"POT-Creation-Date: 2022-11-30 14:03+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -256,8 +256,10 @@ msgid "Address Line 1"
 msgstr "Địa chỉ thứ nhất"
 
 #: .\ecommerce\templates\checkout.html:52
-msgid "A"
-msgstr "A"
+#, fuzzy
+#| msgid "Address Line 1"
+msgid "Address Line 2"
+msgstr "Địa chỉ thứ nhất"
 
 #: .\ecommerce\templates\checkout.html:56
 msgid "Country"
@@ -319,7 +321,7 @@ msgstr "Danh mục sản phẩm"
 #, fuzzy
 #| msgid "Products"
 msgid "Previous"
-msgstr "Sản phẩm"
+msgstr "Trang trước"
 
 #: .\ecommerce\templates\index.html:149
 msgid "Page"
@@ -329,31 +331,31 @@ msgstr "Trang"
 msgid "of"
 msgstr "trong"
 
-#: .\ecommerce\templates\index.html:159
+#: .\ecommerce\templates\index.html:158
 msgid "Next"
 msgstr "Tiếp theo"
 
-#: .\ecommerce\templates\index.html:177
+#: .\ecommerce\templates\index.html:176
 msgid "Quality Product"
 msgstr "Số lượng sản phẩm"
 
-#: .\ecommerce\templates\index.html:188
+#: .\ecommerce\templates\index.html:187
 msgid "Free Shipping"
 msgstr "Miễn phí vận chuyển"
 
-#: .\ecommerce\templates\index.html:199
+#: .\ecommerce\templates\index.html:198
 msgid "Day Return"
 msgstr "Ngày giao hàng"
 
-#: .\ecommerce\templates\index.html:210
+#: .\ecommerce\templates\index.html:209
 msgid "Support"
 msgstr "Hỗ trợ"
 
-#: .\ecommerce\templates\index.html:221
+#: .\ecommerce\templates\index.html:220
 msgid "Featured Products"
 msgstr "Sản phẩm nổi bật"
 
-#: .\ecommerce\templates\index.html:314
+#: .\ecommerce\templates\index.html:312
 #, fuzzy
 #| msgid "Products"
 msgid "Recent Products"
@@ -365,15 +367,18 @@ msgstr "Sản phẩm"
 msgid "OrderDetail"
 msgstr "Thành tiền đơn hàng"
 
-#: .\store\models.py:21
+#: .\store\models.py:22
 #, fuzzy
 #| msgid "Products"
 msgid "Product"
 msgstr "Sản phẩm"
 
-#: .\store\models.py:45
+#: .\store\models.py:46
 msgid "Notification"
 msgstr "Thông báo"
+
+#~ msgid "A"
+#~ msgstr "A"
 
 #~ msgid ""
 #~ "Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet "

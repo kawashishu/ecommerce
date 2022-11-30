@@ -1,7 +1,7 @@
 from django import forms
 from .models import Customer
 from captcha.fields import ReCaptchaField
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserChangeForm
 
 
 class RegistrationForm(forms.ModelForm):

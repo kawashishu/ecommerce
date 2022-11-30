@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # models
-    'store','category','ecommerce','customer','order','comment','checkout','schedule',
+    'store','ecommerce','customer','comment','checkout','schedule',
     # third party
     'captcha', 
     # rest framework
@@ -193,7 +193,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Set by default
-STATIC_URL = '/static/'
+STATIC_URL = './static/'
 
 MEDIA_URL = '/ecommerce/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'ecommerce/media')
@@ -213,8 +213,8 @@ TIME_ZONE = 'UTC'
 STATIC_URL = '/static/'
 
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_URL = '/ecommerce/media/'
+# MEDIA_ROOT = BASE_DIR / 'ecommerce/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

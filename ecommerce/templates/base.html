@@ -143,15 +143,14 @@
             </div>
             {% if user.is_authenticated %}
             <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">{% trans "Wellcome"%} {{ user.email }} {% trans "to Shop"%}</p>
-                <h5 class="m-0">{{user.phone}}</h5>
+                <h3 class="m-0">{% trans "Wellcome"%}  {% trans "to Shop"%}</h3>
             </div>
             {% else %}
             <div class="col-lg-4 col-6 text-right">
                 <p class="m-0">{% trans "Welcome Guest"%}</p>
                 <h5 class="m-0">{% trans "Sign in or Register"%}</h5>
             {% endif %}
-        </div>
+            </div>
     </div>
     <!-- Topbar End -->
     
@@ -179,8 +178,6 @@
                             <a href="{% url 'cart' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Shopping Cart"%}</a>
                             {% url 'checkout' as main_url %}
                             <a href="{% url 'checkout' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Checkout"%}</a>
-                            {% url 'contact' as main_url %}
-                            <a href="{% url 'contact' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Contact"%}</a>
                             {% url 'billing' as main_url %}
                             <a href="{% url 'billing' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Bill"%}</a>
                         </div>
@@ -289,7 +286,7 @@
         </div>
     </div>
     <!-- Footer End -->
-        
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
     <!-- Back to Top -->
     <!-- Messenger Plugin chat Code -->
     <div id="fb-root"></div>
@@ -321,7 +318,7 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    
 
     
 
@@ -372,8 +369,6 @@
         alert("Choose Diffrent Currency");
       }
     }
-
-
     function convert(currency1, currency2, value) {
       const host = "api.frankfurter.app";
 
@@ -399,7 +394,6 @@
             $(this).addClass("active");   
         });
         });
-
     </script>
 
 

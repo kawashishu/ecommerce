@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-29 17:00+0700\n"
+"POT-Creation-Date: 2022-11-30 14:03+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -260,8 +260,10 @@ msgid "Address Line 1"
 msgstr "Address Line 1"
 
 #: .\ecommerce\templates\checkout.html:52
-msgid "A"
-msgstr "A"
+#, fuzzy
+#| msgid "Address Line 1"
+msgid "Address Line 2"
+msgstr "Address Line 1"
 
 #: .\ecommerce\templates\checkout.html:56
 msgid "Country"
@@ -333,31 +335,31 @@ msgstr "Page"
 msgid "of"
 msgstr "of"
 
-#: .\ecommerce\templates\index.html:159
+#: .\ecommerce\templates\index.html:158
 msgid "Next"
 msgstr "Next"
 
-#: .\ecommerce\templates\index.html:177
+#: .\ecommerce\templates\index.html:176
 msgid "Quality Product"
 msgstr "Quality Product"
 
-#: .\ecommerce\templates\index.html:188
+#: .\ecommerce\templates\index.html:187
 msgid "Free Shipping"
 msgstr "Free Shipping"
 
-#: .\ecommerce\templates\index.html:199
+#: .\ecommerce\templates\index.html:198
 msgid "Day Return"
 msgstr "Day Return"
 
-#: .\ecommerce\templates\index.html:210
+#: .\ecommerce\templates\index.html:209
 msgid "Support"
 msgstr "Support"
 
-#: .\ecommerce\templates\index.html:221
+#: .\ecommerce\templates\index.html:220
 msgid "Featured Products"
 msgstr "Featured Products"
 
-#: .\ecommerce\templates\index.html:314
+#: .\ecommerce\templates\index.html:312
 #, fuzzy
 #| msgid "Products"
 msgid "Recent Products"
@@ -369,15 +371,18 @@ msgstr "Products"
 msgid "OrderDetail"
 msgstr "Order Total"
 
-#: .\store\models.py:21
+#: .\store\models.py:22
 #, fuzzy
 #| msgid "Products"
 msgid "Product"
 msgstr "Products"
 
-#: .\store\models.py:45
+#: .\store\models.py:46
 msgid "Notification"
 msgstr "Notification"
+
+#~ msgid "A"
+#~ msgstr "A"
 
 #~ msgid "customer"
 #~ msgstr "customer"

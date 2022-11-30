@@ -1,15 +1,14 @@
-from datetime import datetime
+
 from django.shortcuts import redirect, render
-from customer.models import Customer
 from django.views import View
-from cart.views.views import *
 from checkout.forms import CheckoutForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from checkout.models import BillingAddress
-from order.models import Order, OrderDetail
+from store.models import Order
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from store.views.cart import getTotal
 
 SHIPPING_CHARGE = 10
 
@@ -33,10 +32,6 @@ class CheckoutView(View):
                 street_address = form.cleaned_data.get('street_address')
                 apartment_address = form.cleaned_data.get('apartment_address')
                 country = form.cleaned_data.get('country')
-
-                # same_billing_address = form.cleaned_data.get('same_billing_address')
-                # save_info = form.cleaned_data.get('save_info')
-                # payment_option = form.cleaned_data.get('payment_option')
 
                 billing_address = BillingAddress(
                     email=self.request.user,

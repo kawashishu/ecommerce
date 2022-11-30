@@ -52,7 +52,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):
     address = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
-    avatar = models.ImageField(upload_to='image', default='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp')
+    avatar = models.ImageField(upload_to='images_customer', default='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp')
     age = models.IntegerField(default=0)
     sex = models.CharField(
         max_length=1,

@@ -1,5 +1,4 @@
 
-from datetime import datetime
 from celery import shared_task
 from smtplib import SMTPException
 from django.contrib.auth import get_user_model
