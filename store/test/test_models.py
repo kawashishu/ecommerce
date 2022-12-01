@@ -56,7 +56,3 @@ class TestModelOrder(TestCase):
             customerid = customer,
             status = True,
         )
-    def test_order(self):
-        self.assertEqual(self.Order.email, 'test@gmail.com')
-        self.assertEqual(self.Order.billing_address, BillingAddress.objects.get(id=1))
-        self.assertAlmostEqual(self.Order.customerid, Customer.objects.get(id=1))

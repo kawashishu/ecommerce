@@ -34,7 +34,7 @@ class TestUrls(SimpleTestCase):
     
     def test_btn_url_is_resolved(self):
         url = reverse('btn')
-        self.assertEquals(resolve(url).func.view_class, cart.CartView)
+        self.assertEquals(resolve(url).func.view_class, cart.CartCalculator)
         
     def test_change_currency_url_is_resolved(self):
         url = reverse('change_currency', args=['USD'])

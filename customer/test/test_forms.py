@@ -20,7 +20,7 @@ class TestForm(TestCase):
         form = UpdateProfileForm(data={
             'name': 'testName',
             'phone': 'testPhone',
-            'email': 'testEmail@gmail.com',
+            
         })
 
         self.assertTrue(form.is_valid())
