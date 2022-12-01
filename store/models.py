@@ -67,13 +67,12 @@ class Order(models.Model):
     billing_address = models.ForeignKey(
         BillingAddress, on_delete=models.CASCADE, null=True)
     state = models.IntegerField(default=1)
-    email = models.CharField(max_length=200)
     class Meta:
         db_table = 'order'
         verbose_name = _('Order')
 
     def __str__(self):
-        return self.email
+        return self.customerid.email
     
 class OrderDetail(models.Model):
     quanlity = models.IntegerField()
