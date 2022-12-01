@@ -3,10 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, FormView
-from django.views.generic.edit import FormMixin
+from django.views.generic import DetailView
 from comment.models import Comment
-from comment.forms import CommentForm
 from customer.models import Customer
 from ..models import Product
 
@@ -29,16 +27,16 @@ class CreateComment(View):
         userid = int(request.POST.get('user_id'))
         user = get_object_or_404(Customer, id=userid)
         product = get_object_or_404(Product, id=product)
-
         comment = Comment.objects.create(
             content=content,
             productid=product,
             customerid=user,
-            rating = 5,
+            rating=5,
         )
         comment.save()
         comment = Comment.objects.filter(id=comment.id)
-        return JsonResponse({ 'comment': list(comment.values('content', 'customerid', 'productid', 'rating', 'created'))})
+        return JsonResponse({'comment': list(comment.values('content', 'customerid', 'productid', 'rating', 'created'))})
+
 
 class DeleteComment(View):
     def post(self, request, pk):
@@ -46,6 +44,4 @@ class DeleteComment(View):
         comment = get_object_or_404(Comment, id=id)
         comment.delete()
 
-        comments = Comment.objects.all()
-
-        return HttpResponse('ok')
+        return HttpResponse(HttpResponse.status_code)

@@ -1,17 +1,12 @@
 from multiprocessing import context
-from numbers import Integral
 from django.shortcuts import render
 
 # Create your views here.
-from urllib import response
-from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
-from django.views import View
 from django.views.generic import ListView
 from requests import session
 from store.models import Product
-from category.models import Category
-from django.core.paginator import Paginator
+from store.models import Category
 from django.core.cache import cache
 
 

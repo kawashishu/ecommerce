@@ -1,7 +1,6 @@
 from django.urls import include, path
 from customer.views import login, api, password
 from rest_framework.routers import DefaultRouter
-import allauth.urls
 router = DefaultRouter()
 router.register('customer', api.CustomerViewSet, basename='customer')
 

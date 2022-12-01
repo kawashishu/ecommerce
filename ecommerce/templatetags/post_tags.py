@@ -24,7 +24,7 @@ def ranged(min,max):
 
 @register.filter
 def price_currency(price, currency):
-    if currency == None:
+    if currency is None:
         currency = 1
     return round(price * currency)
 

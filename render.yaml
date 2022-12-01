@@ -1,0 +1,20 @@
+databases:
+  - name: postgres
+    databaseName: ecommerce_wjga
+    user: huuph
+
+services:
+  - type: web
+    name: postgres
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn mysite.wsgi:ecommerce"
+    envVars:
+      - key: postgres://huuph:Dk08il5J3qTilyIdywUA62ruOG2Ke3eG@dpg-ce3qdsirrk02ufjkl3sg-a/ecommerce_wjga
+        fromDatabase:
+          name: postgres
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4

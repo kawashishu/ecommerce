@@ -14,9 +14,6 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import View, UpdateView
 from django.urls import reverse_lazy
 
-# import reverse_lazy
-
-
 class RegistrationView(View):
     def get(self, request):
         form = RegistrationForm()
@@ -28,16 +25,15 @@ class RegistrationView(View):
     def post(self, request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            password = form.cleaned_data['password']
-            name = email.split('@')[0]
+            name = form.cleaned_data.get('name')
+            email = form.cleaned_data.get('email')
+            phone = form.cleaned_data.get('phone')
+            password = form.cleaned_data.get('password')
 
             user = Customer.objects.create_user(
                 name=name, email=email, password=password, phone=phone)
             user.save()
-
+            
             current_site = get_current_site(request=request)
             mail_subject = 'Activate your blog account.'
             message = render_to_string('active_email.html', {
@@ -47,13 +43,19 @@ class RegistrationView(View):
                 'token': default_token_generator.make_token(user)
             })
             send_email = EmailMessage(mail_subject, message, to=[email])
-            send_email.send()
-            messages.success(
-                request=request,
-                message="Please confirm your email address to complete the registration"
-            )
-            return redirect('register')
-
+            try:
+                send_email.send()
+                messages.success(
+                    request=request,
+                    message="Please confirm your email address to complete the registration"
+                )
+                return redirect('register')
+            except:
+                messages.error(
+                    request=request,
+                    message="Email not sent"
+                )
+                return redirect('register')
         else:
             messages.error(request=request, message="Register failed!")
         context = {
@@ -71,9 +73,7 @@ class LoginView(View):
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = auth.authenticate(email=email, password=password)
-        print("point 1")
         if user is not None:
-            print("point 2")
             auth.login(request=request, user=user)
             messages.success(request=request, message="Login successful!")
             return redirect('index')
@@ -88,10 +88,8 @@ def login(request):
         password = request.POST.get('password')
         user = auth.authenticate(email=email, password=password)
         if user is not None:
-            print('AAAAAAAAAAAAAA', user)
             auth.login(request=request, user=user)
             messages.success(request=request, message="Login successful!")
-            print(messages)
         else:
             messages.error(request=request, message="Login failed!")
     context = {
@@ -111,9 +109,10 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
+        auth.login(request=request, user=user, backend='django.contrib.auth.backends.ModelBackend')
         messages.success(
             request=request, message="Your account is activated, please login!")
-        return render(request, 'login.html')
+        return render(request, 'index.html')
     else:
         messages.error(request=request, message="Activation link is invalid!")
         return redirect('/')

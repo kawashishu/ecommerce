@@ -1,8 +1,10 @@
 venv
 __pycache__
-./.vscode
-lib
-package-lock.json
-static
-data
-db.sql
+*.log
+*.pot
+*.pyc
+__pycache__
+media
+
+.env
+migrations

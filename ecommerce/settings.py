@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 import environ
-import django_heroku
 from os.path import join
 from django.utils.translation import gettext_lazy as _
 from django_redis import get_redis_connection
+import dj_database_url
 
 
 env = environ.Env(
@@ -45,7 +45,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_notifications',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # models
-    'store','category','ecommerce','customer','order','comment','checkout','schedule',
+    'store','ecommerce','customer','comment','checkout','schedule',
     # third party
     'captcha', 
     # rest framework
@@ -80,10 +79,11 @@ INSTALLED_APPS = [
 # 
 
 
-SITE_ID = 2
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware', # new, for language
     'django.middleware.common.CommonMiddleware',
@@ -150,6 +150,13 @@ DATABASES = {
     }
 }
 
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgresql://postgres:postgres@dpg-ce3qdsirrk02ufjkl3sg-a.singapore-postgres.render.com:5432/mysite',conn_max_age=600 )
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -180,7 +187,7 @@ LOCALE_PATHS = [
 
 LANGUAGES = (
     ('en', _('English')),
-    ('fr', _('French')),
+    ('vi', _('Vietnamese')),
 )
 
 # Turned on by default
@@ -192,7 +199,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Set by default
-STATIC_URL = '/static/'
+STATIC_URL = './static/'
 
 MEDIA_URL = '/ecommerce/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'ecommerce/media')
@@ -212,8 +219,8 @@ TIME_ZONE = 'UTC'
 STATIC_URL = '/static/'
 
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_URL = '/ecommerce/media/'
+# MEDIA_ROOT = BASE_DIR / 'ecommerce/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -227,13 +234,12 @@ AUTH_USER_MODEL = 'customer.Customer'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'bruce.nguyen.goldenowl@gmail.com'
-EMAIL_HOST_PASSWORD = 'gsgpagurqlgfsrmx'
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587 
 
 # captcha
-RECAPTCHA_PUBLIC_KEY = '6LegCokiAAAAAI_6FRb0DMb6sQ3_ITXZ-ogNPWLT'
-RECAPTCHA_PRIVATE_KEY = '6LegCokiAAAAAJgKYtar63U2w9vL8b-nnkl3ACZf'
-
+RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 
 # login with social account
 
@@ -289,18 +295,6 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/'
 
 
-# Google
-# CLIENT_ID = '337540286080-mde6pfppka8q9os4jam44vhsuttc3ceq.apps.googleusercontent.com'
-# CLIENT_SECRET = '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'
-
-# Facebook
-# CLIENT_ID = '1105460530167783'
-# CLIENT_SECRET = '7bf40402e4910cd40053e6570c01115a'
-
-# Github
-# CLIENT_ID = '5ebc76f074f75241633f'
-# CLIENT_SECRET = '32bbe209252657e5ecd253d1e5c53aea1c46cd9f'
-
 
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
@@ -309,13 +303,12 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 SOCIALACCOUNT_LOGIN_ON_GET=True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
-
+# mantory
+ACCOUNT_VERIFICATION_REQUIRED = 'mandatory'
 
 
 # Celery setting
-CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_BROKER_URL = 'rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -331,12 +324,13 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://redis:6379/',
+        'LOCATION': env('REDIS_URL'),
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
 }
+
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
@@ -344,3 +338,4 @@ DEBUG_TOOLBAR_CONFIG = {
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

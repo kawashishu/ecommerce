@@ -24,16 +24,6 @@ app.conf.beat_schedule = {
             'task': 'schedule.tasks.send_email',
             'schedule': crontab(hour=15, minute=49),
            },
-           'reset_cache_customer': {
-            'task': 'schedule.tasks.reset_cache_customer',
-            'schedule': 180.0,
-            # crontab(hour=0, minute=15),
-              },
-              'reset_cache_product': {
-            'task': 'schedule.tasks.reset_cache_product',
-            'schedule': 180.0,
-            # crontab(hour=0, minute=0),
-                },
                 'get_notification': {
             'task': 'schedule.tasks.get_notification',
             'schedule': 10.0,

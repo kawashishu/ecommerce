@@ -1,7 +1,7 @@
 from django import forms
 from .models import Customer
 from captcha.fields import ReCaptchaField
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserChangeForm
 
 
 class RegistrationForm(forms.ModelForm):
@@ -27,7 +27,7 @@ class RegistrationForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs['placeholder'] = 'Enter first name'
+        self.fields['name'].widget.attrs['placeholder'] = 'Enter your name'
         self.fields['phone'].widget.attrs['placeholder'] = 'Enter phone number'
         self.fields['email'].widget.attrs['placeholder'] = 'Enter email'
 
@@ -38,7 +38,7 @@ class RegistrationForm(forms.ModelForm):
         cleaned_data = super(RegistrationForm, self).clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
-
+    
         if password != confirm_password:
             raise forms.ValidationError(
                 'Password does not match!'

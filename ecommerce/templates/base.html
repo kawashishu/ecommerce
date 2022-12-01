@@ -46,7 +46,6 @@
                     <a class="text-body mr-3" href="">{% trans "FAQs"%}</a>
                 </div>
             </div>
-            
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group mt-2 mr-5"  >
@@ -54,7 +53,7 @@
                     </div>
                     <div class="btn-group">
                         {% if user.is_authenticated %}
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{ user.email }}</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{ user.email|title }}</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{% url 'logout' %}">{% trans "Logout"%}</a>
                             <a class="dropdown-item" href="{% url 'profile' %}">{% trans "Profile"%}</a>
@@ -73,7 +72,7 @@
                         </div>
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{request.LANGUAGE_CODE|upper}}</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             {% for language in languages %}
                                 <form action="{% url 'set_language' %}" method="post" id="form_{{ language.code }}" style="display:inline!important;">
@@ -81,7 +80,7 @@
                                     <input name="next" type="hidden" value="{{ redirect_to }}" />
                                     <input name="language" type="hidden" value="{{ language.code }}" />
                                 </form>
-                                <button class="lang-button dropdown-item" type="submit" form="form_{{ language.code }}" value="Submit">{{ language.code }}</button>
+                                <button class="lang-button dropdown-item {% if request.LANGUAGE_CODE == language.code %}active{% endif %} " type="submit" form="form_{{ language.code }}" value="Submit">{{ language.code|upper }}</button>
                             {% endfor %}
                         </div>
                     </div>
@@ -144,15 +143,14 @@
             </div>
             {% if user.is_authenticated %}
             <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">{% trans "Wellcome"%} {{ user.email }} {% trans "to Shop"%}</p>
-                <h5 class="m-0">{{user.phone}}</h5>
+                <h3 class="m-0">{% trans "Wellcome"%}  {% trans "to Shop"%}</h3>
             </div>
             {% else %}
             <div class="col-lg-4 col-6 text-right">
                 <p class="m-0">{% trans "Welcome Guest"%}</p>
                 <h5 class="m-0">{% trans "Sign in or Register"%}</h5>
             {% endif %}
-        </div>
+            </div>
     </div>
     <!-- Topbar End -->
     
@@ -180,8 +178,6 @@
                             <a href="{% url 'cart' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Shopping Cart"%}</a>
                             {% url 'checkout' as main_url %}
                             <a href="{% url 'checkout' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Checkout"%}</a>
-                            {% url 'contact' as main_url %}
-                            <a href="{% url 'contact' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Contact"%}</a>
                             {% url 'billing' as main_url %}
                             <a href="{% url 'billing' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Bill"%}</a>
                         </div>
@@ -226,7 +222,7 @@
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
+                <h5 class="text-secondary text-uppercase mb-4">{% trans "Get In Touch" %}</h5>
                 <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
@@ -237,7 +233,7 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">{% trans "Quick Shop"%}</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Home" %}</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Our Shop"%}</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shop Detail"%}</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shopping Cart"%}</a>
@@ -247,7 +243,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
+                        <h5 class="text-secondary text-uppercase mb-4">{% trans "My Account" %}</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Home"%}</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Our Shop"%}</a>
@@ -259,7 +255,7 @@
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">{% trans "Newsletter"%}</h5>
-                        <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
+                        <p>{% trans "Duo stet tempor ipsum sit amet magna ipsum tempor est" %}</p>
                         <form action="">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Your Email Address">
@@ -290,9 +286,39 @@
         </div>
     </div>
     <!-- Footer End -->
-        
-    <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <!-- Back to Top -->
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "100569799202511");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v15.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
 
     
 
@@ -311,7 +337,6 @@
 
     <!-- Template Javascript -->
     <script src=" {% static 'js/main.js' %} "></script>
-    <script src="{% static 'js/pagination.js' %}"></script>
     
     <script>
 
@@ -344,8 +369,6 @@
         alert("Choose Diffrent Currency");
       }
     }
-
-
     function convert(currency1, currency2, value) {
       const host = "api.frankfurter.app";
 
@@ -371,13 +394,9 @@
             $(this).addClass("active");   
         });
         });
-
     </script>
 
 
 </body>
-
-
-
 
 </html>

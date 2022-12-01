@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import  AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class MyCustomerManager(BaseUserManager):
@@ -10,9 +11,8 @@ class MyCustomerManager(BaseUserManager):
         if not name:
             raise ValueError('User name is required')
 
-        # Tạo đối tượng user mới
         user = self.model(
-            email=self.normalize_email(email=email),    # Chuyển email về dạng bình thường
+            email=self.normalize_email(email=email),  
             name=name,
             phone = phone,
             password=password,
@@ -52,7 +52,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):
     address = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
-    avatar = models.ImageField(upload_to='image', default='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp')
+    avatar = models.ImageField(upload_to='images_customer', default='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp')
     age = models.IntegerField(default=0)
     sex = models.CharField(
         max_length=1,
@@ -70,6 +70,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         db_table = 'customer'
+        verbose_name = _('Customer')
 
     def __str__(self):
         return self.email

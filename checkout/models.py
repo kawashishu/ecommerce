@@ -1,6 +1,7 @@
 from django.db import models
 from customer.models import Customer
 from django_countries.fields import CountryField
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class BillingAddress(models.Model):
@@ -14,3 +15,4 @@ class BillingAddress(models.Model):
         return self.street_address + " " + self.apartment_address + " " + str(self.countries) + " " + self.mobilephone
     class Meta:
         db_table = 'billing_address'
+        verbose_name = _('BillingAddress')

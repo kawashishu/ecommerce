@@ -1,0 +1,387 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-30 14:03+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\category\models.py:12
+#, fuzzy
+#| msgid "Categories"
+msgid "Category"
+msgstr "Danh mục sản phẩm"
+
+#: .\checkout\models.py:18
+#, fuzzy
+#| msgid "Billing Address"
+msgid "BillingAddress"
+msgstr "Địa chỉ giao hàng"
+
+#: .\comment\models.py:20
+msgid "Comment"
+msgstr ""
+
+#: .\customer\models.py:73
+msgid "Customer"
+msgstr "Khách hàng"
+
+#: .\ecommerce\settings.py:183
+msgid "English"
+msgstr "Tiếng Anh"
+
+#: .\ecommerce\settings.py:184
+msgid "Vietnamese"
+msgstr "Tiếng Việt"
+
+#: .\ecommerce\templates\base.html:43
+msgid "About"
+msgstr "Về chúng tôi"
+
+#: .\ecommerce\templates\base.html:44 .\ecommerce\templates\base.html:183
+#: .\ecommerce\templates\contact.html:13
+msgid "Contact"
+msgstr "Liên hệ"
+
+#: .\ecommerce\templates\base.html:45
+msgid "Help"
+msgstr "Giúp đỡ"
+
+#: .\ecommerce\templates\base.html:46
+msgid "FAQs"
+msgstr "FAQs"
+
+#: .\ecommerce\templates\base.html:58
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: .\ecommerce\templates\base.html:59
+msgid "Profile"
+msgstr "Hồ sơ"
+
+#: .\ecommerce\templates\base.html:61
+msgid "Sign In"
+msgstr "Đăng nhập"
+
+#: .\ecommerce\templates\base.html:61 .\ecommerce\templates\base.html:266
+msgid "Sign Up"
+msgstr "Đăng ký"
+
+#: .\ecommerce\templates\base.html:146
+msgid "Wellcome"
+msgstr "Xin chào"
+
+#: .\ecommerce\templates\base.html:146
+msgid "to Shop"
+msgstr "đã tới cửa hàng"
+
+#: .\ecommerce\templates\base.html:151
+msgid "Welcome Guest"
+msgstr "Xin chào quý khách"
+
+#: .\ecommerce\templates\base.html:152
+msgid "Sign in or Register"
+msgstr "Đăng nhập hoặc đăng ký"
+
+#: .\ecommerce\templates\base.html:177 .\ecommerce\templates\base.html:239
+#: .\ecommerce\templates\base.html:251 .\ecommerce\templates\cart.html:12
+#: .\ecommerce\templates\checkout.html:16
+#: .\ecommerce\templates\contact.html:12
+msgid "Home"
+msgstr "Trang chủ"
+
+#: .\ecommerce\templates\base.html:179 .\ecommerce\templates\base.html:242
+#: .\ecommerce\templates\base.html:254 .\ecommerce\templates\cart.html:14
+msgid "Shopping Cart"
+msgstr "Giỏ hàng"
+
+#: .\ecommerce\templates\base.html:181 .\ecommerce\templates\base.html:243
+#: .\ecommerce\templates\base.html:255 .\ecommerce\templates\checkout.html:18
+msgid "Checkout"
+msgstr "Thanh toán"
+
+#: .\ecommerce\templates\base.html:185
+msgid "Bill"
+msgstr "Hóa đơn"
+
+#: .\ecommerce\templates\base.html:228
+msgid "Get In Touch"
+msgstr "Liên lạc"
+
+#: .\ecommerce\templates\base.html:237
+msgid "Quick Shop"
+msgstr "Tới nhanh cửa hàng"
+
+#: .\ecommerce\templates\base.html:240 .\ecommerce\templates\base.html:252
+msgid "Our Shop"
+msgstr "Cửa hàng chúng tôi"
+
+#: .\ecommerce\templates\base.html:241 .\ecommerce\templates\base.html:253
+msgid "Shop Detail"
+msgstr "Chi tiết cửa hàng"
+
+#: .\ecommerce\templates\base.html:244 .\ecommerce\templates\base.html:256
+#: .\ecommerce\templates\contact.html:23
+msgid "Contact Us"
+msgstr "Liên hệ với chúng tôi"
+
+#: .\ecommerce\templates\base.html:249
+msgid "My Account"
+msgstr "Tài khoản"
+
+#: .\ecommerce\templates\base.html:260
+msgid "Newsletter"
+msgstr "Thư mới"
+
+#: .\ecommerce\templates\base.html:261
+msgid "Duo stet tempor ipsum sit amet magna ipsum tempor est"
+msgstr "Hãy đem tiền của bạn đến với chúng tôi.........!"
+
+#: .\ecommerce\templates\base.html:270
+msgid "Follow Us"
+msgstr "Theo dõi chúng tôi"
+
+#: .\ecommerce\templates\base.html:284
+msgid "All Rights Reserved. Designed by Bruce"
+msgstr "Tất cả đều được bảo mật. Thiết kế bởi Bruce"
+
+#: .\ecommerce\templates\billing.html:12
+msgid "ORDER"
+msgstr "ĐƠN HÀNG"
+
+#: .\ecommerce\templates\billing.html:15
+msgid "Expected Arrival"
+msgstr "Thời gian đặt hàng"
+
+#: .\ecommerce\templates\billing.html:38 .\ecommerce\templates\billing.html:44
+#: .\ecommerce\templates\billing.html:50 .\ecommerce\templates\billing.html:56
+#: .\order\models.py:17
+msgid "Order"
+msgstr "Đơn hàng"
+
+#: .\ecommerce\templates\billing.html:38
+msgid "Processed"
+msgstr "Xử lý"
+
+#: .\ecommerce\templates\billing.html:44
+msgid "Shipped"
+msgstr "Vận chuyển"
+
+#: .\ecommerce\templates\billing.html:50
+msgid "En Route"
+msgstr "Hành trình"
+
+#: .\ecommerce\templates\billing.html:56
+msgid "Arrived"
+msgstr "Tới nơi"
+
+#: .\ecommerce\templates\cart.html:13 .\ecommerce\templates\checkout.html:17
+#, fuzzy
+#| msgid "to Shop"
+msgid "Shop"
+msgstr "đã tới cửa hàng"
+
+#: .\ecommerce\templates\cart.html:29 .\ecommerce\templates\checkout.html:84
+msgid "Products"
+msgstr "Sản phẩm"
+
+#: .\ecommerce\templates\cart.html:30
+#, fuzzy
+#| msgid "Profile"
+msgid "Price"
+msgstr "Hồ sơ"
+
+#: .\ecommerce\templates\cart.html:31
+msgid "Quantity"
+msgstr "Số lượng"
+
+#: .\ecommerce\templates\cart.html:32 .\ecommerce\templates\cart.html:87
+#: .\ecommerce\templates\checkout.html:104
+msgid "Total"
+msgstr "Thành tiền"
+
+#: .\ecommerce\templates\cart.html:33
+msgid "Remove"
+msgstr "Xóa"
+
+#: .\ecommerce\templates\cart.html:69
+msgid "Apply Coupon"
+msgstr "Mã giảm giá"
+
+#: .\ecommerce\templates\cart.html:73
+msgid "Cart Summary"
+msgstr "Tổng đơn hàng"
+
+#: .\ecommerce\templates\cart.html:77 .\ecommerce\templates\checkout.html:94
+msgid "Subtotal"
+msgstr "Tổng thành tiền"
+
+#: .\ecommerce\templates\cart.html:81 .\ecommerce\templates\checkout.html:98
+msgid "Shipping"
+msgstr "Phí vận chuyển"
+
+#: .\ecommerce\templates\cart.html:90
+msgid "Proceed To Checkout"
+msgstr "Xử lý thanh toán"
+
+#: .\ecommerce\templates\checkout.html:32
+msgid "Billing Address"
+msgstr "Địa chỉ giao hàng"
+
+#: .\ecommerce\templates\checkout.html:36
+msgid "First Name"
+msgstr "Họ"
+
+#: .\ecommerce\templates\checkout.html:40
+msgid "Last Name"
+msgstr "Tên"
+
+#: .\ecommerce\templates\checkout.html:44
+msgid "Mobile No"
+msgstr "Số điện thoại"
+
+#: .\ecommerce\templates\checkout.html:48
+msgid "Address Line 1"
+msgstr "Địa chỉ thứ nhất"
+
+#: .\ecommerce\templates\checkout.html:52
+#, fuzzy
+#| msgid "Address Line 1"
+msgid "Address Line 2"
+msgstr "Địa chỉ thứ nhất"
+
+#: .\ecommerce\templates\checkout.html:56
+msgid "Country"
+msgstr "Nước"
+
+#: .\ecommerce\templates\checkout.html:60
+msgid "ZIP Code"
+msgstr "Mã ZIP"
+
+#: .\ecommerce\templates\checkout.html:66
+msgid "Save information in next time"
+msgstr "Lưu thông tin vào lần mua hàng kế tiếp"
+
+#: .\ecommerce\templates\checkout.html:73
+msgid "Shipping address is the same as my billing address"
+msgstr "Địa chỉ vận chuyển tương ứng"
+
+#: .\ecommerce\templates\checkout.html:81
+msgid "Order Total"
+msgstr "Thành tiền đơn hàng"
+
+#: .\ecommerce\templates\checkout.html:110
+msgid "Payment"
+msgstr "Thanh toán"
+
+#: .\ecommerce\templates\checkout.html:121
+msgid "Place Order"
+msgstr "Xử lý đơn hàng"
+
+#: .\ecommerce\templates\contact.html:51
+msgid "Send Message"
+msgstr "Gửi tin nhắn"
+
+#: .\ecommerce\templates\index.html:39
+msgid "Men Fashion"
+msgstr "Thời trang nam"
+
+#: .\ecommerce\templates\index.html:61
+msgid "Women Fashion"
+msgstr "Thời trang phụ nữ"
+
+#: .\ecommerce\templates\index.html:83
+msgid "Kids Fashion"
+msgstr "Thời trang trẻ em"
+
+#: .\ecommerce\templates\index.html:99 .\ecommerce\templates\index.html:106
+msgid "Save"
+msgstr "Giảm"
+
+#: .\ecommerce\templates\index.html:100 .\ecommerce\templates\index.html:107
+msgid "Special Offer"
+msgstr "Ưu đãi đặc biệt"
+
+#: .\ecommerce\templates\index.html:116
+msgid "Categories"
+msgstr "Danh mục sản phẩm"
+
+#: .\ecommerce\templates\index.html:143
+#, fuzzy
+#| msgid "Products"
+msgid "Previous"
+msgstr "Trang trước"
+
+#: .\ecommerce\templates\index.html:149
+msgid "Page"
+msgstr "Trang"
+
+#: .\ecommerce\templates\index.html:149
+msgid "of"
+msgstr "trong"
+
+#: .\ecommerce\templates\index.html:158
+msgid "Next"
+msgstr "Tiếp theo"
+
+#: .\ecommerce\templates\index.html:176
+msgid "Quality Product"
+msgstr "Số lượng sản phẩm"
+
+#: .\ecommerce\templates\index.html:187
+msgid "Free Shipping"
+msgstr "Miễn phí vận chuyển"
+
+#: .\ecommerce\templates\index.html:198
+msgid "Day Return"
+msgstr "Ngày giao hàng"
+
+#: .\ecommerce\templates\index.html:209
+msgid "Support"
+msgstr "Hỗ trợ"
+
+#: .\ecommerce\templates\index.html:220
+msgid "Featured Products"
+msgstr "Sản phẩm nổi bật"
+
+#: .\ecommerce\templates\index.html:312
+#, fuzzy
+#| msgid "Products"
+msgid "Recent Products"
+msgstr "Sản phẩm"
+
+#: .\order\models.py:35
+#, fuzzy
+#| msgid "Order Total"
+msgid "OrderDetail"
+msgstr "Thành tiền đơn hàng"
+
+#: .\store\models.py:22
+#, fuzzy
+#| msgid "Products"
+msgid "Product"
+msgstr "Sản phẩm"
+
+#: .\store\models.py:46
+msgid "Notification"
+msgstr "Thông báo"
+
+#~ msgid "A"
+#~ msgstr "A"
+
+#~ msgid ""
+#~ "Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet "
+#~ "amet ndiam elitr ipsum diam"
+#~ msgstr ""
+#~ "Xả hàng tồn kho giá rẻ như cho! Giá bèo, giá bèo, giá cho người nghèo!"

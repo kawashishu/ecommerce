@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 
-from store.views import detail, category, cart, currency, search
+from store.views import detail, category, cart, currency, search, order
 
 class TestUrls(SimpleTestCase):
     def test_search_url_is_resolved(self):
@@ -47,4 +47,15 @@ class TestUrls(SimpleTestCase):
     def test_sort_categories_url_is_resolved(self):
         url = reverse('sort_categories', args=[1, 'name', 'asc'])
         self.assertEquals(resolve(url).func.view_class, category.CategorySortView)
-    
+
+    def test_cart_url_is_resolved(self):
+        url = reverse('cart')
+        self.assertEquals(resolve(url).func.view_class, cart.CartView)
+
+    def test_cart_list_url_is_resolved(self):
+        url = reverse('cart-list')
+        self.assertEquals(resolve(url).func.view_class, cart.CartListView)
+
+    def test_billing_url_is_resolved(self):
+        url = reverse('billing')
+        self.assertEquals(resolve(url).func.view_class, order.BillingView)
