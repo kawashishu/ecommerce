@@ -1,5 +1,5 @@
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.11"
 
 [tool.poetry]
 name = "ecommerce"
