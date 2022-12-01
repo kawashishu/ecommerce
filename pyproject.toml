@@ -3,7 +3,6 @@ name = "ecommerce"
 version = "0.1.0"
 description = ""
 authors = ["BruceNguyen01 <bruce.nguyen.goldenowl@gmail.com>"]
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
