@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 import environ
-import django_heroku
 from os.path import join
 from django.utils.translation import gettext_lazy as _
 from django_redis import get_redis_connection
+import dj_database_url
 
 
 env = environ.Env(
@@ -45,7 +45,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_notifications',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -149,6 +148,13 @@ DATABASES = {
         "HOST": env("DATABASE_HOST"),
         "PORT": env("DATABASE_PORT"),
     }
+}
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgresql://postgres:postgres@dpg-ce3qdsirrk02ufjkl3sg-a.singapore-postgres.render.com:5432/mysite',conn_max_age=600 )
 }
 
 
