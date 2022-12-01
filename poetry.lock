@@ -4,7 +4,7 @@ version = "3.5.2"
 description = "ASGI specs, helper code, and adapters"
 category = "main"
 optional = false
-python-versions = "^=3.7"
+python-versions = "^=3.11"
 
 [package.extras]
 tests = ["mypy (>=0.800)", "pytest", "pytest-asyncio"]
@@ -15,7 +15,7 @@ version = "4.1.3"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 
 [package.dependencies]
 asgiref = ">=3.5.2,<4"
@@ -44,7 +44,7 @@ python-versions = ">=2"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.7"
+python-versions = "^3.11"
 content-hash = "438efd7253c4fb41985b5a79cabe5b0d14c4940554a1eb4c4151012bad4cc390"
 
 [metadata.files]
