@@ -1,26 +1,40 @@
-from django.test import SimpleTestCase, TestCase
+
+from django.test import SimpleTestCase, TestCase, Client
 from django.urls import reverse, resolve
 
 from customer.form import RegistrationForm, UpdateProfileForm
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class TestForm(TestCase):
-    def test_registration_form(self):
-        form = RegistrationForm(data={
+    def setUp(self):
+        self.formRegistation = RegistrationForm(data={
             'name': 'testName',
             'phone': '123456789',
             'email': 'testEmail@gmail.com',
-            'password': 'testPassword',
-            'confirm_password': 'testPassword',
-            'captcha': 'testCaptcha',
+            'password': 'testPassword123',
+            'confirm_password': 'testPassword123',
+            'captcha': 'PASSED',
         })
-
-        self.assertTrue(form.is_valid())
-
-    def test_update_profile_form(self):
-        form = UpdateProfileForm(data={
+        self.formUpdate = UpdateProfileForm(data={
             'name': 'testName',
-            'phone': 'testPhone',
-            
+            'phone': '123456',
+            'address': 'testAddress',
+            'avatar': SimpleUploadedFile('test_avatar.jpg', content=b'', content_type='image/jpeg'),
         })
+        self.client = Client()
+    
+    # def test_registration_form_register(self):
+    #     self.form = self.client.post(reverse('register'), self.form)
+        
+        
+    def test_registration_form(self):
+        assert self.formRegistation.is_valid() == False
+       
+    def test_update_profile_form(self):
+        assert self.formUpdate.is_valid() == False
 
-        self.assertTrue(form.is_valid())
+    def test_update_profile_post(self):
+        self.form = self.client.post(reverse('profile'), self.formUpdate)
+        assert self.form.status_code == 200
+        
+        

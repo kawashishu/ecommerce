@@ -5,54 +5,38 @@ from customer.models import Customer
 
 from checkout.models import BillingAddress
 
+from store.test.factories import ProductFactory, CategoryFactory, OrderFactory, OrderDetailFactory
+from customer.test.factory import CustomerFactory
+from checkout.test.factory import BillingAddressFactory
+
+from faker import Faker
+
+fake = Faker()
 class TestModelCategory(TestCase):
     def setUp(self):
-        category = Category.objects.create(
-            name='testCategory',
-            image='testImage',
-        )
-        self.Product = Product.objects.create(
-            name='testName',
-            decripstion='testDescription',
-            quanlity=1,
-            discount=1,
-            status=True,
-            title='testTitle',
-            price=1,
-            views=1,
-            avatar='testAvatar',
-            categoryid=category,
-        )
-
-    def test_product(self):
-        self.assertEqual(self.Product.name, 'testName')
-        self.assertEqual(self.Product.decripstion, 'testDescription')
-        self.assertEqual(self.Product.quanlity, 1)
-        self.assertEqual(self.Product.discount, 1)
-        self.assertEqual(self.Product.status, True)
-        self.assertEqual(self.Product.title, 'testTitle')
-        self.assertEqual(self.Product.price, 1)
-        self.assertEqual(self.Product.views, 1)
-        self.assertEqual(self.Product.avatar, 'testAvatar')
-        self.assertEqual(self.Product.categoryid, Category.objects.get(id=1))
-
+        name = fake.name()
+        self.category = CategoryFactory(name=name, image=f'image_{name}')
+    
+    def test_category_model(self):
+        self.assertEqual(self.category.name, self.category.name)
+        self.assertEqual(self.category.image, self.category.image)
+    
+class TestModelProduct(TestCase):
+    def setUp(self):
+        name = fake.name()
+        self.product = ProductFactory(name=name, avatar=f'image_{name}')
+    
+    def test_product_model(self):
+        self.assertEqual(self.product.name, self.product.name)
+        self.assertEqual(self.product.avatar, self.product.avatar)
+        
 class TestModelOrder(TestCase):
     def setUp(self):
-        customer = Customer.objects.create(
-            name = 'Nguye',
-            email = 'test@gmail.com',
-            phone = '01234',
-        )
-        billing_address = BillingAddress.objects.create(
-            street_address = 'test',
-            apartment_address = 'test',
-            email = customer,
-            mobilephone='01234',
-        )
-        self.Order = Order.objects.create(
-            email = 'test@gmail.com',
-            state = 0,
-            billing_address = billing_address,
-            customerid = customer,
-            status = True,
-        )
+        self.customer = CustomerFactory()
+        self.customer = BillingAddressFactory()
+        self.order = OrderFactory()
+    
+    def test_order_model(self):
+        self.assertEqual(self.order.created, self.order.created)
+        self.assertEqual(self.order.status, self.order.status)
+        
