@@ -76,7 +76,6 @@ python-gettext==4.1
 python-jose==3.3.0
 python3-openid==3.2.0
 pytz==2022.5
-pypiwin32==305
 PyYAML==5.4.1
 redis==4.3.4
 regex==2022.10.31
