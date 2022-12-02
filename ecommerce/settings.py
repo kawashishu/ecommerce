@@ -302,7 +302,7 @@ ACCOUNT_VERIFICATION_REQUIRED = 'mandatory'
 
 
 # Celery setting
-CELERY_BROKER_URL = 'rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0'
+CELERY_BROKER_URL = env('REDIS_URL')
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
