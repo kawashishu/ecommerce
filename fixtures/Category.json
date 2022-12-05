@@ -1,6 +1,6 @@
 [
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 1,
     "fields": {
         "name": "Doors, Frames & Hardware",
@@ -8,7 +8,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 2,
     "fields": {
         "name": "Retaining Wall and Brick Pavers",
@@ -16,7 +16,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 3,
     "fields": {
         "name": "Waterproofing & Caulking",
@@ -24,7 +24,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 4,
     "fields": {
         "name": "Framing (Wood)",
@@ -32,7 +32,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 5,
     "fields": {
         "name": "Sitework & Site Utilities",
@@ -40,7 +40,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 6,
     "fields": {
         "name": "Framing (Wood)",
@@ -48,7 +48,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 7,
     "fields": {
         "name": "RF Shielding",
@@ -56,7 +56,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 8,
     "fields": {
         "name": "Plumbing & Medical Gas",
@@ -64,7 +64,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 9,
     "fields": {
         "name": "Ornamental Railings",
@@ -72,7 +72,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 10,
     "fields": {
         "name": "Hard Tile & Stone",
@@ -80,7 +80,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 11,
     "fields": {
         "name": "Drywall & Acoustical (MOB)",
@@ -88,7 +88,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 12,
     "fields": {
         "name": "Construction Clean and Final Clean",
@@ -96,7 +96,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 13,
     "fields": {
         "name": "EIFS",
@@ -104,7 +104,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 14,
     "fields": {
         "name": "Retaining Wall and Brick Pavers",
@@ -112,7 +112,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 15,
     "fields": {
         "name": "Fire Protection",
@@ -120,7 +120,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 16,
     "fields": {
         "name": "Plumbing & Medical Gas",
@@ -128,7 +128,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 17,
     "fields": {
         "name": "Construction Clean and Final Clean",
@@ -136,7 +136,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 18,
     "fields": {
         "name": "Elevator",
@@ -144,7 +144,7 @@
     }
 },
 {
-    "model": "category.category",
+    "model": "store.category",
     "pk": 19,
     "fields": {
         "name": "Overhead Doors",
