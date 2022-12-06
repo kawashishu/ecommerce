@@ -8,8 +8,7 @@
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Home</a>
                     <span class="breadcrumb-item active">Shopping Cart</span>
                 </nav>
             </div>
@@ -35,7 +34,7 @@
                     <tbody class="align-middle">
                         {% for product in products %}
                         <tr>
-                            <td class="align-middle"><img src="/media/{{product.avatar}}" alt="product" style="width: 50px; ">{{product.title}}</td>
+                            <td class="align-middle"><img src="/ecommerce/media/{{product.avatar}}" alt="product" style="width: 50px; ">{{product.title}}</td>
                             <td class="align-middle">{{product.price}}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -143,7 +142,5 @@
 
 
 </body>
-
-
 
 {% endblock %}

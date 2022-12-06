@@ -13,8 +13,7 @@
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">{% trans "Home" %}</a>
-                    <a class="breadcrumb-item text-dark" href="#">{% trans "Shop" %}</a>
+                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">{% trans "Home" %}</a>
                     <span class="breadcrumb-item active">{% trans "Checkout" %}</span>
                 </nav>
             </div>
@@ -96,7 +95,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">{% trans "Shipping" %}</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">10</h6>
                         </div>
                     </div>
                     <div class="pt-2">

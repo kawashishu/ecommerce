@@ -9,7 +9,7 @@ from checkout.models import BillingAddress
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='images', blank=True, null=True)
+    image = models.ImageField(upload_to='images_category', blank=True, null=True)
     class Meta:
         db_table = 'category'
         verbose_name = _('Category')
@@ -30,6 +30,7 @@ class Product(models.Model):
     price = models.FloatField()
     views = models.IntegerField(default=0)
     avatar = models.ImageField(upload_to='images_product', blank=True, null=True)
+    
     
     class Meta:
         db_table = 'product'

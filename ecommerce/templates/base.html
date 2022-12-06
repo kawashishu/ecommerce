@@ -172,8 +172,6 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0 navbar-index">
-                            {% url '/' as main_url %}
-                            <a href=" {% url 'index' %} " class="nav-item nav-link ml-3 {% if request.path != main_url %}active{% endif %} ">{% trans "Home"%}</a>
                             {% url 'cart' as main_url %}
                             <a href="{% url 'cart' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Shopping Cart"%}</a>
                             {% url 'checkout' as main_url %}
