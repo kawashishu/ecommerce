@@ -310,13 +310,13 @@
                 alt=""
               />
               <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a onclick="addcart({{product.id}})" class="btn btn-outline-dark btn-square"
                   ><i class="fa fa-shopping-cart"></i
                 ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a onclick="addWishList({{product.id}})" class="btn btn-outline-dark btn-square"
                   ><i class="far fa-heart"></i
                 ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a class="btn btn-outline-dark btn-square" href="{% url 'productdetail' product.id %}"
                   ><i class="fa fa-search"></i
                 ></a>
               </div>
@@ -436,6 +436,20 @@
       },
     })
   }
+
+  function addWishList(id) {
+    $.ajax({
+      url: "{% url 'wishlist' %}",
+      type: 'POST',
+      data: {
+        id: id,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (count) {
+        $('.wishlist').text(count)
+      },
+    })
+}
 
   
 </script>

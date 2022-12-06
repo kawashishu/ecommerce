@@ -109,11 +109,5 @@
       });
     }
 });
-
-    $(document).ready(function () {
-      
-});
-
-
   //  ajax call
 })(jQuery);
