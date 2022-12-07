@@ -67,3 +67,4 @@ services:
 volumes:
   pgdata:
 
+# docker compose expose ports, create EC2 and git clone repo, mapping ports, docker-compose up -d

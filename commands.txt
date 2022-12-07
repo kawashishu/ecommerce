@@ -1,2 +1,5 @@
 celery -A ecommerce.celery worker --pool=solo -l info
 celery -A ecommerce beat -l info
+
+
+ssh -i "djangoletsencript.pem" ubuntu@ec2-3-92-229-71.compute-1.amazonaws.com
