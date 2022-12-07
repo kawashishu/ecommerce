@@ -3,3 +3,5 @@ celery -A ecommerce beat -l info
 
 
 ssh -i "djangoletsencript.pem" ubuntu@ec2-3-92-229-71.compute-1.amazonaws.com
+
+docker tag ecommerce:latest 1234567890.dkr.ecr.us-east-1.amazonaws.com/ecommerce:latest

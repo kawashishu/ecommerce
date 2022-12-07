@@ -10,7 +10,6 @@ services:
              python manage.py loaddata fixtures/Category.json &&
              python manage.py loaddata fixtures/Customer.json &&
              python manage.py loaddata fixtures/Product.json &&
-             python manage.py loaddata fixtures/Notifications.json &&
              python manage.py runserver 0.0.0.0:8000" 
     volumes:
       - .:/usr/src/app/
