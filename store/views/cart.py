@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.views import View
 from store.models import Product
 from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 SHIPPING_CHARGE = 8
 
@@ -96,6 +98,7 @@ def getCart(request):
         return 0
 
 class WishlistView(View):
+    @login_required(login_url='register')
     def post(self, request):
         id = int(request.POST.get('id'))
         if 'wishlist' in request.session:

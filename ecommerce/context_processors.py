@@ -1,9 +1,13 @@
 from django.core.cache import cache
 
 def message_processor(request):
-
-    notifications = len(cache.get('notifications')) or 0
-    noti = cache.get('notifications') or None
+    try:
+        notifications = len(cache.get('notifications'))
+        noti = cache.get('notifications')
+    except:
+        notifications = 0
+        noti = None
+        
     carts = len(request.session.get('cart-duplicate') or [])
     wishlist = len(request.session.get('wishlist') or [])
     notifications = notifications or 0
