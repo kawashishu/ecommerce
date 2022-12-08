@@ -9758,9 +9758,7 @@ a.text-dark:hover, a.text-dark:focus {
   margin: 15px;
   z-index: 9999;
   animation: action 6s infinite alternate;
-
-  /* set time display toast is 5s */
-  animation-duration: 5s; 
+  /* set time display toast is 5s  */
 }
 
 @keyframes action {
