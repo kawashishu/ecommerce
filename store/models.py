@@ -31,7 +31,6 @@ class Product(models.Model):
     views = models.IntegerField(default=0)
     avatar = models.ImageField(upload_to='images_product', blank=True, null=True)
     
-    
     class Meta:
         db_table = 'product'
         verbose_name = _('Product')
