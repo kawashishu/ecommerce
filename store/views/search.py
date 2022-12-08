@@ -28,17 +28,19 @@ class StoreView(ListView):
 
 
 class SearchFilterView(View):
-    def get(self, request):
+    def get(self, request, pk):
         price = int(request.GET.get('price'))
         products = Product.objects.filter(price__range=(
-            price * STEP_FILTER_PRICE, price * STEP_FILTER_PRICE + STEP_FILTER_PRICE))
+            price * STEP_FILTER_PRICE, price * STEP_FILTER_PRICE + STEP_FILTER_PRICE)).filter(
+            categoryid=pk)
         return JsonResponse({'products': list(products.values('title', 'price', 'id', 'avatar',))})
 
 
 class SearchFormView(View):
-    def get(self, request):
+    def get(self, request, pk):
         query = request.GET.get('query')
         products = cache.get('products')
-        products = Product.objects.filter(title__icontains=query)
+        products = Product.objects.filter(title__icontains=query).filter(
+            categoryid=pk)
 
         return JsonResponse({'products': list(products.values('title', 'price', 'id', 'avatar',))})

@@ -374,10 +374,7 @@
                         <i class="far fa-star"></i>
                     </div>
                     <p>${comment[0].content}</p>
-                    {% if request.user == comment.customerid %}
                     <button onclick="deleteComment('${comment[0].content}', '${comment[0].productid}')" class="btn btn-sm btn-danger">Delete</button>
-                    {% endif %}
-                
                 </div>
             </div>
             </li>

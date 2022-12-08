@@ -5,8 +5,8 @@ from .views import detail, category, cart, currency, search, order
 
 urlpatterns = [
     path('', search.StoreView.as_view() ,name='shop'),
-    path ('filter/', search.SearchFilterView.as_view(), name='filter'),
-    path('search_product/', search.SearchFormView.as_view(), name='search_product'),
+    path ('filter/<int:pk>', search.SearchFilterView.as_view(), name='filter'),
+    path('search_product/<int:pk>', search.SearchFormView.as_view(), name='search_product'),
      
     path('category/productdetail/<int:pk>', detail.ProductDetail.as_view(), name = 'productdetail'),
     path('category/productdetail/<int:pk>/createcomment/', detail.CreateComment.as_view(), name = 'create_comment'),

@@ -1,4 +1,5 @@
 from django.core.cache import cache
+from store.models import Product
 
 def message_processor(request):
     try:
@@ -7,7 +8,10 @@ def message_processor(request):
     except:
         notifications = 0
         noti = None
-        
+    
+    menu_wishlist = request.session.get('wishlist') or []
+    wishlist_products = Product.objects.filter(id__in=menu_wishlist)
+
     carts = len(request.session.get('cart-duplicate') or [])
     wishlist = len(request.session.get('wishlist') or [])
     notifications = notifications or 0
@@ -22,4 +26,5 @@ def message_processor(request):
             'noti': noti,
             'currency': currency,
             'currency_name': currency_name,
+            'wishlist_products': wishlist_products,
         }

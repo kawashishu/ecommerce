@@ -13,8 +13,6 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
-    
-    
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
@@ -183,25 +181,29 @@
                             <a data-toggle="dropdown" href="" class="btn px-0 dropdown-toggle">
                                 <i class="fas fa-bell text-primary  "></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"> {{ notifications }}</span>
-                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                <div class="dropdown-menu bg-white rounded-0 border-0 m-0">
                                     {% for n in noti %}
                                     <a href="#" class="dropdown-item">{{n.content}}</a>
                                     {% endfor %}
                                 </div>
                             </a>
 
-                            <a href="#" class="btn px-0 ml-5">
+                                                          
+                            <div class="dropdown-wishlist">
+                                <button class="btn px-0 ml-5 dropbtn">
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="wishlist badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{wishlist}}</span>
-                            </a>
+                            </button>  
+                                <div class="dropdown-content">
+                                {% for product in wishlist_products %}
+                                    <a href="{% url 'productdetail' product.id %}">{{product.title}}</a>
+                                {% endfor %}
+                                </div>
+                            </div>
+
                             <a href="{% url 'cart' %}" class="btn px-0 ml-5 dropdown-toggle"  >
                                 <i class="fas fa-shopping-cart text-primary "></i>
                                 <span class=" shopping-cart badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{ carts }}</span>
-                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    {% for n in noti %}
-                                    <a href="#" class="dropdown-item">{{n.content}}</a>
-                                    {% endfor %}
-                                </div>
                             </a>
                         </div>
                     </div>
@@ -232,11 +234,11 @@
                         <h5 class="text-secondary text-uppercase mb-4">{% trans "Quick Shop"%}</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Home" %}</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Our Shop"%}</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shop Detail"%}</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shopping Cart"%}</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Checkout"%}</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Contact Us"%}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Our Shop" %}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shop Detail" %}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Shopping Cart" %}</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Checkout" %}</a>
+                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>{% trans "Contact Us" %}</a>
                             
                         </div>
                     </div>

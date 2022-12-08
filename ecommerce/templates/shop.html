@@ -8,6 +8,7 @@
       <nav class="breadcrumb bg-light mb-30">
         <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Home</a>
         <span class="breadcrumb-item active">Shop</span>
+        
       </nav>
     </div>
   </div>
@@ -49,7 +50,7 @@
                 id="price-1"
               />
               <label class="custom-control-label" for="price-1">
-                $0 - $100
+                20 - 40
               </label>
               <span class="badge border font-weight-normal">150</span>
             </div>
@@ -62,7 +63,7 @@
                 id="price-2"
               />
               <label class="custom-control-label" for="price-2">
-                $100 - $200
+                40 - 60
               </label>
               <span class="badge border font-weight-normal">295</span>
             </div>
@@ -75,7 +76,7 @@
                 id="price-3"
               />
               <label class="custom-control-label" for="price-3">
-                $200 - $300
+                60 - 80
               </label>
               <span class="badge border font-weight-normal">246</span>
             </div>
@@ -88,7 +89,7 @@
                 id="price-4"
               />
               <label class="custom-control-label" for="price-4">
-                $300 - $400
+                80 - 100
               </label>
               <span class="badge border font-weight-normal">145</span>
             </div>
@@ -101,7 +102,7 @@
                 id="price-5"
               />
               <label class="custom-control-label" for="price-5">
-                $400 - $500
+                100 - 120
               </label>
               <span class="badge border font-weight-normal">168</span>
             </div>
@@ -191,7 +192,7 @@
                 >
                   <i class="fa fa-shopping-cart"></i>
                 </a>
-                <a onclick="addWishList({{product.id}})" class="btn btn-outline-dark btn-square" >
+                <a onclick="addWishList({{product.id}})" class="btn btn-outline-dark btn-square liveToastBtn" >
                   <i class="far fa-heart "></i>
                 </a>
                 <!-- Toast Message -->
@@ -226,19 +227,7 @@
             </div>
           </div>
         </div>
-        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-          <div class="toast liveToast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-              <img src="..." class="rounded me-2" alt="...">
-              <strong class="me-auto">Bootstrap</strong>
-              <small>11 mins ago</small>
-              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-              Hello, world! This is a toast message.
-            </div>
-          </div>
-        </div>
+
         {% endfor %}
       </div>
       {% if products.has_other_pages %}
@@ -295,7 +284,17 @@
     </div>
     <!-- Shop Product End -->
   </div>
+
+
 </div>
+      <div class="toast toast-success">
+        <div class="toast-header">
+          SUCCESS.........!
+        </div>
+        <div class="toast-body">
+          Congratulations! Your action successfully .....
+        </div>
+    </div>
 
 <!-- Shop End -->
 <script
@@ -373,9 +372,8 @@
 
   function search_ajax() {
     const query = $('.form-control-search').val()
-    console.log(query)
     $.ajax({
-      url: "{% url 'search_product' %}",
+      url: "{% url 'search_product' product.categoryid.id  %}",
       type: 'GET',
       data: {
         query: query,
@@ -389,11 +387,10 @@
 </script>
 
 <script>
-
     $('.custom-control-input').click( () => {
         const price = (event.target.id).split('-')[1]
         $.ajax({
-            url: "{% url 'filter' %}",
+            url: "{% url 'filter' product.categoryid.id %}",
             type: 'GET',
             data: {
                 'price': price,
@@ -404,10 +401,20 @@
         })
     } )
 
-
 </script>
 
+<script>
+$(document).ready(function(){
+  $(".liveToastBtn").click(function(){
+    $('.toast').toast('show');
+  });
+});
 
-
+$(document).ready(function(){
+  $(".liveToastBtn").click(function(){
+    $('.toast').toast('show');
+  });
+});
+</script>
 
 {% endblock %}
