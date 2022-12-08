@@ -1,28 +1,21 @@
 from django.core.cache import cache
 
 def message_processor(request):
-    try:
-        notifications = len(cache.get('notifications'))
-        noti = cache.get('notifications')
-    except:
-        notifications = 0
-        noti = None
-        
-    try: 
-        return {
-            'carts': len(request.session['cart-duplicate']),
-            'wishlist': len(request.session['wishlist']) or 0,
+
+    notifications = len(cache.get('notifications')) or 0
+    noti = cache.get('notifications') or None
+    carts = len(request.session.get('cart-duplicate') or [])
+    wishlist = len(request.session.get('wishlist') or [])
+    notifications = notifications or 0
+    noti = noti or None
+    currency = request.session.get('currency') or 1
+    currency_name = request.session.get('currency_name') or 'USD'
+
+    return {
+            'carts': carts,
+            'wishlist': wishlist,
             'notifications': notifications,
             'noti': noti,
-            'currency': request.session['currency'],
-            'currency_name': request.session['currency_name'],
-        }
-    except:
-        return {
-            'carts': 0,
-            'notifications': 0,
-            'noti': None,
-            'wishlist': 0,
-            'currency': 1,
-            'currency_name': 'USD',
+            'currency': currency,
+            'currency_name': currency_name,
         }

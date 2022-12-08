@@ -6,10 +6,6 @@ services:
     image: public.ecr.aws/k8f7u6w7/ecommerce:celery
     command: >
       sh -c "python manage.py wait_for_db &&
-             python manage.py migrate &&
-             python manage.py loaddata fixtures/Category.json &&
-             python manage.py loaddata fixtures/Customer.json &&
-             python manage.py loaddata fixtures/Product.json &&
              python manage.py runserver 0.0.0.0:8000" 
     volumes:
       - .:/usr/src/app/

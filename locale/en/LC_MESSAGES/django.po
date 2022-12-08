@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 22:50+0700\n"
+"POT-Creation-Date: 2022-12-08 11:57+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgstr "Profile"
 msgid "Sign In"
 msgstr "Sign In"
 
-#: .\ecommerce\templates\base.html:61 .\ecommerce\templates\base.html:263
+#: .\ecommerce\templates\base.html:61 .\ecommerce\templates\base.html:261
 msgid "Sign Up"
 msgstr "Sign Up"
 
@@ -87,64 +87,64 @@ msgstr "Welcome Guest"
 msgid "Sign in or Register"
 msgstr "Sign in or Register"
 
-#: .\ecommerce\templates\base.html:176 .\ecommerce\templates\base.html:236
-#: .\ecommerce\templates\base.html:248 .\ecommerce\templates\checkout.html:16
+#: .\ecommerce\templates\base.html:176 .\ecommerce\templates\base.html:237
+#: .\ecommerce\templates\base.html:249
+msgid "Shopping Cart"
+msgstr "Shopping Cart"
+
+#: .\ecommerce\templates\base.html:178 .\ecommerce\templates\base.html:238
+#: .\ecommerce\templates\base.html:250 .\ecommerce\templates\checkout.html:17
+msgid "Checkout"
+msgstr "Checkout"
+
+#: .\ecommerce\templates\base.html:180
+msgid "Bill"
+msgstr "Bill"
+
+#: .\ecommerce\templates\base.html:223
+msgid "Get In Touch"
+msgstr ""
+
+#: .\ecommerce\templates\base.html:232
+msgid "Quick Shop"
+msgstr "Quick Shop"
+
+#: .\ecommerce\templates\base.html:234 .\ecommerce\templates\base.html:246
+#: .\ecommerce\templates\checkout.html:16
 #: .\ecommerce\templates\contact.html:12
 msgid "Home"
 msgstr "Home"
 
-#: .\ecommerce\templates\base.html:178 .\ecommerce\templates\base.html:239
-#: .\ecommerce\templates\base.html:251
-msgid "Shopping Cart"
-msgstr "Shopping Cart"
-
-#: .\ecommerce\templates\base.html:180 .\ecommerce\templates\base.html:240
-#: .\ecommerce\templates\base.html:252 .\ecommerce\templates\checkout.html:18
-msgid "Checkout"
-msgstr "Checkout"
-
-#: .\ecommerce\templates\base.html:182
-msgid "Bill"
-msgstr "Bill"
-
-#: .\ecommerce\templates\base.html:225
-msgid "Get In Touch"
-msgstr ""
-
-#: .\ecommerce\templates\base.html:234
-msgid "Quick Shop"
-msgstr "Quick Shop"
-
-#: .\ecommerce\templates\base.html:237 .\ecommerce\templates\base.html:249
+#: .\ecommerce\templates\base.html:235 .\ecommerce\templates\base.html:247
 msgid "Our Shop"
 msgstr "Our Shop"
 
-#: .\ecommerce\templates\base.html:238 .\ecommerce\templates\base.html:250
+#: .\ecommerce\templates\base.html:236 .\ecommerce\templates\base.html:248
 msgid "Shop Detail"
 msgstr "Shop Detail"
 
-#: .\ecommerce\templates\base.html:241 .\ecommerce\templates\base.html:253
+#: .\ecommerce\templates\base.html:239 .\ecommerce\templates\base.html:251
 #: .\ecommerce\templates\contact.html:23
 msgid "Contact Us"
 msgstr "Contact Us"
 
-#: .\ecommerce\templates\base.html:246
+#: .\ecommerce\templates\base.html:244
 msgid "My Account"
 msgstr "Tài khoản của tôi"
 
-#: .\ecommerce\templates\base.html:257
+#: .\ecommerce\templates\base.html:255
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: .\ecommerce\templates\base.html:258
+#: .\ecommerce\templates\base.html:256
 msgid "Duo stet tempor ipsum sit amet magna ipsum tempor est"
 msgstr "Give me your money!"
 
-#: .\ecommerce\templates\base.html:267
+#: .\ecommerce\templates\base.html:265
 msgid "Follow Us"
 msgstr "Follow Us"
 
-#: .\ecommerce\templates\base.html:281
+#: .\ecommerce\templates\base.html:279
 msgid "All Rights Reserved. Designed by Bruce"
 msgstr "All Rights Reserved. Designed by Bruce"
 
@@ -158,7 +158,7 @@ msgstr "Expected Arrival"
 
 #: .\ecommerce\templates\billing.html:38 .\ecommerce\templates\billing.html:44
 #: .\ecommerce\templates\billing.html:50 .\ecommerce\templates\billing.html:56
-#: .\store\models.py:72
+#: .\store\models.py:73
 msgid "Order"
 msgstr "Order"
 
@@ -180,81 +180,75 @@ msgstr "En Route"
 msgid "Arrived"
 msgstr "Arrived"
 
-#: .\ecommerce\templates\checkout.html:17
-#, fuzzy
-#| msgid "to Shop"
-msgid "Shop"
-msgstr "to Shop"
-
-#: .\ecommerce\templates\checkout.html:32
+#: .\ecommerce\templates\checkout.html:31
 msgid "Billing Address"
 msgstr "Billing Address"
 
-#: .\ecommerce\templates\checkout.html:36
+#: .\ecommerce\templates\checkout.html:35
 msgid "First Name"
 msgstr "First Name"
 
-#: .\ecommerce\templates\checkout.html:40
+#: .\ecommerce\templates\checkout.html:39
 msgid "Last Name"
 msgstr "Last Name"
 
-#: .\ecommerce\templates\checkout.html:44
+#: .\ecommerce\templates\checkout.html:43
 msgid "Mobile No"
 msgstr "Mobile No"
 
-#: .\ecommerce\templates\checkout.html:48
+#: .\ecommerce\templates\checkout.html:47
 msgid "Address Line 1"
 msgstr "Address Line 1"
 
-#: .\ecommerce\templates\checkout.html:52
+#: .\ecommerce\templates\checkout.html:51
 #, fuzzy
 #| msgid "Address Line 1"
 msgid "Address Line 2"
 msgstr "Address Line 1"
 
-#: .\ecommerce\templates\checkout.html:56
+#: .\ecommerce\templates\checkout.html:55
 msgid "Country"
 msgstr "Country"
 
-#: .\ecommerce\templates\checkout.html:60
+#: .\ecommerce\templates\checkout.html:59
 msgid "ZIP Code"
 msgstr "ZIP Code"
 
-#: .\ecommerce\templates\checkout.html:66
+#: .\ecommerce\templates\checkout.html:65
 msgid "Save information in next time"
 msgstr "Save information in next time"
 
-#: .\ecommerce\templates\checkout.html:73
+#: .\ecommerce\templates\checkout.html:72
 msgid "Shipping address is the same as my billing address"
 msgstr "Shipping address is the same as my billing address"
 
-#: .\ecommerce\templates\checkout.html:81
+#: .\ecommerce\templates\checkout.html:80
 msgid "Order Total"
 msgstr "Order Total"
 
-#: .\ecommerce\templates\checkout.html:84
+#: .\ecommerce\templates\checkout.html:83
 msgid "Products"
 msgstr "Products"
 
-#: .\ecommerce\templates\checkout.html:94
+#: .\ecommerce\templates\checkout.html:93
 msgid "Subtotal"
 msgstr "Subtotal"
 
-#: .\ecommerce\templates\checkout.html:98
+#: .\ecommerce\templates\checkout.html:97
 #, fuzzy
 #| msgid "Shopping Cart"
 msgid "Shipping"
 msgstr "Shipping"
 
-#: .\ecommerce\templates\checkout.html:104
+#: .\ecommerce\templates\checkout.html:103
 msgid "Total"
 msgstr "Total"
 
-#: .\ecommerce\templates\checkout.html:110
+#: .\ecommerce\templates\checkout.html:109
 msgid "Payment"
 msgstr "Payment"
 
-#: .\ecommerce\templates\checkout.html:121
+#: .\ecommerce\templates\checkout.html:120
 msgid "Place Order"
 msgstr "Place Order"
 
@@ -266,85 +260,85 @@ msgstr "Send Message"
 msgid "Men Fashion"
 msgstr "Men Fashion"
 
-#: .\ecommerce\templates\index.html:61
+#: .\ecommerce\templates\index.html:42 .\ecommerce\templates\index.html:63
+#: .\ecommerce\templates\index.html:84
+msgid ""
+"“The perfect size to grill up a couple of burgers for everyone in the family”"
+msgstr ""
+
+#: .\ecommerce\templates\index.html:60
 msgid "Women Fashion"
 msgstr "Women Fashion"
 
-#: .\ecommerce\templates\index.html:83
+#: .\ecommerce\templates\index.html:81
 msgid "Kids Fashion"
 msgstr "Kids Fashion"
 
-#: .\ecommerce\templates\index.html:99 .\ecommerce\templates\index.html:106
+#: .\ecommerce\templates\index.html:96 .\ecommerce\templates\index.html:103
 msgid "Save"
 msgstr "Save"
 
-#: .\ecommerce\templates\index.html:100 .\ecommerce\templates\index.html:107
+#: .\ecommerce\templates\index.html:97 .\ecommerce\templates\index.html:104
 msgid "Special Offer"
 msgstr "Special Offer"
 
-#: .\ecommerce\templates\index.html:116
+#: .\ecommerce\templates\index.html:113
 msgid "Categories"
 msgstr "Categories"
 
-#: .\ecommerce\templates\index.html:143
+#: .\ecommerce\templates\index.html:140
 #, fuzzy
 #| msgid "Products"
 msgid "Previous"
 msgstr "Products"
 
-#: .\ecommerce\templates\index.html:149
+#: .\ecommerce\templates\index.html:146
 msgid "Page"
 msgstr "Page"
 
-#: .\ecommerce\templates\index.html:149
+#: .\ecommerce\templates\index.html:146
 msgid "of"
 msgstr "of"
 
-#: .\ecommerce\templates\index.html:158
+#: .\ecommerce\templates\index.html:155
 msgid "Next"
 msgstr "Next"
 
-#: .\ecommerce\templates\index.html:176
+#: .\ecommerce\templates\index.html:173
 msgid "Quality Product"
 msgstr "Quality Product"
 
-#: .\ecommerce\templates\index.html:187
+#: .\ecommerce\templates\index.html:184
 msgid "Free Shipping"
 msgstr "Free Shipping"
 
-#: .\ecommerce\templates\index.html:198
+#: .\ecommerce\templates\index.html:195
 msgid "Day Return"
 msgstr "Day Return"
 
-#: .\ecommerce\templates\index.html:209
+#: .\ecommerce\templates\index.html:206
 msgid "Support"
 msgstr "Support"
 
-#: .\ecommerce\templates\index.html:220
+#: .\ecommerce\templates\index.html:217
 msgid "Featured Products"
 msgstr "Featured Products"
 
-#: .\ecommerce\templates\index.html:312
-#, fuzzy
-#| msgid "Products"
-msgid "Recent Products"
-msgstr "Products"
-
-#: .\ecommerce\templates\shop.html:295
+#: .\ecommerce\templates\shop.html:158
 msgid "Popularity"
 msgstr ""
 
-#: .\ecommerce\templates\shop.html:304
+#: .\ecommerce\templates\shop.html:167
 #, fuzzy
 #| msgid "Profile"
 msgid "Price"
 msgstr "Price"
 
-#: .\ecommerce\templates\shop.html:307
+#: .\ecommerce\templates\shop.html:170
 msgid "Up"
 msgstr ""
 
-#: .\ecommerce\templates\shop.html:308
+#: .\ecommerce\templates\shop.html:171
 msgid "Down"
 msgstr ""
 
@@ -354,21 +348,31 @@ msgstr ""
 msgid "Category"
 msgstr "Categories"
 
-#: .\store\models.py:36
+#: .\store\models.py:37
 #, fuzzy
 #| msgid "Products"
 msgid "Product"
 msgstr "Products"
 
-#: .\store\models.py:60
+#: .\store\models.py:61
 msgid "Notification"
 msgstr "Notification"
 
-#: .\store\models.py:88
+#: .\store\models.py:89
 #, fuzzy
 #| msgid "Order Total"
 msgid "OrderDetail"
 msgstr "Order Total"
+
+#, fuzzy
+#~| msgid "to Shop"
+#~ msgid "Shop"
+#~ msgstr "to Shop"
+
+#, fuzzy
+#~| msgid "Products"
+#~ msgid "Recent Products"
+#~ msgstr "Products"
 
 #~ msgid "Quantity"
 #~ msgstr "Quantity"

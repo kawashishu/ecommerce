@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 22:50+0700\n"
+"POT-Creation-Date: 2022-12-08 11:57+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgstr "Hồ sơ"
 msgid "Sign In"
 msgstr "Đăng nhập"
 
-#: .\ecommerce\templates\base.html:61 .\ecommerce\templates\base.html:263
+#: .\ecommerce\templates\base.html:61 .\ecommerce\templates\base.html:261
 msgid "Sign Up"
 msgstr "Đăng ký"
 
@@ -87,64 +87,64 @@ msgstr "Xin chào quý khách"
 msgid "Sign in or Register"
 msgstr "Đăng nhập hoặc đăng ký"
 
-#: .\ecommerce\templates\base.html:176 .\ecommerce\templates\base.html:236
-#: .\ecommerce\templates\base.html:248 .\ecommerce\templates\checkout.html:16
+#: .\ecommerce\templates\base.html:176 .\ecommerce\templates\base.html:237
+#: .\ecommerce\templates\base.html:249
+msgid "Shopping Cart"
+msgstr "Giỏ hàng"
+
+#: .\ecommerce\templates\base.html:178 .\ecommerce\templates\base.html:238
+#: .\ecommerce\templates\base.html:250 .\ecommerce\templates\checkout.html:17
+msgid "Checkout"
+msgstr "Thanh toán"
+
+#: .\ecommerce\templates\base.html:180
+msgid "Bill"
+msgstr "Hóa đơn"
+
+#: .\ecommerce\templates\base.html:223
+msgid "Get In Touch"
+msgstr "Liên lạc"
+
+#: .\ecommerce\templates\base.html:232
+msgid "Quick Shop"
+msgstr "Tới nhanh cửa hàng"
+
+#: .\ecommerce\templates\base.html:234 .\ecommerce\templates\base.html:246
+#: .\ecommerce\templates\checkout.html:16
 #: .\ecommerce\templates\contact.html:12
 msgid "Home"
 msgstr "Trang chủ"
 
-#: .\ecommerce\templates\base.html:178 .\ecommerce\templates\base.html:239
-#: .\ecommerce\templates\base.html:251
-msgid "Shopping Cart"
-msgstr "Giỏ hàng"
-
-#: .\ecommerce\templates\base.html:180 .\ecommerce\templates\base.html:240
-#: .\ecommerce\templates\base.html:252 .\ecommerce\templates\checkout.html:18
-msgid "Checkout"
-msgstr "Thanh toán"
-
-#: .\ecommerce\templates\base.html:182
-msgid "Bill"
-msgstr "Hóa đơn"
-
-#: .\ecommerce\templates\base.html:225
-msgid "Get In Touch"
-msgstr "Liên lạc"
-
-#: .\ecommerce\templates\base.html:234
-msgid "Quick Shop"
-msgstr "Tới nhanh cửa hàng"
-
-#: .\ecommerce\templates\base.html:237 .\ecommerce\templates\base.html:249
+#: .\ecommerce\templates\base.html:235 .\ecommerce\templates\base.html:247
 msgid "Our Shop"
 msgstr "Cửa hàng chúng tôi"
 
-#: .\ecommerce\templates\base.html:238 .\ecommerce\templates\base.html:250
+#: .\ecommerce\templates\base.html:236 .\ecommerce\templates\base.html:248
 msgid "Shop Detail"
 msgstr "Chi tiết cửa hàng"
 
-#: .\ecommerce\templates\base.html:241 .\ecommerce\templates\base.html:253
+#: .\ecommerce\templates\base.html:239 .\ecommerce\templates\base.html:251
 #: .\ecommerce\templates\contact.html:23
 msgid "Contact Us"
 msgstr "Liên hệ với chúng tôi"
 
-#: .\ecommerce\templates\base.html:246
+#: .\ecommerce\templates\base.html:244
 msgid "My Account"
 msgstr "Tài khoản"
 
-#: .\ecommerce\templates\base.html:257
+#: .\ecommerce\templates\base.html:255
 msgid "Newsletter"
 msgstr "Thư mới"
 
-#: .\ecommerce\templates\base.html:258
+#: .\ecommerce\templates\base.html:256
 msgid "Duo stet tempor ipsum sit amet magna ipsum tempor est"
 msgstr "Hãy đem tiền của bạn đến với chúng tôi.........!"
 
-#: .\ecommerce\templates\base.html:267
+#: .\ecommerce\templates\base.html:265
 msgid "Follow Us"
 msgstr "Theo dõi chúng tôi"
 
-#: .\ecommerce\templates\base.html:281
+#: .\ecommerce\templates\base.html:279
 msgid "All Rights Reserved. Designed by Bruce"
 msgstr "Tất cả đều được bảo mật. Thiết kế bởi Bruce"
 
@@ -158,7 +158,7 @@ msgstr "Thời gian đặt hàng"
 
 #: .\ecommerce\templates\billing.html:38 .\ecommerce\templates\billing.html:44
 #: .\ecommerce\templates\billing.html:50 .\ecommerce\templates\billing.html:56
-#: .\store\models.py:72
+#: .\store\models.py:73
 msgid "Order"
 msgstr "Đơn hàng"
 
@@ -178,79 +178,73 @@ msgstr "Hành trình"
 msgid "Arrived"
 msgstr "Tới nơi"
 
-#: .\ecommerce\templates\checkout.html:17
-#, fuzzy
-#| msgid "to Shop"
-msgid "Shop"
-msgstr "đã tới cửa hàng"
-
-#: .\ecommerce\templates\checkout.html:32
+#: .\ecommerce\templates\checkout.html:31
 msgid "Billing Address"
 msgstr "Địa chỉ giao hàng"
 
-#: .\ecommerce\templates\checkout.html:36
+#: .\ecommerce\templates\checkout.html:35
 msgid "First Name"
 msgstr "Họ"
 
-#: .\ecommerce\templates\checkout.html:40
+#: .\ecommerce\templates\checkout.html:39
 msgid "Last Name"
 msgstr "Tên"
 
-#: .\ecommerce\templates\checkout.html:44
+#: .\ecommerce\templates\checkout.html:43
 msgid "Mobile No"
 msgstr "Số điện thoại"
 
-#: .\ecommerce\templates\checkout.html:48
+#: .\ecommerce\templates\checkout.html:47
 msgid "Address Line 1"
 msgstr "Địa chỉ thứ nhất"
 
-#: .\ecommerce\templates\checkout.html:52
+#: .\ecommerce\templates\checkout.html:51
 #, fuzzy
 #| msgid "Address Line 1"
 msgid "Address Line 2"
 msgstr "Địa chỉ thứ nhất"
 
-#: .\ecommerce\templates\checkout.html:56
+#: .\ecommerce\templates\checkout.html:55
 msgid "Country"
 msgstr "Nước"
 
-#: .\ecommerce\templates\checkout.html:60
+#: .\ecommerce\templates\checkout.html:59
 msgid "ZIP Code"
 msgstr "Mã ZIP"
 
-#: .\ecommerce\templates\checkout.html:66
+#: .\ecommerce\templates\checkout.html:65
 msgid "Save information in next time"
 msgstr "Lưu thông tin vào lần mua hàng kế tiếp"
 
-#: .\ecommerce\templates\checkout.html:73
+#: .\ecommerce\templates\checkout.html:72
 msgid "Shipping address is the same as my billing address"
 msgstr "Địa chỉ vận chuyển tương ứng"
 
-#: .\ecommerce\templates\checkout.html:81
+#: .\ecommerce\templates\checkout.html:80
 msgid "Order Total"
 msgstr "Thành tiền đơn hàng"
 
-#: .\ecommerce\templates\checkout.html:84
+#: .\ecommerce\templates\checkout.html:83
 msgid "Products"
 msgstr "Sản phẩm"
 
-#: .\ecommerce\templates\checkout.html:94
+#: .\ecommerce\templates\checkout.html:93
 msgid "Subtotal"
 msgstr "Tổng thành tiền"
 
-#: .\ecommerce\templates\checkout.html:98
+#: .\ecommerce\templates\checkout.html:97
 msgid "Shipping"
 msgstr "Phí vận chuyển"
 
-#: .\ecommerce\templates\checkout.html:104
+#: .\ecommerce\templates\checkout.html:103
 msgid "Total"
 msgstr "Thành tiền"
 
-#: .\ecommerce\templates\checkout.html:110
+#: .\ecommerce\templates\checkout.html:109
 msgid "Payment"
 msgstr "Thanh toán"
 
-#: .\ecommerce\templates\checkout.html:121
+#: .\ecommerce\templates\checkout.html:120
 msgid "Place Order"
 msgstr "Xử lý đơn hàng"
 
@@ -262,83 +256,83 @@ msgstr "Gửi tin nhắn"
 msgid "Men Fashion"
 msgstr "Thời trang nam"
 
-#: .\ecommerce\templates\index.html:61
+#: .\ecommerce\templates\index.html:42 .\ecommerce\templates\index.html:63
+#: .\ecommerce\templates\index.html:84
+msgid ""
+"“The perfect size to grill up a couple of burgers for everyone in the family”"
+msgstr "“Thiết kế hoàn hảo để mua về cho mọi người trong gia đình”"
+
+#: .\ecommerce\templates\index.html:60
 msgid "Women Fashion"
 msgstr "Thời trang phụ nữ"
 
-#: .\ecommerce\templates\index.html:83
+#: .\ecommerce\templates\index.html:81
 msgid "Kids Fashion"
 msgstr "Thời trang trẻ em"
 
-#: .\ecommerce\templates\index.html:99 .\ecommerce\templates\index.html:106
+#: .\ecommerce\templates\index.html:96 .\ecommerce\templates\index.html:103
 msgid "Save"
 msgstr "Giảm"
 
-#: .\ecommerce\templates\index.html:100 .\ecommerce\templates\index.html:107
+#: .\ecommerce\templates\index.html:97 .\ecommerce\templates\index.html:104
 msgid "Special Offer"
 msgstr "Ưu đãi đặc biệt"
 
-#: .\ecommerce\templates\index.html:116
+#: .\ecommerce\templates\index.html:113
 msgid "Categories"
 msgstr "Danh mục sản phẩm"
 
-#: .\ecommerce\templates\index.html:143
+#: .\ecommerce\templates\index.html:140
 #, fuzzy
 #| msgid "Products"
 msgid "Previous"
 msgstr "Trang trước"
 
-#: .\ecommerce\templates\index.html:149
+#: .\ecommerce\templates\index.html:146
 msgid "Page"
 msgstr "Trang"
 
-#: .\ecommerce\templates\index.html:149
+#: .\ecommerce\templates\index.html:146
 msgid "of"
 msgstr "trong"
 
-#: .\ecommerce\templates\index.html:158
+#: .\ecommerce\templates\index.html:155
 msgid "Next"
 msgstr "Tiếp theo"
 
-#: .\ecommerce\templates\index.html:176
+#: .\ecommerce\templates\index.html:173
 msgid "Quality Product"
 msgstr "Số lượng sản phẩm"
 
-#: .\ecommerce\templates\index.html:187
+#: .\ecommerce\templates\index.html:184
 msgid "Free Shipping"
 msgstr "Miễn phí vận chuyển"
 
-#: .\ecommerce\templates\index.html:198
+#: .\ecommerce\templates\index.html:195
 msgid "Day Return"
 msgstr "Ngày giao hàng"
 
-#: .\ecommerce\templates\index.html:209
+#: .\ecommerce\templates\index.html:206
 msgid "Support"
 msgstr "Hỗ trợ"
 
-#: .\ecommerce\templates\index.html:220
+#: .\ecommerce\templates\index.html:217
 msgid "Featured Products"
 msgstr "Sản phẩm nổi bật"
 
-#: .\ecommerce\templates\index.html:312
-#, fuzzy
-#| msgid "Products"
-msgid "Recent Products"
-msgstr "Sản phẩm"
-
-#: .\ecommerce\templates\shop.html:295
+#: .\ecommerce\templates\shop.html:158
 msgid "Popularity"
 msgstr "Phổ biến"
 
-#: .\ecommerce\templates\shop.html:304
+#: .\ecommerce\templates\shop.html:167
 msgid "Price"
 msgstr "Giá"
 
-#: .\ecommerce\templates\shop.html:307
+#: .\ecommerce\templates\shop.html:170
 msgid "Up"
 msgstr "Tăng"
 
-#: .\ecommerce\templates\shop.html:308
+#: .\ecommerce\templates\shop.html:171
 msgid "Down"
 msgstr "Giảm"
 
@@ -348,21 +342,31 @@ msgstr "Giảm"
 msgid "Category"
 msgstr "Danh mục sản phẩm"
 
-#: .\store\models.py:36
+#: .\store\models.py:37
 #, fuzzy
 #| msgid "Products"
 msgid "Product"
 msgstr "Sản phẩm"
 
-#: .\store\models.py:60
+#: .\store\models.py:61
 msgid "Notification"
 msgstr "Thông báo"
 
-#: .\store\models.py:88
+#: .\store\models.py:89
 #, fuzzy
 #| msgid "Order Total"
 msgid "OrderDetail"
 msgstr "Thành tiền đơn hàng"
+
+#, fuzzy
+#~| msgid "to Shop"
+#~ msgid "Shop"
+#~ msgstr "đã tới cửa hàng"
+
+#, fuzzy
+#~| msgid "Products"
+#~ msgid "Recent Products"
+#~ msgstr "Sản phẩm"
 
 #~ msgid "Quantity"
 #~ msgstr "Số lượng"
@@ -381,9 +385,3 @@ msgstr "Thành tiền đơn hàng"
 
 #~ msgid "A"
 #~ msgstr "A"
-
-#~ msgid ""
-#~ "Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet "
-#~ "amet ndiam elitr ipsum diam"
-#~ msgstr ""
-#~ "Xả hàng tồn kho giá rẻ như cho! Giá bèo, giá bèo, giá cho người nghèo!"

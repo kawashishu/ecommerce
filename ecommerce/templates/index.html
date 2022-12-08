@@ -39,8 +39,7 @@
                   {% trans "Men Fashion" %}
                 </h1>
                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
-                  "Lorem rebum magna amet lorem magna erat diam stet.
-                  Sadips duo stet amet amet ndiam elitr ipsum diam"
+                  {% trans "“The perfect size to grill up a couple of burgers for everyone in the family”" %}
                 </p>
               </div>
             </div>
@@ -61,8 +60,7 @@
                   {% trans "Women Fashion" %}
                 </h1>
                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
-                   "Lorem rebum magna amet lorem magna erat diam stet.
-                  Sadips duo stet amet amet ndiam elitr ipsum diam" 
+                   {% trans "“The perfect size to grill up a couple of burgers for everyone in the family”" %}
                 </p>
               </div>
             </div>
@@ -83,8 +81,7 @@
                   {% trans "Kids Fashion" %}
                 </h1>
                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
-                  {% trans "Lorem rebum magna amet lorem magna erat diam stet.
-                  Sadips duo stet amet amet ndiam elitr ipsum diam" %}
+                  {% trans "“The perfect size to grill up a couple of burgers for everyone in the family”" %}
                 </p>
               </div>
             </div>
@@ -230,14 +227,11 @@
                 alt=""
               />
               <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a onclick="addcart({{product.id}})" class="btn btn-outline-dark btn-square" 
                   ><i class="fa fa-shopping-cart"></i
                 ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a onclick="addWishList({{product.id}})" class="btn btn-outline-dark btn-square"
                   ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-sync-alt"></i
                 ></a>
                 <a
                   class="btn btn-outline-dark btn-square"
@@ -339,9 +333,40 @@
       </div>
     </div>
     <!-- Vendor End -->
+  <script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+  type="text/javascript"
+></script>
+<script>
+  function addcart(id) {
+    $.ajax({
+      url: "{% url 'cart' %}",
+      type: 'POST',
+      data: {
+        id: id,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (count) {
+        $('.shopping-cart').text(count)
+      },
+    })
+  }
 
+  function addWishList(id) {
+    $.ajax({
+      url: "{% url 'wishlist' %}",
+      type: 'POST',
+      data: {
+        id: id,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (count) {
+        $('.wishlist').text(count)
+      },
+    })
+}
+</script>
     {% endblock %}
     <!-- Messenger Chat Plugin Code -->
-    
   </div>
 </div>

@@ -70,5 +70,5 @@ def get_api_currency():
     except HTTPError as e:
         return HttpResponse(
             {"api": "Cannot load API response"}, 
-            status=status.HTTP_400_BAD_REQUEST
+            status=500
         )
