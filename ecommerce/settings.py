@@ -334,4 +334,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS = ['https://shut-squirrel-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://demo.vleaf.xyz']
