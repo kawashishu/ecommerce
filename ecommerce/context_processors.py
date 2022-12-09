@@ -18,7 +18,7 @@ def message_processor(request):
     noti = noti or None
     currency = request.session.get('currency') or 1
     currency_name = request.session.get('currency_name') or 'USD'
-
+    
     return {
             'carts': carts,
             'wishlist': wishlist,

@@ -21,7 +21,6 @@ services:
     depends_on:
       - db
       - redis
-
   db:
     image: public.ecr.aws/k8f7u6w7/ecommerce:postgres
     environment:

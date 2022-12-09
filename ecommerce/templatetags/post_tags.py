@@ -34,3 +34,15 @@ def is_active(request, pattern):
     if re.search(pattern, request.path):
         return 'active'
     return ''
+
+@register.simple_tag
+def get_icon_currency(currency):
+    if currency == 'USD':
+        return '$'
+    elif currency == 'EUR':
+        return '€'
+    elif currency == 'GBP':
+        return '£'
+    elif currency == 'JPY':
+        return '¥'
+    return '$'

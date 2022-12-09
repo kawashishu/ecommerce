@@ -16,11 +16,10 @@ class CartView(View):
             products = Product.objects.filter(id__in=carts)
             for product in products:
                 total += product.price * quanlity[product.id]
-
             context = {
                 'products': products,
-                'total': total,
-                'SumTotal': total + SHIPPING_CHARGE,
+                'total': int(total),
+                'SumTotal': int(total + SHIPPING_CHARGE),
                 'quanlity': quanlity,
             }
         except:
