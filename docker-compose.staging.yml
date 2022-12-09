@@ -11,6 +11,8 @@ services:
       - .:/usr/src/app/
     expose:
       - 80
+    ports:
+      - "80:80"
     environment:
       - DEBUG=1
       - DJANGO_ALLOWED_HOSTS=*
