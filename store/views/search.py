@@ -32,7 +32,7 @@ class SearchFilterView(View):
         price = int(request.GET.get('price'))
         products = Product.objects.filter(price__range=(
             price * STEP_FILTER_PRICE, price * STEP_FILTER_PRICE + STEP_FILTER_PRICE)).filter(
-            categoryid=pk)
+            category=pk)
         return JsonResponse({'products': list(products.values('title', 'price', 'id', 'avatar',))})
 
 
@@ -41,6 +41,6 @@ class SearchFormView(View):
         query = request.GET.get('query')
         products = cache.get('products')
         products = Product.objects.filter(title__icontains=query).filter(
-            categoryid=pk)
+            category=pk)
 
         return JsonResponse({'products': list(products.values('title', 'price', 'id', 'avatar',))})

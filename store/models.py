@@ -12,7 +12,6 @@ class Category(models.Model):
     image = models.ImageField(upload_to='images_category', blank=True, null=True)
     class Meta:
         db_table = 'category'
-        verbose_name = _('Category')
         
     def to_json(self):
         return {
@@ -21,7 +20,7 @@ class Category(models.Model):
         }
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    categoryid = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     decripstion = models.TextField()
     quanlity = models.IntegerField()
     discount = models.IntegerField()
@@ -33,9 +32,8 @@ class Product(models.Model):
     
     class Meta:
         db_table = 'product'
-        verbose_name = _('Product')
     def __str__(self):
-        return f"{self.name}, {self.categoryid}, {self.decripstion}, {self.quanlity}, {self.discount}, {self.status}, {self.title}, {self.price}, {self.views}, {self.avatar}"
+        return f"{self.name}, {self.category}, {self.decripstion}, {self.quanlity}, {self.discount}, {self.status}, {self.title}, {self.price}, {self.views}, {self.avatar}"
     def to_json(self):
         return {
             'id': self.id,
@@ -46,44 +44,62 @@ class Product(models.Model):
             'discount': self.discount,
             'status': self.status,
             'title': self.title,
-            'categoryid': self.categoryid.to_json()
+            'category': self.category.to_json()
         }
+
+class ProductImage(models.Model):
+    image = models.ImageField(upload_to='images_product', blank=True, null=True)
+    product = models.ForeignKey(Product, related_name='images' , on_delete=models.CASCADE)
+    class Meta:
+        db_table = 'productimage'
+    def __str__(self):
+        return self.image
+    
 
 class Notification(models.Model):
     content = models.CharField(max_length=255)
-
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, default=None)
+    read = models.BooleanField(default=False)
     def __str__(self):
         return self.content
 
     class Meta:
         db_table = 'notification'
-        verbose_name = _('Notification')
         
 
 class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
-    customerid = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     billing_address = models.ForeignKey(
         BillingAddress, on_delete=models.CASCADE, null=True)
     state = models.IntegerField(default=1)
     class Meta:
         db_table = 'order'
-        verbose_name = _('Order')
 
     def __str__(self):
-        return self.customerid.email
+        return self.customer.email
     
 class OrderDetail(models.Model):
     quanlity = models.IntegerField()
     price = models.FloatField()
-    orderid = models.ForeignKey(Order, on_delete=models.CASCADE)
-    productid = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.quanlity
 
     class Meta:
         db_table = 'orderdetail'
-        verbose_name = _('OrderDetail')
 
+class Coupon(models.Model):
+    code = models.CharField(max_length=50)
+    expiration_date = models.DateField()
+    discount_amount = models.DecimalField(max_digits=5, decimal_places=2)
+    customer = models.ManyToManyField(Customer, related_name='coupons')
+
+    class Meta:
+        db_table = 'coupon'
+    
+    def __str__(self):
+        return self.code

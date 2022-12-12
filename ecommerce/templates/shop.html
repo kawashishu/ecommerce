@@ -50,7 +50,13 @@
                 id="price-1"
               />
               <label class="custom-control-label" for="price-1">
-                {{ 20|price_currency:currency }} - {{ 40|price_currency:currency }} ( {% get_icon_currency currency_name %} )
+              {% multiply 20 currency as price_20 %}
+              {% multiply 40 currency as price_40 %}
+              {% multiply 60 currency as price_60 %}
+              {% multiply 80 currency as price_80 %}
+              {% multiply 100 currency as price_100 %}
+              {% multiply 120 currency as price_120 %}
+                {{price_20}} - {{ price_40 }} ( {% get_icon_currency currency_name %} )
               </label>
               <span class="badge border font-weight-normal">150</span>
             </div>
@@ -63,7 +69,7 @@
                 id="price-2"
               />
               <label class="custom-control-label" for="price-2">
-                {{ 40|price_currency:currency }} - {{ 60|price_currency:currency }} ( {% get_icon_currency currency_name %} )
+                {{ price_40 }} - {{ price_60 }} ( {% get_icon_currency currency_name %} )
               </label>
               <span class="badge border font-weight-normal">295</span>
             </div>
@@ -76,7 +82,7 @@
                 id="price-3"
               />
               <label class="custom-control-label" for="price-3">
-                {{ 60|price_currency:currency }} - {{ 80|price_currency:currency }} ( {% get_icon_currency currency_name %})
+                {{ price_60 }} - {{ price_80 }} ( {% get_icon_currency currency_name %})
               </label>
               <span class="badge border font-weight-normal">246</span>
             </div>
@@ -89,7 +95,7 @@
                 id="price-4"
               />
               <label class="custom-control-label" for="price-4">
-                {{ 80|price_currency:currency }} - {{ 100|price_currency:currency }} ( {% get_icon_currency currency_name %})
+                {{ price_80 }} - {{ price_100 }} ( {% get_icon_currency currency_name %})
               </label>
               <span class="badge border font-weight-normal">145</span>
             </div>
@@ -102,7 +108,7 @@
                 id="price-5"
               />
               <label class="custom-control-label" for="price-5">
-                {{ 100|price_currency:currency }} - {{ 120|price_currency:currency }} ( {% get_icon_currency currency_name %})
+                {{ price_100 }} - {{ price_120 }} ( {% get_icon_currency currency_name %})
               </label>
               <span class="badge border font-weight-normal">168</span>
             </div>
@@ -213,7 +219,8 @@
               <div
                 class="d-flex align-items-center justify-content-center mt-2"
               >
-                <h5>{{ product.price|price_currency:currency }} {% get_icon_currency currency_name %}</h5>
+              {% multiply product.price currency as price %}
+                <h5>{{ price }} {% get_icon_currency currency_name %}</h5>
               </div>
               <div
                 class="d-flex align-items-center justify-content-center mb-1"
@@ -299,7 +306,7 @@
                             <div class="text-center py-4">
                                 <a class="h6 text-decoration-none text-truncate" href="">${products[i].title}</a>
                                 <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5> ${Math.round(products[i].price * "{{currency}}") } {% get_icon_currency currency_name %} </h5>
+                                    <h5> ${Math.round((products[i].price * "{{currency}}") * 100) / 100} {% get_icon_currency currency_name %} </h5>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center mb-1">
                                     <small class="fa fa-star text-primary mr-1"></small>
@@ -349,7 +356,7 @@
   function search_ajax() {
     const query = $('.form-control-search').val()
     $.ajax({
-      url: "{% url 'search_product' product.categoryid.id  %}",
+      url: "{% url 'search_product' product.category.id  %}",
       type: 'GET',
       data: {
         query: query,
@@ -366,7 +373,7 @@
     $('.custom-control-input').click( () => {
         const price = (event.target.id).split('-')[1]
         $.ajax({
-            url: "{% url 'filter' product.categoryid.id %}",
+            url: "{% url 'filter' product.category.id %}",
             type: 'GET',
             data: {
                 'price': price,

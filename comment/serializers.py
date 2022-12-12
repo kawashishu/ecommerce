@@ -16,9 +16,9 @@ class ProductSerializer(ModelSerializer):
         fields = ['name', 'price', 'decripstion']
 
 class CommentSerializer(ModelSerializer):
-    customerid = CustomerSerializer()
-    productid = ProductSerializer()
+    customer = CustomerSerializer()
+    product = ProductSerializer()
     class Meta:
         model = Comment
-        fields = ["id", "content", "customerid", "productid", "rating", "created"]
+        fields = ["id", "content", "customer", "product", "rating", "created"]
 

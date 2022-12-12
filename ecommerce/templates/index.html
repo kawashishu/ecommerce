@@ -113,7 +113,7 @@
     <span class="bg-secondary pr-3">{% trans "Categories" %}</span>
   </h2>
   <div class="row px-xl-5 pb-3">
-    {% for category in categorys %}
+    {% for category in categories %}
     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
       <a
         class="text-decoration-none"
@@ -248,7 +248,8 @@
               <div
                 class="d-flex align-items-center justify-content-center mt-2"
               >
-                <h5>{{ product.price|price_currency:currency }} {% get_icon_currency currency_name %}</h5>
+              {% multiply product.price currency as price %}
+                <h5>{{price}} {% get_icon_currency currency_name %}</h5>
               </div>
               <div
                 class="d-flex align-items-center justify-content-center mb-1"

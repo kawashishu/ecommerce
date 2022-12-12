@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-08 11:57+0700\n"
+"POT-Creation-Date: 2022-12-10 16:32+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,112 +39,118 @@ msgstr "Tiếng Anh"
 msgid "Vietnamese"
 msgstr "Tiếng Việt"
 
-#: .\ecommerce\templates\base.html:43
+#: .\ecommerce\templates\base.html:41
 msgid "About"
 msgstr "Về chúng tôi"
 
-#: .\ecommerce\templates\base.html:44 .\ecommerce\templates\contact.html:13
+#: .\ecommerce\templates\base.html:42 .\ecommerce\templates\contact.html:13
 msgid "Contact"
 msgstr "Liên hệ"
 
-#: .\ecommerce\templates\base.html:45
+#: .\ecommerce\templates\base.html:43
 msgid "Help"
 msgstr "Giúp đỡ"
 
-#: .\ecommerce\templates\base.html:46
+#: .\ecommerce\templates\base.html:44
 msgid "FAQs"
 msgstr "FAQs"
 
-#: .\ecommerce\templates\base.html:58
+#: .\ecommerce\templates\base.html:56
 msgid "Logout"
 msgstr "Đăng xuất"
 
-#: .\ecommerce\templates\base.html:59
+#: .\ecommerce\templates\base.html:57
 msgid "Profile"
 msgstr "Hồ sơ"
 
-#: .\ecommerce\templates\base.html:61
+#: .\ecommerce\templates\base.html:59
 msgid "Sign In"
 msgstr "Đăng nhập"
 
-#: .\ecommerce\templates\base.html:61 .\ecommerce\templates\base.html:261
+#: .\ecommerce\templates\base.html:59 .\ecommerce\templates\base.html:263
 msgid "Sign Up"
 msgstr "Đăng ký"
 
-#: .\ecommerce\templates\base.html:146
+#: .\ecommerce\templates\base.html:144
 msgid "Wellcome"
 msgstr "Xin chào"
 
-#: .\ecommerce\templates\base.html:146
+#: .\ecommerce\templates\base.html:144
 msgid "to Shop"
 msgstr "đã tới cửa hàng"
 
-#: .\ecommerce\templates\base.html:150
+#: .\ecommerce\templates\base.html:148
 msgid "Welcome Guest"
 msgstr "Xin chào quý khách"
 
-#: .\ecommerce\templates\base.html:151
+#: .\ecommerce\templates\base.html:149
 msgid "Sign in or Register"
 msgstr "Đăng nhập hoặc đăng ký"
 
-#: .\ecommerce\templates\base.html:176 .\ecommerce\templates\base.html:237
-#: .\ecommerce\templates\base.html:249
+#: .\ecommerce\templates\base.html:174 .\ecommerce\templates\base.html:239
+#: .\ecommerce\templates\base.html:251
 msgid "Shopping Cart"
 msgstr "Giỏ hàng"
 
-#: .\ecommerce\templates\base.html:178 .\ecommerce\templates\base.html:238
-#: .\ecommerce\templates\base.html:250 .\ecommerce\templates\checkout.html:17
+#: .\ecommerce\templates\base.html:176 .\ecommerce\templates\base.html:240
+#: .\ecommerce\templates\base.html:252 .\ecommerce\templates\checkout.html:17
 msgid "Checkout"
 msgstr "Thanh toán"
 
-#: .\ecommerce\templates\base.html:180
+#: .\ecommerce\templates\base.html:178
 msgid "Bill"
 msgstr "Hóa đơn"
 
-#: .\ecommerce\templates\base.html:223
+#: .\ecommerce\templates\base.html:225
 msgid "Get In Touch"
-msgstr "Liên lạc"
+msgstr ""
 
-#: .\ecommerce\templates\base.html:232
+#: .\ecommerce\templates\base.html:226
+msgid ""
+"Contact us to submit your feedback. Every day that goes by, we are always "
+"looking for ways to bring the best to our customers"
+msgstr "Liên lạc với chúng tôi để gửi những phản hồi của bạn. Mỗi ngày trôi qua chúng tôi luôn tìm cách để đem tới điều tốt nhất cho quý khách hàng."
+
+#: .\ecommerce\templates\base.html:234
 msgid "Quick Shop"
 msgstr "Tới nhanh cửa hàng"
 
-#: .\ecommerce\templates\base.html:234 .\ecommerce\templates\base.html:246
+#: .\ecommerce\templates\base.html:236 .\ecommerce\templates\base.html:248
 #: .\ecommerce\templates\checkout.html:16
 #: .\ecommerce\templates\contact.html:12
 msgid "Home"
 msgstr "Trang chủ"
 
-#: .\ecommerce\templates\base.html:235 .\ecommerce\templates\base.html:247
+#: .\ecommerce\templates\base.html:237 .\ecommerce\templates\base.html:249
 msgid "Our Shop"
 msgstr "Cửa hàng chúng tôi"
 
-#: .\ecommerce\templates\base.html:236 .\ecommerce\templates\base.html:248
+#: .\ecommerce\templates\base.html:238 .\ecommerce\templates\base.html:250
 msgid "Shop Detail"
 msgstr "Chi tiết cửa hàng"
 
-#: .\ecommerce\templates\base.html:239 .\ecommerce\templates\base.html:251
+#: .\ecommerce\templates\base.html:241 .\ecommerce\templates\base.html:253
 #: .\ecommerce\templates\contact.html:23
 msgid "Contact Us"
 msgstr "Liên hệ với chúng tôi"
 
-#: .\ecommerce\templates\base.html:244
+#: .\ecommerce\templates\base.html:246
 msgid "My Account"
 msgstr "Tài khoản"
 
-#: .\ecommerce\templates\base.html:255
+#: .\ecommerce\templates\base.html:257
 msgid "Newsletter"
 msgstr "Thư mới"
 
-#: .\ecommerce\templates\base.html:256
+#: .\ecommerce\templates\base.html:258
 msgid "Duo stet tempor ipsum sit amet magna ipsum tempor est"
 msgstr "Hãy đem tiền của bạn đến với chúng tôi.........!"
 
-#: .\ecommerce\templates\base.html:265
+#: .\ecommerce\templates\base.html:267
 msgid "Follow Us"
 msgstr "Theo dõi chúng tôi"
 
-#: .\ecommerce\templates\base.html:279
+#: .\ecommerce\templates\base.html:281
 msgid "All Rights Reserved. Designed by Bruce"
 msgstr "Tất cả đều được bảo mật. Thiết kế bởi Bruce"
 
@@ -158,7 +164,7 @@ msgstr "Thời gian đặt hàng"
 
 #: .\ecommerce\templates\billing.html:38 .\ecommerce\templates\billing.html:44
 #: .\ecommerce\templates\billing.html:50 .\ecommerce\templates\billing.html:56
-#: .\store\models.py:73
+#: .\store\models.py:72
 msgid "Order"
 msgstr "Đơn hàng"
 
@@ -224,27 +230,23 @@ msgstr "Địa chỉ vận chuyển tương ứng"
 msgid "Order Total"
 msgstr "Thành tiền đơn hàng"
 
-#: .\ecommerce\templates\checkout.html:83
-msgid "Products"
-msgstr "Sản phẩm"
-
-#: .\ecommerce\templates\checkout.html:93
+#: .\ecommerce\templates\checkout.html:84
 msgid "Subtotal"
 msgstr "Tổng thành tiền"
 
-#: .\ecommerce\templates\checkout.html:97
+#: .\ecommerce\templates\checkout.html:89
 msgid "Shipping"
 msgstr "Phí vận chuyển"
 
-#: .\ecommerce\templates\checkout.html:103
+#: .\ecommerce\templates\checkout.html:96
 msgid "Total"
 msgstr "Thành tiền"
 
-#: .\ecommerce\templates\checkout.html:109
+#: .\ecommerce\templates\checkout.html:103
 msgid "Payment"
 msgstr "Thanh toán"
 
-#: .\ecommerce\templates\checkout.html:120
+#: .\ecommerce\templates\checkout.html:113
 msgid "Place Order"
 msgstr "Xử lý đơn hàng"
 
@@ -282,57 +284,57 @@ msgstr "Ưu đãi đặc biệt"
 msgid "Categories"
 msgstr "Danh mục sản phẩm"
 
-#: .\ecommerce\templates\index.html:140
+#: .\ecommerce\templates\index.html:141 .\ecommerce\templates\shop.html:247
 #, fuzzy
 #| msgid "Products"
 msgid "Previous"
 msgstr "Trang trước"
 
-#: .\ecommerce\templates\index.html:146
+#: .\ecommerce\templates\index.html:147 .\ecommerce\templates\shop.html:253
 msgid "Page"
 msgstr "Trang"
 
-#: .\ecommerce\templates\index.html:146
+#: .\ecommerce\templates\index.html:147 .\ecommerce\templates\shop.html:253
 msgid "of"
 msgstr "trong"
 
-#: .\ecommerce\templates\index.html:155
+#: .\ecommerce\templates\index.html:156 .\ecommerce\templates\shop.html:261
 msgid "Next"
 msgstr "Tiếp theo"
 
-#: .\ecommerce\templates\index.html:173
+#: .\ecommerce\templates\index.html:174
 msgid "Quality Product"
 msgstr "Số lượng sản phẩm"
 
-#: .\ecommerce\templates\index.html:184
+#: .\ecommerce\templates\index.html:185
 msgid "Free Shipping"
 msgstr "Miễn phí vận chuyển"
 
-#: .\ecommerce\templates\index.html:195
+#: .\ecommerce\templates\index.html:196
 msgid "Day Return"
 msgstr "Ngày giao hàng"
 
-#: .\ecommerce\templates\index.html:206
+#: .\ecommerce\templates\index.html:207
 msgid "Support"
 msgstr "Hỗ trợ"
 
-#: .\ecommerce\templates\index.html:217
+#: .\ecommerce\templates\index.html:218
 msgid "Featured Products"
 msgstr "Sản phẩm nổi bật"
 
-#: .\ecommerce\templates\shop.html:158
+#: .\ecommerce\templates\shop.html:165
 msgid "Popularity"
 msgstr "Phổ biến"
 
-#: .\ecommerce\templates\shop.html:167
+#: .\ecommerce\templates\shop.html:174
 msgid "Price"
 msgstr "Giá"
 
-#: .\ecommerce\templates\shop.html:170
+#: .\ecommerce\templates\shop.html:177
 msgid "Up"
 msgstr "Tăng"
 
-#: .\ecommerce\templates\shop.html:171
+#: .\ecommerce\templates\shop.html:178
 msgid "Down"
 msgstr "Giảm"
 
@@ -342,21 +344,24 @@ msgstr "Giảm"
 msgid "Category"
 msgstr "Danh mục sản phẩm"
 
-#: .\store\models.py:37
+#: .\store\models.py:36
 #, fuzzy
 #| msgid "Products"
 msgid "Product"
 msgstr "Sản phẩm"
 
-#: .\store\models.py:61
+#: .\store\models.py:60
 msgid "Notification"
 msgstr "Thông báo"
 
-#: .\store\models.py:89
+#: .\store\models.py:88
 #, fuzzy
 #| msgid "Order Total"
 msgid "OrderDetail"
 msgstr "Thành tiền đơn hàng"
+
+#~ msgid "Products"
+#~ msgstr "Sản phẩm"
 
 #, fuzzy
 #~| msgid "to Shop"

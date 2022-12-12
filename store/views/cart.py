@@ -4,27 +4,38 @@ from django.shortcuts import render
 from django.views import View
 from store.models import Product
 from django.views.generic import ListView
+from store.forms import CouponForm
 
 SHIPPING_CHARGE = 8
 
 class CartView(View):
+    
     def get(self, request):
         carts = request.session.get('cart-duplicate')
+        coupon = CouponForm()
         total = 0
+        list_coupons = []
         try: 
-            quanlity = {i: carts.count(i) for i in carts}
+            quantity = {i: carts.count(i) for i in carts}
             products = Product.objects.filter(id__in=carts)
             for product in products:
-                total += product.price * quanlity[product.id]
+                total += product.price * quantity[product.id]
+
             context = {
                 'products': products,
                 'total': int(total),
                 'SumTotal': int(total + SHIPPING_CHARGE),
-                'quanlity': quanlity,
+                'quantity': quantity,
+                'shipping': SHIPPING_CHARGE,
+                'coupon': coupon,
+                'list_coupons': list_coupons,
             }
         except:
-            context = {}
-
+            context = {
+                'coupon': coupon,
+                'total': 0,
+                'shipping': SHIPPING_CHARGE,
+            }
         return render(request, 'cart.html', context)
 
     def post(self, request):

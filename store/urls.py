@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import detail, category, cart, currency, search, order
+from .views import detail, category, cart, currency, search, order, coupon
 
 
 urlpatterns = [
@@ -23,5 +23,8 @@ urlpatterns = [
     path('currency/change/<str:pk>/', currency.change_currency, name='change_currency'),
     
     path('billing/', order.BillingView.as_view() ,name='billing'),
+
+    # coupon
+    path('coupon/', coupon.ApplyCouponView.as_view(), name='apply_coupon'),
 
 ]

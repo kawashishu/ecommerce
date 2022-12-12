@@ -46,3 +46,18 @@ def get_icon_currency(currency):
     elif currency == 'JPY':
         return '¥'
     return '$'
+
+# template tag multiplication for 1 or more arguments
+@register.simple_tag
+def multiply(*args):
+    result = 1
+    for arg in args:
+        result *= arg
+    return round(result,2)
+
+@register.simple_tag
+def summation(*args):
+    result = 0
+    for arg in args:
+        result += arg
+    return round(result,2)

@@ -4,7 +4,8 @@ from store.models import Order
 
 class BillingView(View):
     def get(self,*args, **kwargs):
-        order = Order.objects.all()
+        user = self.request.user
+        order = Order.objects.filter(customer=user)
         context = {
             'order': order,
         }

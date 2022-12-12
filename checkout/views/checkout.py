@@ -21,6 +21,7 @@ class CheckoutView(View):
             'form': form,
             'total': int(total),
             'sumtotal': int(total) + SHIPPING_CHARGE,
+            'shipping': SHIPPING_CHARGE,
         }
         return render(self.request, "checkout.html", context)
 
@@ -43,7 +44,7 @@ class CheckoutView(View):
                 order = Order(
                     billing_address=billing_address,
                     state = 1,
-                    customerid=self.request.user,
+                    customer=self.request.user,
                 )
                 billing_address.save()
                 order.save()

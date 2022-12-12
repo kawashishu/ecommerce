@@ -17,7 +17,7 @@ class ProductFactory(factory.Factory):
         model = Product
     
     name = factory.LazyAttribute(lambda x: Faker().name())
-    categoryid = factory.SubFactory(CategoryFactory)
+    category = factory.SubFactory(CategoryFactory)
     decripstion = factory.LazyAttribute(lambda x: Faker().text())
     quanlity = factory.fuzzy.FuzzyInteger(0, 100)
     discount = factory.fuzzy.FuzzyInteger(0, 100)
@@ -39,8 +39,8 @@ class OrderDetailFactory(factory.Factory):
     
     quanlity = factory.fuzzy.FuzzyInteger(0, 100)
     price = factory.fuzzy.FuzzyFloat(0, 100)
-    orderid = factory.SubFactory(OrderFactory)
-    productid = factory.SubFactory(ProductFactory)
+    order = factory.SubFactory(OrderFactory)
+    product = factory.SubFactory(ProductFactory)
     
 
     

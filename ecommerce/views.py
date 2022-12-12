@@ -18,7 +18,7 @@ class Index(ListView):
     model = Category
     template_name = 'index.html'
     paginate_by = PAGINATOR_NUMBER
-    context_object_name  = 'categorys'
+    context_object_name  = 'categories'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

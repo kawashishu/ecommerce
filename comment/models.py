@@ -7,8 +7,8 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class Comment(models.Model):
     content = models.TextField()
-    customerid = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    productid = models.ForeignKey(Product, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     rating = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):

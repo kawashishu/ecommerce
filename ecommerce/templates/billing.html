@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container px-1 px-md-4 py-5 mx-auto">
-    {% for item in order%}
+    {% for item in order %}
     <div class="card">
         <div class="row d-flex justify-content-between px-3 top">
             <div class="d-flex">
@@ -15,10 +15,20 @@
                 <p class="mb-0">{% trans "Expected Arrival" %} : <span>{{item.created}}</span></p>
             </div>
         </div>
+        <div class="row d-flex justify-content-center">
+        
+        </div>
+        <div class="row d-flex justify-content-between px-3 top">
+            <div class="d-flex">
+                <p class="mb-0">{% trans "Address Shipping" %} : <span>{{item.billing_address.street_address}}</span></p>
+            </div> 
+            <div class="d-flex flex-column text-sm-right">
+                <p class="mb-0">{% trans "Phone Number" %} : <span>{{item.billing_address.mobilephone}}</span></p>
+            </div>
+        </div>
         <!-- Add class 'active' to progress -->
         <div class="row d-flex justify-content-center">
             <div class="col-12">
-                
             <ul id="progressbar" class="text-center">
                 {%  for i in 0|ranged:item.state %}
                 <li class="active step0"></li>

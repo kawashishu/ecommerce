@@ -70,7 +70,6 @@ class Customer(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         db_table = 'customer'
-        verbose_name = _('Customer')
 
     def __str__(self):
         return self.email

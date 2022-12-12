@@ -4,14 +4,14 @@ from comment.models import Comment
 
 class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        self.productid = kwargs.pop('productid', None)
-        self.customerid = kwargs.pop('customerid', None)
+        self.product = kwargs.pop('product', None)
+        self.customer = kwargs.pop('customer', None)
         super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
         comment = super().save(commit=False)
-        comment.productid = self.productid
-        comment.customerid = self.customerid
+        comment.product = self.product
+        comment.customer = self.customer
         comment.save()
         return comment
     class Meta:
