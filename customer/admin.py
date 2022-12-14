@@ -3,7 +3,7 @@ from .models import Customer
 
 # Register your models here.
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'phone', 'address', 'avatar', 'coupons']
+    list_display = ['name', 'email', 'phone', 'address', 'avatar']
     search_fields = ['name', 'email', 'phone', 'address']
     list_filter = ['name', 'email', 'phone', 'address']
 

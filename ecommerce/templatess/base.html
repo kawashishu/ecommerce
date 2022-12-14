@@ -24,55 +24,44 @@
         <!-- Libraries Stylesheet -->
         <link href=" {% static 'lib/animate/animate.min.css' %} " rel="stylesheet">
         <link href=" {% static 'lib/owlcarousel/assets/owl.carousel.min.css' %} " rel="stylesheet">
-    
         <!-- Customized Bootstrap Stylesheet -->
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
         
         <script src="https://jsuites.net/v4/jsuites.js"></script>
         <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" /> 
         
+        
     
 </head>
 <body>
+
+<!------ Include the above in your HEAD tag ---------->
+    
         <!-- Topbar Start -->
     <div class="container-fluid">
-        <div class="row bg-secondary py-1 px-xl-5">
+        <div class="row bg-dark py-1 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
-                <div class="d-inline-flex align-items-center h-100">
-                    <a class="text-body mr-3" href="">{% trans "About"%}</a>
-                    <a class="text-body mr-3" href="">{% trans "Contact"%}</a>
-                    <a class="text-body mr-3" href="">{% trans "Help" %}</a>
-                    <a class="text-body mr-3" href="">{% trans "FAQs"%}</a>
+                <div  class="d-inline-flex align-items-center h-100 ">
+                    <a class="text-white mr-3 ">{% trans "About"%}</a>
+                    <a class="text-white mr-3 ">{% trans "Contact"%}</a>
+                    <a class="text-white mr-3 ">{% trans "Help" %}</a>
+                    <a class="text-white mr-3 ">{% trans "FAQs"%}</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <div class="btn-group mt-2 mr-5"  >
-                        <p>1 USD / {{currency}} {{currency_name}}</p>
-                    </div>
-                    
-                    <div class="btn-group">
-                        {% if user.is_authenticated %}
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{ user.email|title }}</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{% url 'logout' %}">{% trans "Logout"%}</a>
-                            <a class="dropdown-item" href="{% url 'profile' %}">{% trans "Profile"%}</a>
-                            {% else %}
-                            <a href="{% url 'register' %}" class="dropdown-item" type="button">{% trans "Sign In"%} / {% trans "Sign Up"%}</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="btn-group mx-2">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{currency_name}}</button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                    <div class="btn-group mx-2 bg-warning ">
+                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle " data-toggle="dropdown">{{currency_name}}</button>
+                        <div class="dropdown-menu dropdown-menu-right ">
                             <a href="{% url 'change_currency' 'USD' %}" class="dropdown-item {% if currency_name == 'USD' %}active {% endif  %}" type="button">USD</a>
                             <a href="{% url 'change_currency' 'EUR' %}" class="dropdown-item {% if currency_name == 'EUR' %}active {% endif  %}" type="button">EUR</a>
                             <a href="{% url 'change_currency' 'GBP' %}" class="dropdown-item {% if currency_name == 'GBP' %}active {% endif  %}" type="button">GBP</a>
                             <a href="{% url 'change_currency' 'JPY' %}" class="dropdown-item {% if currency_name == 'JPY' %}active {% endif  %}" type="button">JPY</a>
                         </div>
                     </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{request.LANGUAGE_CODE|upper}}</button>
+                    <div class="btn-group ml-3">
+                        <button type="button" class="btn btn-sm btn-warning  dropdown-toggle" data-toggle="dropdown">{{request.LANGUAGE_CODE|upper}}</button>
+                        
                         <div class="dropdown-menu dropdown-menu-right">
                             {% for language in languages %}
                                 <form action="{% url 'set_language' %}" method="post" id="form_{{ language.code }}" style="display:inline!important;">
@@ -84,23 +73,25 @@
                             {% endfor %}
                         </div>
                     </div>
+                    <div class="btn-group ml-3">
+                        {% if user.is_authenticated %}
+                        {% comment %} <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{ user.email|title }}</button> {% endcomment %}
+                        <div class="container-fluid dropdown-toggle" data-toggle="dropdown">
+                        <a class="navbar-brand" href="#">
+                        <img src="/ecommerce/media/{{request.user.avatar}}" alt="Logo" style="width:40px;" class="rounded-pill">
+                        </a>
+                         <span style="color: white;"><strong>{{ request.user.name }}</strong></span>
+                    </div>
+                        <div class="dropdown-menu dropdown-menu-right ">
+                            <a class="dropdown-item" href="{% url 'logout' %}">{% trans "Logout"%}</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">{% trans "Profile"%}</a>
+                            {% else %}
+                            <a href="{% url 'register' %}" class="dropdown-item" type="button">{% trans "Sign In"%} / {% trans "Sign Up"%}</a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="d-inline-flex align-items-center d-block d-lg-none">
-                    <a href="" class="btn px-0 ml-2">
-                        <i class="fas fa-heart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-                    </a>
-                    <a href="" class="btn px-0 ml-2">
-                        <i class="fas fa-heart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-                    </a>
-                    
-                    <a href="" class="btn px-0 ml-2">
-                        <i class="fas fa-shopping-cart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-                    </a>
-                </div>
             </div>
         </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
@@ -201,38 +192,50 @@
                             <a href="{% url 'billing' %}" class="nav-item nav-link ml-3 {% if request.path == main_url %}active{% endif %} ">{% trans "Bill"%}</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block dropdown">
-                            
-                            <a data-toggle="dropdown" href="" class="btn px-0 dropdown-toggle">
-                                <i class="fas fa-bell text-primary  "></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"> {{ count_notifications }}</span>
-                                <div class="dropdown-menu bg-white rounded-0 border-0 m-0">
-                                    {% for n in notifications %}
+
+                            <div class="dropdown-wishlist">
+                                <button class="btn px-0 ml-5 dropbtn">
+                                <i class="fas fa-bell text-primary"></i>
+                                <span class="wishlist badge text-secondary border border-secondary rounded-circle count_notifications" style="padding-bottom: 2px;">{{ count_notifications }}</span>
+                            </button>  
+                                <div class="dropdown-content">
+                                {% if count_notifications == 0 %}
+                                    <a href="#" class="dropdown-item">No notifications</a>
+                                {% endif %}
+                                {% for n in notifications %}
                                     <a href="#" class="dropdown-item">{{n.content}}</a>
                                     {% endfor %}
                                 </div>
-                            </a>
-
-                                                          
+                            </div>
+                     
                             <div class="dropdown-wishlist">
                                 <button class="btn px-0 ml-5 dropbtn">
                                 <i class="fas fa-heart text-primary"></i>
-                                <span class="wishlist badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{wishlist}}</span>
-                            </button>  
+                                <span class="wishlist badge text-secondary border border-secondary rounded-circle count_wishlists" style="padding-bottom: 2px;">{{wishlist}}</span>
+                                </button>  
                                 <div class="dropdown-content">
+                                {% if wishlist == 0 %}
+                                    <a href="#" class="dropdown-item">No products in wishlist</a>
+                                {% endif %}
                                 {% for product in wishlist_products %}
                                     <a href="{% url 'productdetail' product.id %}">{{product.title}}</a>
                                 {% endfor %}
                                 </div>
                             </div>
-
-                            <a href="{% url 'cart' %}" class="btn px-0 ml-5 dropdown-toggle"  >
+                            <div class="dropdown-wishlist">
+                                <a href="{% url 'cart' %}" class="btn px-0 ml-5 dropbtn">
                                 <i class="fas fa-shopping-cart text-primary "></i>
-                                <span class=" shopping-cart badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{ carts }}</span>
-                            </a>
-                            
-                            <a href="{% url 'cart' %}" class="btn px-0 ml-5 dropdown-toggle"  >
-                                <i class="fas fa-user text-primary "></i>
-                            </a>
+                                <span class="wishlist badge text-secondary border border-secondary rounded-circle count_carts" style="padding-bottom: 2px;">{{ carts }}</span>
+                                </a>  
+                                <div class="dropdown-content">
+                                {% if carts == 0 %}
+                                    <a href="#" class="dropdown-item">No products in wishlist</a>
+                                {% else %}
+                                    <a href="{% url 'cart' %}" class="dropdown-item">Go to cart</a>
+                                {% endif %}
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </nav>

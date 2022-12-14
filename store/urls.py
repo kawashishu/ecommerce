@@ -25,6 +25,7 @@ urlpatterns = [
     path('billing/', order.BillingView.as_view() ,name='billing'),
 
     # coupon
-    path('coupon/', coupon.ApplyCouponView.as_view(), name='apply_coupon'),
+    path('apply-coupon/', coupon.ApplyCouponView.as_view(), name='apply_coupon'),
+    path('remove-coupon/', coupon.RemoveCouponView.as_view(), name='remove_coupon'),
 
 ]

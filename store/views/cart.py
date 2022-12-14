@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import View
 from store.models import Product
 from django.views.generic import ListView
-from store.forms import CouponForm
+from store.models import Coupon
 
 SHIPPING_CHARGE = 8
 
@@ -12,9 +12,12 @@ class CartView(View):
     
     def get(self, request):
         carts = request.session.get('cart-duplicate')
-        coupon = CouponForm()
         total = 0
-        list_coupons = []
+        coupon = request.session.get('coupon_id')
+        if coupon:
+            coupon = Coupon.objects.get(id=coupon)
+            print(type(coupon.discount_amount))
+        list_coupons = Coupon.objects.filter(customer=request.user)
         try: 
             quantity = {i: carts.count(i) for i in carts}
             products = Product.objects.filter(id__in=carts)
@@ -27,12 +30,11 @@ class CartView(View):
                 'SumTotal': int(total + SHIPPING_CHARGE),
                 'quantity': quantity,
                 'shipping': SHIPPING_CHARGE,
-                'coupon': coupon,
                 'list_coupons': list_coupons,
+                'coupon': coupon,
             }
         except:
             context = {
-                'coupon': coupon,
                 'total': 0,
                 'shipping': SHIPPING_CHARGE,
             }
@@ -137,5 +139,6 @@ class CartCalculator(View):
                 total += product.price * quanlity[product.id]
         except:
             total = 0
+        total *= request.session.get('currency')
         return HttpResponse(total)
 

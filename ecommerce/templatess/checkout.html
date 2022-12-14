@@ -96,6 +96,9 @@
                             <h5>{% trans "Total" %}</h5>
                             {% multiply sumtotal currency as sumtotal %}
                             <h5> {{ sumtotal }} {% get_icon_currency currency_name %}</h5>
+                            <h5> {{response.message}} </h5>
+
+
                         </div>
                     </div>
                 </div>
@@ -110,6 +113,45 @@
                             </div>
                         </div>
                         {% endfor %}
+                        {% comment %} Paypal {% endcomment %}
+                        <div id="paypal-button-container"></div>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AaDfzCm3qDJ2rfsHBo8F2EhEOlCiyR7crtOtjDxsuKX8pQm5dspyfTpJ_fwb6FmskWhV1V0yZNcBFe_U"></script>
+
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '{{ sumtotal }}'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+                    // Successful capture! For demo purposes:
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    var transaction = orderData.purchase_units[0].payments.captures[0];
+                    alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                    // Replace the above to show a success message within this page, e.g.
+                    //const element = document.getElementById('paypal-button-container');
+                    //element.innerHTML = '';
+                    //element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                    // Or go to another URL:  actions.redirect('thank_you.html');
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+                        {% comment %} End paypal {% endcomment %}
                         <button type="submit" href="{% url 'checkout' %}" class="btn btn-block btn-primary font-weight-bold py-3">{% trans "Place Order" %}</button>
                     </div>
                 </div>
@@ -119,5 +161,9 @@
     <!-- Checkout End -->
 </form>
 </body>
+
+<script>
+
+</script>
 
 {% endblock %}

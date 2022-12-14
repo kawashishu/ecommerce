@@ -334,7 +334,7 @@
         csrfmiddlewaretoken: '{{ csrf_token }}',
       },
       success: function (count) {
-        $('.shopping-cart').text(count)
+        $('.count_carts').text(count)
       },
     })
   }
@@ -348,7 +348,7 @@
         csrfmiddlewaretoken: '{{ csrf_token }}',
       },
       success: function (count) {
-        $('.wishlist').text(count)
+        $('.count_wishlists').text(count)
       },
     })
 }

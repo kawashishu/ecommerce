@@ -22,6 +22,8 @@ def message_processor(request):
 
     currency = request.session.get('currency') or 1
     currency_name = request.session.get('currency_name') or 'USD'
+
+    print(currency)
     
     return {
             'carts': carts,

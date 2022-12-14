@@ -16,4 +16,3 @@ class Comment(models.Model):
 
     class Meta:
         db_table = 'comment'
-        verbose_name = _('Comment')

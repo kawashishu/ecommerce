@@ -18,8 +18,22 @@ def get_session_cart(request, cart):
 def get_session_wishlist(request, wishlist):
     return len(request.session[wishlist])
 
+@register.simple_tag
+def get_state_number(state):
+    if state == 'PR':
+        max = 1
+    elif state == 'SH':
+        max = 2
+    elif state == 'EN':
+        max = 3
+    elif state == 'AR':
+        max = 4
+    else:
+        max = 1
+    return max
+
 @register.filter
-def ranged(min,max):
+def ranged(min, max):
     return range(min,max)
 
 @register.filter
@@ -61,3 +75,14 @@ def summation(*args):
     for arg in args:
         result += arg
     return round(result,2)
+
+@register.simple_tag
+def subtraction(a,b):
+    if a <= b:
+        return 0
+    return round(a-b,2)
+
+@register.simple_tag
+def to_int(value):
+    return int(value)
+

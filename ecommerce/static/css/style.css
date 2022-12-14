@@ -152,6 +152,7 @@ sup {
 }
 
 a {
+  cursor: pointer;
   color: #FFD333;
   text-decoration: none;
   background-color: transparent;
@@ -2936,6 +2937,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-lg, .btn-group-lg > .btn {
+  background-color: #FFD333;
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -9985,4 +9987,23 @@ h2 {
   }
 }
 
+.navbar-dark .nav-item .nav-link {
+  color: #fff;
+}
 
+.navbar-dark .nav-item .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.fa-li {
+  position: relative;
+  left: 0;
+}
+
+.dropdown-toggle::after {
+  /* Set the display property to none to hide the icon */
+  display: none;
+}

@@ -35,7 +35,7 @@
                         {% for product in products %}
                         <tr>
                             <td class="align-middle"><img src="/ecommerce/media/{{product.avatar}}" alt="product" style="width: 50px; ">{{product.title}}</td>
-                            {% multiply product.price currency as price%}
+                            {% multiply product.price currency as price %}
                             <td class="align-middle">{{price}} {% get_icon_currency currency_name %}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -62,26 +62,35 @@
                 </table>
             </div>
             <div class="col-lg-4">
-                <form class="mb-30" action="{% url 'apply_coupon' %}" method="post">
+                <form class="mb-30" method="post">
                     <div class="input-group">
-                        {% csrf_token %}
-                        {% comment %} <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code"> {% endcomment %}
-                        {{ coupon.code}}
+                        <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">Apply Coupon</button>
+                            <a onclick="applyCoupon()" type="submit" class="btn btn-primary">Apply Coupon</a>
                         </div>
                     </div>
                 </form>
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-                        <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                        {% for coupon in list_coupons %}
-                            <li><a href="#">{{coupon.code}}</a></li>
-                            
-                        {% endfor %}
-                        </ul>
+                {% if coupon %}
+                    {% to_int coupon.discount_amount as discount_amount %}
+                        <div class="d-flex justify-content-between">
+                            <p class="current_coupon">You are currently using coupon {{coupon.code}}: - {% multiply discount_amount currency %} {% get_icon_currency currency_name %}</p> 
+                            <a onclick="removeCoupon()" class="btn btn-primary cancle_coupon">Cancle</a>
+                        </div>
+                {% else %}
+                        <div class="d-flex justify-content-between">
+                            <p class="current_coupon">You not using coupon</p>
+                            <a onclick="removeCoupon()" class="btn btn-primary cancle_coupon d-none">Cancle</a>
+                        </div>
+                {% endif %}
+                    <div class="dropdown-wishlist mb-3 mt-2">
+                                <a  class="btn btn-primary">Your Coupon</a>
+                                <div class="dropdown-content">
+                                {% for c in list_coupons %}
+                                    <a >{{c.code}} : - {{c.discount_amount}} {% get_icon_currency currency_name %}</a>
+                                {% endfor %}
+                                </div>
                     </div>
+                    <br>
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
                 <div class="bg-light p-30 mb-5">
                     <div class="border-bottom pb-2">
@@ -100,8 +109,15 @@
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
                             {% summation total shipping as sum_total %}
-                            <h5 class="sumtotal" >{{sum_total}} {% get_icon_currency currency_name %}</h5>
+                            {% if coupon %}
+                            {% to_int coupon.discount_amount as discount_amount %}
+                            {% multiply discount_amount currency as discount_amount %}
+                            <h5 class="sumtotal" > {% subtraction sum_total  discount_amount %} <del>{{sum_total}}</del> {% get_icon_currency currency_name %}</h5>  
+                            {% else %}
+                            <h5 class="sumtotal" > {{sum_total}} {% get_icon_currency currency_name %}</h5>  
+                            {% endif %}
                         </div>
+                        
                         <a href="{% url 'checkout' %}" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</a>
                     </div>
                 </div>
@@ -113,7 +129,6 @@
     <script>
       function removeCart(id){
         const object = event.target
-        
         $.ajax({
           url:  "{% url 'cart-list' %}",
           type: 'POST',
@@ -123,8 +138,8 @@
             },
           success: function(response){
             $(object).closest('tr').remove()
-            $('.total').html(response)
-            $('.sumtotal').html(response)
+            $('.total').html(response +" " + "{% get_icon_currency currency_name %}")
+            $('.sumtotal').html(response + " " + "{% get_icon_currency currency_name %}" )
           }
         })
       }
@@ -140,9 +155,9 @@
                 'csrfmiddlewaretoken': '{{ csrf_token }}'
             },
           success: function(total){
-            $('.total').html(total)
-            var total = parseInt(total) + 10
-            $('.sumtotal').html(total)
+            $('.total').html(total + " " + "{% get_icon_currency currency_name %}")
+            var total = parseInt(total) + {{shipping}}
+            $('.sumtotal').html(total + " " + "{% get_icon_currency currency_name %}" )
             
             if ( object.className == "fa fa-plus") {
                 object.closest('td').querySelector('.countInput').value = parseInt(object.closest('td').querySelector('.countInput').value) + 1
@@ -154,6 +169,35 @@
      })
    }
 
+   function applyCoupon(){
+        const object = event.target
+        const code = object.closest('form').querySelector('input').value
+        $.ajax({
+          url:  "{% url 'apply_coupon' %}",
+          type: 'POST',
+            data: {
+                'code': code,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+          success: function(response){
+            $('.current_coupon').html(response)
+            $('.cancle_coupon').removeClass('d-none')
+          }
+     })
+   }
+
+   function removeCoupon(){
+        $.ajax({
+          url:  "{% url 'remove_coupon' %}",
+          type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+          success: function(response){
+            $('.cancle_coupon').addClass('d-none')
+            $('.current_coupon').text('You not using coupon')
+          }
+     })}
     </script>
 
 

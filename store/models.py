@@ -7,22 +7,25 @@ from checkout.models import BillingAddress
 
 # Create your models here.
 
+
 class Category(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='images_category', blank=True, null=True)
+    description = models.TextField(default=None, blank=True, null=True)
     class Meta:
         db_table = 'category'
         
     def to_json(self):
         return {
             'id': self.id,
-            'name': self.name
+            'name': self.name,
+            'description': self.description,
         }
 class Product(models.Model):
     name = models.CharField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     decripstion = models.TextField()
-    quanlity = models.IntegerField()
+    quantity = models.IntegerField()
     discount = models.IntegerField()
     status = models.BooleanField(default=False)
     title = models.CharField(max_length=200)
@@ -67,13 +70,34 @@ class Notification(models.Model):
         db_table = 'notification'
         
 
+
 class Order(models.Model):
+    PROCESS = 'PR'
+    SHIPPED = 'SH'
+    ENROUTE = 'EN'
+    ARRIVE = 'AR'
+
+    ORDER_STATUS_CHOICES = [
+        (PROCESS, 'Processing'),
+        (SHIPPED, 'Shipped'),
+        (ENROUTE, 'Enroute'),
+        (ARRIVE, 'Arrived'),
+    ]
+
     created = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     billing_address = models.ForeignKey(
         BillingAddress, on_delete=models.CASCADE, null=True)
-    state = models.IntegerField(default=1)
+    # field state with 4 choice ( New, Processing, Shipping, Completed)
+    state = models.CharField(
+        max_length=2,
+        choices=ORDER_STATUS_CHOICES,
+        default=PROCESS,
+    )
+
+
+
     class Meta:
         db_table = 'order'
 
@@ -96,7 +120,7 @@ class Coupon(models.Model):
     code = models.CharField(max_length=50)
     expiration_date = models.DateField()
     discount_amount = models.DecimalField(max_digits=5, decimal_places=2)
-    customer = models.ManyToManyField(Customer, related_name='coupons')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,related_name='coupons', default=None, blank=True, null=True)
 
     class Meta:
         db_table = 'coupon'

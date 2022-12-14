@@ -39,7 +39,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+# Paypal settings
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = "sb-klvih23496059@business.example.com"
 
 # Application definition
 
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
     # models
     'store','ecommerce','customer','comment','checkout','schedule',
     # third party
+    'paypal',
     'captcha', 
     # rest framework
     'rest_framework',

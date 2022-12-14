@@ -11,7 +11,7 @@ class ProductImageInline(admin.StackedInline):
     extra = 1
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category','quanlity','discount','status','title','price', 'views', 'avatar']
+    list_display = ['title', 'category','quantity','discount','status','title','price', 'views', 'avatar']
     search_fields = ['category', 'status', 'title', 'price', 'decripstion']
     list_filter = ['category', 'status', 'title', 'price', 'decripstion']
     inlines = [ProductImageInline]
@@ -35,7 +35,7 @@ admin.site.register(OrderDetail)
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'image']
+    list_display = ['name', 'image', 'description']
     search_fields = ['name', 'id']
 admin.site.register(Category, CategoryAdmin)
 

@@ -9,6 +9,7 @@ from store.models import Order
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from store.views.cart import getTotal
+from store.models import Product
 
 SHIPPING_CHARGE = 10
 
@@ -48,7 +49,29 @@ class CheckoutView(View):
                 )
                 billing_address.save()
                 order.save()
+                if process_order(self.request):
+                    self.request.session['cart'] = []
+                    self.request.session['cart-duplicate'] = []
+                messages.success(self.request, "Order successfully")
                 return redirect("billing")
         except ObjectDoesNotExist:
                 messages.error(self.request, "You do not have an active order")
                 return redirect("billing")
+
+def process_order(request):
+    if request.user.is_authenticated:
+        try:
+            carts = request.session.get('cart-duplicate')
+            quantity = {i: carts.count(i) for i in carts}
+            products = Product.objects.filter(id__in=carts)
+            for product in products:
+                if product.quantity > quantity[product.id]:
+                    product.quantity -= quantity[product.id]
+                    product.save()
+                else:
+                    messages.error(request, f"Product {product.name} is out of stock")
+                    return False
+        except:
+            messages.error(request, "Something error, try it again...1 :)))")
+            return False
+    return True
