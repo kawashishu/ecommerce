@@ -7,7 +7,7 @@ from store.models import Category, Product
 class CategoryView(DetailView):
     model = Product
     template_name = 'shop.html'
-    paginate_by = 3
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

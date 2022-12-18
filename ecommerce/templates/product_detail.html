@@ -1,413 +1,1177 @@
-{% extends 'base.html' %} {% load i18n %} {% load static %} {% block content %}
-{% load post_tags %}
+{% extends 'base.html' %} {% load i18n %} {% load static %} {% load post_tags %}
+{% block content %}
+<!--====== App Content ======-->
+<div class="app-content">
+  <!--====== Section 1 ======-->
+  <div class="u-s-p-t-90">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <!--====== Product Breadcrumb ======-->
+          <div class="pd-breadcrumb u-s-m-b-30">
+            <ul class="pd-breadcrumb__list">
+              <li class="has-separator">
+                <a href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="has-separator">
+                <a href="shop-side-version-2.html">Electronics</a>
+              </li>
+              <li class="has-separator">
+                <a href="shop-side-version-2.html">DSLR Cameras</a>
+              </li>
+              <li class="is-marked">
+                <a href="shop-side-version-2.html">Nikon Cameras</a>
+              </li>
+            </ul>
+          </div>
+          <!--====== End - Product Breadcrumb ======-->
 
-<body>
-  <!-- Breadcrumb Start -->
-  <div class="container-fluid">
-    <div class="row px-xl-5">
-      <div class="col-12">
-        <nav class="breadcrumb bg-light mb-30">
-          <a class="breadcrumb-item text-dark" href=" {% url 'index' %} "
-            >Home</a
-          >
-          <a class="breadcrumb-item text-dark" href="#">Shop</a>
-          <span class="breadcrumb-item active">Shop Detail</span>
-        </nav>
-      </div>
-    </div>
-  </div>
-  <!-- Breadcrumb End -->
-
-  <!-- Shop Detail Start -->
-  <div class="container-fluid pb-5">
-    <div class="row px-xl-5">
-      <div class="col-lg-5 mb-30">
-        <div id="product-carousel" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner bg-light">
-            <div class="carousel-item active">
-              <img
-                class="w-100 h-100"
-                src="/ecommerce/media/{{product.avatar}}"
-                alt="Image"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                class="w-100 h-100"
-                src="{% static 'img/product-2.jpg'%}"
-                alt="Image"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                class="w-100 h-100"
-                src="{% static 'img/product-3.jpg'%}"
-                alt="Image"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                class="w-100 h-100"
-                src="{% static 'img/product-4.jpg'%}"
-                alt="Image"
-              />
-            </div>
-          </div>
-          <a
-            class="carousel-control-prev"
-            href="#product-carousel"
-            data-slide="prev"
-          >
-            <i class="fa fa-2x fa-angle-left text-dark"></i>
-          </a>
-          <a
-            class="carousel-control-next"
-            href="#product-carousel"
-            data-slide="next"
-          >
-            <i class="fa fa-2x fa-angle-right text-dark"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-7 h-auto mb-30">
-        <div class="h-100 bg-light p-30">
-          <h3>{{ product.title }}</h3>
-          <div class="d-flex mb-3">
-            <div class="text-primary mr-2">
-              <small class="fas fa-star"></small>
-              <small class="fas fa-star"></small>
-              <small class="fas fa-star"></small>
-              <small class="fas fa-star-half-alt"></small>
-              <small class="far fa-star"></small>
-            </div>
-            <p class="pt-1 ml-3">({{comments.count}} Reviews)</p>
-            <p class="pt-1 ml-3">({{product.views}} access times)</p>
-          </div>
-          {% multiply product.price currency as price %}
-          <h3 class="font-weight-semi-bold mb-4">{{ price }} {% get_icon_currency currency_name %}</h3>
-          <p class="mb-4">{{ product.decripstion }}</p>
-          <div class="d-flex align-items-center mb-4 pt-2">
-            <a onclick="addcart({{product.id}})" class="btn btn-primary px-3"
-              ><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a
-            >
-          </div>
-          <div class="d-flex pt-2">
-            <strong class="text-dark mr-2">Share on:</strong>
-            <div class="d-inline-flex">
-              <a
-                class="text-dark px-2"
-                href="https://www.facebook.com/sharer/sharer.php?u=example.org"
-                target="_blank"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a class="text-dark px-2" href="https://twitter.com/intent/tweet">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </div>
-          </div>
-          <div class="pt-5">
-            <a href="{% url 'checkout' %}" class="btn btn-primary px-3"
-              ><i class="fa fa-shopping-cart mr-1"></i> Checkout
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row px-xl-5">
-      <div class="col">
-        <div class="bg-light p-30">
-          <div class="nav nav-tabs mb-4">
-            <a
-              class="nav-item nav-link text-dark active"
-              data-toggle="tab"
-              href="#tab-pane-1"
-              >Description</a
-            >
-            <a
-              class="nav-item nav-link text-dark"
-              data-toggle="tab"
-              href="#tab-pane-2"
-              >Information</a
-            >
-            <a
-              class="nav-item nav-link text-dark"
-              data-toggle="tab"
-              href="#tab-pane-3"
-              >Reviews ({{comments.count}})</a
-            >
-          </div>
-          <div class="tab-content">
-            <div class="tab-pane fade show active" id="tab-pane-1">
-              <h4 class="mb-3">Product Description</h4>
-              <p>
-                Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea.
-                Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero
-                diam ea vero et dolore rebum, dolor rebum eirmod consetetur
-                invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd
-                ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod.
-                Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut
-                diam consetetur duo justo est, sit sanctus diam tempor aliquyam
-                eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at
-                sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr
-                sanctus eirmod takimata dolor ea invidunt.
-              </p>
-              <p>
-                Dolore magna est eirmod sanctus dolor, amet diam et eirmod et
-                ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem
-                tempor. Gubergren amet amet labore sadipscing clita clita diam
-                clita. Sea amet et sed ipsum lorem elitr et, amet et labore
-                voluptua sit rebum. Ea erat sed et diam takimata sed justo.
-                Magna takimata justo et amet magna et.
-              </p>
-            </div>
-            <div class="tab-pane fade" id="tab-pane-2">
-              <h4 class="mb-3">Additional Information</h4>
-              <p>
-                Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea.
-                Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero
-                diam ea vero et dolore rebum, dolor rebum eirmod consetetur
-                invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd
-                ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod.
-                Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut
-                diam consetetur duo justo est, sit sanctus diam tempor aliquyam
-                eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at
-                sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr
-                sanctus eirmod takimata dolor ea invidunt.
-              </p>
-              <div class="row">
-                <div class="col-md-6">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item px-0">
-                      Sit erat duo lorem duo ea consetetur, et eirmod takimata.
-                    </li>
-                    <li class="list-group-item px-0">
-                      Amet kasd gubergren sit sanctus et lorem eos sadipscing
-                      at.
-                    </li>
-                    <li class="list-group-item px-0">
-                      Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                    </li>
-                    <li class="list-group-item px-0">
-                      Takimata ea clita labore amet ipsum erat justo voluptua.
-                      Nonumy.
-                    </li>
-                  </ul>
+          <!--====== Product Detail Zoom ======-->
+          <div class="pd u-s-m-b-30">
+            <div class="slider-fouc pd-wrap">
+              <div id="pd-o-initiate">
+                <div
+                  class="pd-o-img-wrap"
+                  data-src=" /ecommerce/media/{{product.avatar}}"
+                >
+                  <img
+                    class="u-img-fluid"
+                    src=" /ecommerce/media/{{product.avatar}}"
+                    data-zoom-image=" /ecommerce/media/{{product.avatar}}"
+                    alt=""
+                  />
                 </div>
-                <div class="col-md-6">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item px-0">
-                      Sit erat duo lorem duo ea consetetur, et eirmod takimata.
-                    </li>
-                    <li class="list-group-item px-0">
-                      Amet kasd gubergren sit sanctus et lorem eos sadipscing
-                      at.
-                    </li>
-                    <li class="list-group-item px-0">
-                      Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                    </li>
-                    <li class="list-group-item px-0">
-                      Takimata ea clita labore amet ipsum erat justo voluptua.
-                      Nonumy.
-                    </li>
-                  </ul>
+                <div
+                  class="pd-o-img-wrap"
+                  data-src="/ecommerce/media/{{product.avatar}} "
+                >
+                  <img
+                    class="u-img-fluid"
+                    src="/ecommerce/media/{{product.avatar}} "
+                    data-zoom-image="/ecommerce/media/{{product.avatar}} "
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="pd-o-img-wrap"
+                  data-src="/ecommerce/media/{{product.avatar}}"
+                >
+                  <img
+                    class="u-img-fluid"
+                    src="/ecommerce/media/{{product.avatar}}"
+                    data-zoom-image="/ecommerce/media/{{product.avatar}}"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="pd-o-img-wrap"
+                  data-src="/ecommerce/media/{{product.avatar}}"
+                >
+                  <img
+                    class="u-img-fluid"
+                    src="/ecommerce/media/{{product.avatar}}"
+                    data-zoom-image="/ecommerce/media/{{product.avatar}}"
+                    alt=""
+                  />
+                </div>
+                <div
+                  class="pd-o-img-wrap"
+                  data-src="/ecommerce/media/{{product.avatar}}"
+                >
+                  <img
+                    class="u-img-fluid"
+                    src="/ecommerce/media/{{product.avatar}}"
+                    data-zoom-image="/ecommerce/media/{{product.avatar}}"
+                    alt=""
+                  />
                 </div>
               </div>
+
+              <span class="pd-text">Click for larger zoom</span>
             </div>
-            <div class="tab-pane fade" id="tab-pane-3">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4 class="mb-4">
-                    {{comments.count}} review for "{{product.title}}"
-                  </h4>
-                  <ul class="list-group container-comments">
-                    {% for comment in comments %}
-                    <li class="list-group-item container-comment">
-                      <div class="media mb-4">
-                        <img
-                          src="/ecommerce/media/{{comment.customer.avatar}}"
-                          alt="Image"
-                          class="img-fluid mr-3 mt-1"
-                          style="width: 45px"
-                        />
-                        <div class="media-body">
-                          <h6>
-                            {{comment.customer.name}}<small>
-                              - <i>{{comment.created}}</i></small
-                            >
-                          </h6>
-                          <div class="text-primary mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                          </div>
-                          <p>{{comment.content}}</p>
-                          {% if request.user == comment.customer %}
-                          <button
-                            onclick="deleteComment('{{comment.id}}', '{{product.id}}')"
-                            class="btn btn-sm btn-danger"
-                          >
-                            Delete
-                          </button>
-                          {% endif %}
-                        </div>
-                      </div>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <h4 class="mb-4">Leave a review</h4>
-                  <small
-                    >Your email address will not be published. Required fields
-                    are marked *</small
-                  >
-                  <div class="d-flex my-3"></div>
-                  <div class="form-group">
-                    <label for="message">Your Review *</label>
-                    <textarea
-                      name="message"
-                      id="message"
-                      cols="60"
-                      rows="10"
-                    ></textarea>
-                    <div class="form-group mb-0">
-                      <button
-                        onclick="addComment('{{product.id}}', '{{request.user.id}}', )"
-                        class="btn btn-primary px-3"
-                      >
-                        Add your comment
-                      </button>
-                    </div>
+            <div class="u-s-m-t-15">
+              <div class="slider-fouc">
+                <div id="pd-o-thumbnail">
+                  <div>
+                    <img
+                      class="u-img-fluid"
+                      src=" /ecommerce/media/{{product.avatar}}"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      class="u-img-fluid"
+                      src="/ecommerce/media/{{product.avatar}} "
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      class="u-img-fluid"
+                      src="/ecommerce/media/{{product.avatar}}"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      class="u-img-fluid"
+                      src="/ecommerce/media/{{product.avatar}}"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      class="u-img-fluid"
+                      src="/ecommerce/media/{{product.avatar}}"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <!--====== End - Product Detail Zoom ======-->
+        </div>
+        <div class="col-lg-7">
+          <!--====== Product Right Side Details ======-->
+          <div class="pd-detail">
+            <div>
+              <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span>
+            </div>
+            <div>
+              <div class="pd-detail__inline">
+                <span class="pd-detail__price"
+                  >{% get_icon_currency currency_name %}{{product.price}}</span
+                >
+
+                <span class="pd-detail__discount">(76% OFF)</span>
+              </div>
+            </div>
+            <div class="u-s-m-b-15">
+              <div class="pd-detail__rating gl-rating-style">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star-half-alt"></i>
+
+                <span class="pd-detail__review u-s-m-l-4">
+                  <a data-click-scroll="#view-review">{{comments.count}} Reviews</a></span
+                >
+              </div>
+            </div>
+            <div class="u-s-m-b-15">
+              <div class="pd-detail__inline">
+                <span class="pd-detail__stock">{{product.quantity}} in stock</span>
+
+                
+              </div>
+            </div>
+            <div class="u-s-m-b-15">
+              <span class="pd-detail__preview-desc">
+                {{product.description}}</span
+              >
+            </div>
+            <div class="u-s-m-b-15">
+              <div class="pd-detail__inline">
+                <span class="pd-detail__click-wrap"
+                  ><i class="far fa-heart u-s-m-r-6"></i>
+
+                  <a href="signin.html">Add to Wishlist</a>
+                >
+              </div>
+            </div>
+            <div class="u-s-m-b-15">
+              <div class="pd-detail__inline">
+                <span class="pd-detail__click-wrap"
+                  ><i class="far fa-envelope u-s-m-r-6"></i>
+
+                  <a href="signin.html">Email me When the price drops</a>
+
+                  <span class="pd-detail__click-count">(20)</span></span
+                >
+              </div>
+            </div>
+            <div class="u-s-m-b-15">
+              <ul class="pd-social-list">
+                <li>
+                  <a class="s-fb--color-hover" href="#"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                </li>
+                <li>
+                  <a class="s-tw--color-hover" href="#"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                </li>
+                <li>
+                  <a class="s-insta--color-hover" href="#"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                </li>
+                <li>
+                  <a class="s-wa--color-hover" href="#"
+                    ><i class="fab fa-whatsapp"></i
+                  ></a>
+                </li>
+                <li>
+                  <a class="s-gplus--color-hover" href="#"
+                    ><i class="fab fa-google-plus-g"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+            <div class="u-s-m-b-15">
+              <div class="pd-detail__form">
+                <div class="pd-detail-inline-2">
+                  <div class="u-s-m-b-15">
+                    <!--====== Input Counter ======-->
+                    <div class="input-counter">
+                      <span class="input-counter__minus fas fa-minus"></span>
+
+                      <input
+                        class="input-counter__text input-counter--text-primary-style"
+                        type="text"
+                        value="1"
+                        data-min="1"
+                        data-max="1000"
+                      />
+
+                      <span class="input-counter__plus fas fa-plus"></span>
+                    </div>
+                    <!--====== End - Input Counter ======-->
+                  </div>
+                  <div class="u-s-m-b-15">
+                    <button class="btn btn--e-brand-b-2" type="submit">
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-s-m-b-15">
+              <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
+              <ul class="pd-detail__policy-list">
+                <li>
+                  <i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                  <span>Buyer Protection.</span>
+                </li>
+                <li>
+                  <i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                  <span>Full Refund if you don't receive your order.</span>
+                </li>
+                <li>
+                  <i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                  <span>Returns accepted if product not as described.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--====== End - Product Right Side Details ======-->
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Shop Detail End -->
-  <!-- Products Start -->
-  <div class="container-fluid py-5">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
-      <span class="bg-secondary pr-3">You May Also Like</span>
-    </h2>
-    <div class="row px-xl-5">
-      <div class="col">
-        <div class="owl-carousel related-carousel">
-          {% for product in products %}
-          <div class="product-item bg-light">
-            <div class="product-img position-relative overflow-hidden">
-              <img
-                class="img-fluid w-100"
-                src="/ecommerce/media/{{product.avatar}}"
-                alt=""
-              />
-              <div class="product-action">
-                <a onclick="addcart({{product.id}})" class="btn btn-outline-dark btn-square"
-                  ><i class="fa fa-shopping-cart"></i
-                ></a>
-                <a onclick="addWishList({{product.id}})" class="btn btn-outline-dark btn-square"
-                  ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href="{% url 'productdetail' product.id %}"
-                  ><i class="fa fa-search"></i
-                ></a>
-              </div>
+  <!--====== Product Detail Tab ======-->
+  <div class="u-s-p-y-90">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="pd-tab">
+            <div class="u-s-m-b-30">
+              <ul class="nav pd-tab__list">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#pd-desc"
+                    >DESCRIPTION</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#pd-tag">TAGS</a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="view-review"
+                    data-toggle="tab"
+                    href="#pd-rev"
+                    >REVIEWS
+
+                    <span>({{comments.count}})</span></a
+                  >
+
+                </li>
+              </ul>
             </div>
-            <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href=""
-                >{{product.title}}</a
-              >
-              <div
-                class="d-flex align-items-center justify-content-center mt-2"
-              >
-              {% multiply product.price currency as price %}
-                <h5>{{ price }} {% get_icon_currency currency_name %}</h5>
+            <div class="tab-content">
+              <!--====== Tab 1 ======-->
+              <div class="tab-pane fade show active" id="pd-desc">
+                <div class="pd-tab__desc">
+                  <div class="u-s-m-b-15">
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries, but also the leap into electronic typesetting,
+                      remaining essentially unchanged. It was popularised in the
+                      1960s with the release of Letraset sheets containing Lorem
+                      Ipsum passages, and more recently with desktop publishing
+                      software like Aldus PageMaker including versions of Lorem
+                      Ipsum.
+                    </p>
+                  </div>
+                  <div class="u-s-m-b-30">
+                    <iframe
+                      src="https://www.youtube.com/embed/qKqSBm07KZk"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                  <div class="u-s-m-b-30">
+                    <ul>
+                      <li>
+                        <i class="fas fa-check u-s-m-r-8"></i>
+
+                        <span>Buyer Protection.</span>
+                      </li>
+                      <li>
+                        <i class="fas fa-check u-s-m-r-8"></i>
+
+                        <span
+                          >Full Refund if you don't receive your order.</span
+                        >
+                      </li>
+                      <li>
+                        <i class="fas fa-check u-s-m-r-8"></i>
+
+                        <span
+                          >Returns accepted if product not as described.</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
+              <!--====== End - Tab 1 ======--> 
+
+              <!--====== Tab 3 ======-->
+              <div class="tab-pane" id="pd-rev">
+                <div class="pd-tab__rev">
+                  <div class="u-s-m-b-30">
+                    <div class="pd-tab__rev-score">
+                      <div class="u-s-m-b-8">
+                        <h2>{{comments.count}} Reviews - 4.6 (Overall)</h2>
+                      </div>
+                      <div class="gl-rating-style-2 u-s-m-b-8">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i
+                        ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                        ><i class="fas fa-star-half-alt"></i>
+                      </div>
+                      <div class="u-s-m-b-8">
+                        <h4>We want to hear from you!</h4>
+                      </div>
+
+                      <span class="gl-text"
+                        >Tell us what you think about this item</span
+                      >
+                    </div>
+                  </div>
+                  <div class="u-s-m-b-30">
+                    <div class="pd-tab__rev-f1">
+                      <div class="rev-f1__group">
+                        <div class="u-s-m-b-15">
+                          <h2>
+                            23 Review(s) for Man Ruched Floral Applique Tee
+                          </h2>
+                        </div>
+                        <div class="u-s-m-b-15">
+                          <label for="sort-review"></label
+                          ><select
+                            class="select-box select-box--primary-style"
+                            id="sort-review"
+                          >
+                            <option selected>Sort by: Best Rating</option>
+                            <option>Sort by: Worst Rating</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="rev-f1__review">
+                        {% for comment in comments %}
+                        <div class="review-o u-s-m-b-15">
+                          <div class="review-o__info u-s-m-b-8">
+                            <span class="review-o__name">{{comment.customer.name}}</span>
+
+                            <span class="review-o__date"
+                              >{{comment.created}}</span
+                            >
+                          </div>
+                          <div
+                            class="review-o__rating gl-rating-style u-s-m-b-8"
+                          >
+                            <i class="fas fa-star"></i
+                            ><i class="fas fa-star"></i
+                            ><i class="fas fa-star"></i
+                            ><i class="fas fa-star"></i
+                            ><i class="far fa-star"></i>
+                          </div>
+                          <p class="review-o__text">
+                            {{comment.content}}
+                          </p>
+                          {% if request.user == comment.customer %}
+                          <button
+                            onclick="deleteComment('{{comment.id}}', '{{product.id}}')"
+                            class="text-danger"
+                          >
+                            Delete
+                          </button>
+                          {% endif %}
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-s-m-b-30">
+                    <div class="pd-tab__rev-f2">
+                      <h2 class="u-s-m-b-15">Add a Review</h2>
+
+                      <span class="gl-text u-s-m-b-15"
+                        >Your email address will not be published. Required
+                        fields are marked *</span
+                      >
+                      <div class="u-s-m-b-30">
+                        <div class="rev-f2__table-wrap gl-scroll">
+                          <table class="rev-f2__table">
+                            <thead>
+                              <tr>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i>
+
+                                    <span>(1)</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i
+                                    ><i class="fas fa-star-half-alt"></i>
+
+                                    <span>(1.5)</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i>
+
+                                    <span>(2)</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star-half-alt"></i>
+
+                                    <span>(2.5)</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i>
+
+                                    <span>(3)</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star-half-alt"></i>
+
+                                    <span>(3.5)</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i>
+
+                                    <span>(4)</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star-half-alt"></i>
+
+                                    <span>(4.5)</span>
+                                  </div>
+                                </th>
+                                <th>
+                                  <div class="gl-rating-style-2">
+                                    <i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i
+                                    ><i class="fas fa-star"></i>
+
+                                    <span>(5)</span>
+                                  </div>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-1"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-1"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-1.5"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-1.5"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-2"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-2"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-2.5"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-2.5"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-3"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-3"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-3.5"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-3.5"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-4"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-4"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-4.5"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-4.5"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                                <td>
+                                  <!--====== Radio Box ======-->
+                                  <div class="radio-box">
+                                    <input
+                                      type="radio"
+                                      id="star-5"
+                                      name="rating"
+                                    />
+                                    <div
+                                      class="radio-box__state radio-box__state--primary"
+                                    >
+                                      <label
+                                        class="radio-box__label"
+                                        for="star-5"
+                                      ></label>
+                                    </div>
+                                  </div>
+                                  <!--====== End - Radio Box ======-->
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="rev-f2__group">
+                        <div class="u-s-m-b-15">
+                          <label class="gl-label" for="reviewer-text"
+                            >YOUR REVIEW *</label
+                          ><textarea
+                            class="text-area text-area--primary-style text-area-comment"
+                            id="reviewer-text"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div>
+                        <button class="btn btn--e-brand-shadow js-shop-create-comment">
+                          SUBMIT
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <!--====== End - Tab 3 ======-->
             </div>
           </div>
-          {% endfor %}
         </div>
       </div>
     </div>
   </div>
-  <!-- Products End -->
-</body>
+  <!--====== End - Product Detail Tab ======-->
+  <div class="u-s-p-b-90">
+    <!--====== Section Intro ======-->
+    <div class="section__intro u-s-m-b-46">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section__text-wrap">
+              <h1 class="section__heading u-c-secondary u-s-m-b-12">
+                CUSTOMER ALSO VIEWED
+              </h1>
+
+              <span class="section__span u-c-grey"
+                >PRODUCTS THAT CUSTOMER VIEWED</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--====== End - Section Intro ======-->
+
+    <!--====== Section Content ======-->
+    <div class="section__content">
+      <div class="container">
+        <div class="slider-fouc">
+          <div class="owl-carousel product-slider" data-item="4">
+            {% for product in products %}
+            <div class="u-s-m-b-30">
+              <div class="product-o product-o--hover-on">
+                <div class="product-o__wrap">
+                  <a
+                    class="aspect aspect--bg-grey aspect--square u-d-block"
+                    href="{% url 'productdetail' product.id %}"
+                  >
+                    <img
+                      class="aspect__img"
+                      src="/ecommerce/media/{{product.avatar}}"
+                      alt=""
+                  /></a>
+                  <div class="product-o__action-wrap">
+                    <ul class="product-o__action-list">
+                      <li>
+                        <a
+                          data-modal="modal"
+                          data-modal-id="#quick-look-{{product.id}}"
+                          data-tooltip="tooltip"
+                          data-placement="top"
+                          title="Quick View"
+                          ><i class="fas fa-search-plus"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          data-modal="modal"
+                          data-modal-id="#add-to-cart-{{product.id}}"
+                          data-tooltip="tooltip"
+                          data-placement="top"
+                          title="Add to Cart"
+                          ><i class="fas fa-plus-circle"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          href="signin.html"
+                          data-tooltip="tooltip"
+                          data-placement="top"
+                          title="Add to Wishlist"
+                          ><i class="fas fa-heart"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          href="signin.html"
+                          data-tooltip="tooltip"
+                          data-placement="top"
+                          title="Email me When the price drops"
+                          ><i class="fas fa-envelope"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <span class="product-o__category">
+                  <a href="shop-side-version-2.html">Electronics</a></span
+                >
+
+                <span class="product-o__name">
+                  <a href="{% url 'productdetail' product.id %}"
+                    >{{product.name}}</a
+                  ></span
+                >
+                <div class="product-o__rating gl-rating-style">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+
+                  <span class="product-o__review">(20)</span>
+                </div>
+
+                <span class="product-o__price"
+                  >{% get_icon_currency currency_name %}{{product.price}}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--====== End - Section Content ======-->
+  </div>
+  <!--====== End - Section 1 ======-->
+  <!--====== Quick Look Modal ======-->
+  {% for product in products %}
+  <div class="modal fade quick-look" id="quick-look-{{product.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal--shadow">
+        <button
+          class="btn dismiss-button fas fa-times"
+          type="button"
+          data-dismiss="modal"
+        ></button>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-5">
+              <!--====== Product Breadcrumb ======-->
+              <div class="pd-breadcrumb u-s-m-b-30">
+                <ul class="pd-breadcrumb__list">
+                  <li class="has-separator">
+                    <a href="{% url 'index' %} ">Home</a>
+                  </li>
+                  <li class="has-separator">
+                    <a href="shop-side-version-2.html">Electronics</a>
+                  </li>
+                  <li class="has-separator">
+                    <a href="shop-side-version-2.html">DSLR Cameras</a>
+                  </li>
+                  <li class="is-marked">
+                    <a href="shop-side-version-2.html">Nikon Cameras</a>
+                  </li>
+                </ul>
+              </div>
+              <!--====== End - Product Breadcrumb ======-->
+
+              <!--====== Product Detail ======-->
+              <div class="pd u-s-m-b-30">
+                <div class="pd-wrap">
+                  <div id="js-product-detail-modal">
+                    <div>
+                      <img
+                        class="u-img-fluid"
+                        src="/ecommerce/media/{{product.avatar}}"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--====== End - Product Detail ======-->
+            </div>
+            <div class="col-lg-7">
+              <!--====== Product Right Side Details ======-->
+              <div class="pd-detail">
+                <div>
+                  <span class="pd-detail__name">{{product.name}}</span>
+                </div>
+                <div>
+                  <div class="pd-detail__inline">
+                    <span class="pd-detail__price"
+                      >{% get_icon_currency currency_name %}
+                      {{product.price}}</span
+                    >
+
+                    <span class="pd-detail__discount">(76% OFF)</span
+                    ><del class="pd-detail__del">$28.97</del>
+                  </div>
+                </div>
+                <div class="u-s-m-b-15">
+                  <div class="pd-detail__rating gl-rating-style">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star-half-alt"></i>
+
+                    <span class="pd-detail__review u-s-m-l-4">
+                      <a href="product-detail.html">23 Reviews</a></span
+                    >
+                  </div>
+                </div>
+                <div class="u-s-m-b-15">
+                  <div class="pd-detail__inline">
+                    <span class="pd-detail__stock">200 in stock</span>
+
+                    <span class="pd-detail__left">Only 2 left</span>
+                  </div>
+                </div>
+                <div class="u-s-m-b-15">
+                  <span class="pd-detail__preview-desc"
+                    >Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book.</span
+                  >
+                </div>
+                <div class="u-s-m-b-15">
+                  <div class="pd-detail__inline">
+                    <span class="pd-detail__click-wrap"
+                      ><i class="far fa-heart u-s-m-r-6"></i>
+
+                      <a href="{% url 'signin' %}">Add to Wishlist</a>
+
+                      <span class="pd-detail__click-count">(222)</span></span
+                    >
+                  </div>
+                </div>
+                <div class="u-s-m-b-15">
+                  <div class="pd-detail__inline">
+                    <span class="pd-detail__click-wrap"
+                      ><i class="far fa-envelope u-s-m-r-6"></i>
+
+                      <a href="{% url 'signin' %}"
+                        >Email me When the price drops</a
+                      >
+
+                      <span class="pd-detail__click-count">(20)</span></span
+                    >
+                  </div>
+                </div>
+                <div class="u-s-m-b-15">
+                  <ul class="pd-social-list">
+                    <li>
+                      <a class="s-fb--color-hover" href="#"
+                        ><i class="fab fa-facebook-f"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a class="s-tw--color-hover" href="#"
+                        ><i class="fab fa-twitter"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a class="s-insta--color-hover" href="#"
+                        ><i class="fab fa-instagram"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a class="s-wa--color-hover" href="#"
+                        ><i class="fab fa-whatsapp"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a class="s-gplus--color-hover" href="#"
+                        ><i class="fab fa-google-plus-g"></i
+                      ></a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="u-s-m-b-15">
+                  <form class="pd-detail__form">
+                    <div class="pd-detail-inline-2">
+                      <div class="u-s-m-b-15">
+                        <!--====== Input Counter ======-->
+                        <div class="input-counter">
+                          <span
+                            class="input-counter__minus fas fa-minus"
+                          ></span>
+
+                          <input
+                            class="input-counter__text input-counter--text-primary-style"
+                            type="text"
+                            value="1"
+                            data-min="1"
+                            data-max="1000"
+                          />
+
+                          <span class="input-counter__plus fas fa-plus"></span>
+                        </div>
+                        <!--====== End - Input Counter ======-->
+                      </div>
+                      <div class="u-s-m-b-15">
+                        <button class="btn btn--e-brand-b-2" type="submit">
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="u-s-m-b-15">
+                  <span class="pd-detail__label u-s-m-b-8"
+                    >Product Policy:</span
+                  >
+                  <ul class="pd-detail__policy-list">
+                    <li>
+                      <i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                      <span>Buyer Protection.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                      <span>Full Refund if you don't receive your order.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                      <span>Returns accepted if product not as described.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!--====== End - Product Right Side Details ======-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="add-to-cart-{{product.id}}">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content modal-radius modal-shadow">
+
+                    <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="success u-s-m-b-30">
+                                    <div class="success__text-wrap"><i class="fas fa-check"></i>
+
+                                        <span>Item is added successfully!</span></div>
+                                    <div class="success__img-wrap">
+
+                                        <img class="u-img-fluid" src="/ecommerce/media/{{product.avatar}}" alt=""></div>
+                                    <div class="success__info-wrap">
+
+                                        <span class="success__name">{{product.name}}</span>
+
+                                        <span class="success__quantity">Quantity: 1</span>
+
+                                        <span class="success__price"> {% get_icon_currency currency_name %} {{product.price}}</span></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="s-option">
+
+                                    <span class="s-option__text">1 item (s) in your cart</span>
+                                    <div class="s-option__link-box">
+
+                                        <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
+
+                                        <a class="s-option__link btn--e-white-brand-shadow" href="{% url 'cart' %}">VIEW CART</a>
+
+                                        <a class="s-option__link btn--e-brand-shadow" href="{%  url 'checkout' %}">PROCEED TO CHECKOUT</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  {% endfor %}
+    <!--====== End - Quick-look, Add-to-cart Content ======-->
+</div>
+<!--====== End - App Content ======-->
 
 <script
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
   type="text/javascript"
 ></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-  function AppendComment(data) {
+    $(".js-shop-create-comment").on("click", function (e) {
+      e.preventDefault();
+      let content = $(".text-area-comment").val();
+      let product = "{{ product.id }}";
+      let url = "{% url 'create_comment' product.id %}";
+      let user = "{{request.user.id}}";
+      $.ajax({
+        url: url,
+        type: "POST",
+        data: {
+          content: content,
+          csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+          product: product,
+          user: user,
+        },
+        success: function (data) {
+            AppendComment(data);
+            $(".text-area-comment").val("");
+        },
+      });
+    });
+
+    function AppendComment(data) {
     comment = data.comment;
     user = data.user;
-    var target = event.target;
     let htmls = "";
     htmls += `
-          <li class="list-group-item  container-comment">
-            <div class="media mb-4">
-                <img src="/ecommerce/media/{{request.user.avatar}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                <div class="media-body">
-                    <h6>${user}<small> - <i>${comment[0].created}</i></small></h6>
-                    <div class="text-primary mb-2">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <p>${comment[0].content}</p>
-                    <button onclick="deleteComment('${comment[0].content}', '${comment[0].product}')" class="btn btn-sm btn-danger">Delete</button>
-                </div>
-            </div>
-            </li>
+                        <div class="review-o u-s-m-b-15">
+                          <div class="review-o__info u-s-m-b-8">
+                            <span class="review-o__name">${user}</span>
+
+                            <span class="review-o__date"
+                              >${comment[0].created}</span
+                            >
+                          </div>
+                          <div
+                            class="review-o__rating gl-rating-style u-s-m-b-8"
+                          >
+                            <i class="fas fa-star"></i
+                            ><i class="fas fa-star"></i
+                            ><i class="fas fa-star"></i
+                            ><i class="fas fa-star"></i
+                            ><i class="far fa-star"></i>
+                          </div>
+                          <p class="review-o__text">
+                           ${comment[0].content}
+                          </p>
+                          
+                          <button
+                            onclick="deleteComment('${comment[0].id}', '${comment[0].product}')"
+                            class="btn btn-sm btn-danger"
+                          >
+                            Delete
+                          </button>
+                          
+                        </div>
           `;
-    $(".container-comments").append(htmls);
+    $(".rev-f1__review").append(htmls);
   }
-
-  function addComment(product_id, user_id) {
-    var message = $("#message").val();
-    var url = "{% url 'create_comment' 1 %} ";
-    url.replace("1", product_id);
-    var data = {
-      content: message,
-      product_id: product_id,
-      user_id: user_id,
-      csrfmiddlewaretoken: "{{ csrf_token }}",
-    };
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: data,
-      success: function (comment) {
-        AppendComment(comment);
-      },
-    });
-  }
-
-  function deleteComment(comment, product_id) {
+    function deleteComment(comment, product_id) {
+   
     var url = "{% url 'delete_comment' 1 %} ";
     url.replace("1", product_id);
-    console.log(comment);
     const object = event.target;
     $.ajax({
       url: url,
@@ -417,40 +1181,11 @@
         csrfmiddlewaretoken: "{{ csrf_token }}",
       },
       success: function (response) {
-        $(object).closest("li").remove();
+        $(object).parent().remove();
       },
     });
   }
-
-  function addcart(id) {
-    $.ajax({
-      url: "{% url 'cart' %}",
-      type: 'POST',
-      data: {
-        id: id,
-        csrfmiddlewaretoken: '{{ csrf_token }}',
-      },
-      success: function (count) {
-        $('.shopping-cart').text(count)
-      },
-    })
-  }
-
-  function addWishList(id) {
-    $.ajax({
-      url: "{% url 'wishlist' %}",
-      type: 'POST',
-      data: {
-        id: id,
-        csrfmiddlewaretoken: '{{ csrf_token }}',
-      },
-      success: function (count) {
-        $('.wishlist').text(count)
-      },
-    })
-}
-
-  
+ 
 </script>
 
 {% endblock %}

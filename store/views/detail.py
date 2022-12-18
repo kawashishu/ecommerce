@@ -16,7 +16,8 @@ class ProductDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comments'] = Comment.objects.filter(product=self.object)
-        context['products'] = Product.objects.filter(category=self.object.category).exclude(id=self.object.id)
+        context['products'] = Product.objects.filter(
+            category=self.object.category).exclude(id=self.object.id)
         self.object.views += 1
         return context
 
@@ -24,8 +25,8 @@ class ProductDetail(DetailView):
 class CreateComment(View):
     def post(self, request, pk):
         content = request.POST.get('content')
-        product = int(request.POST.get('product_id'))
-        userid = int(request.POST.get('user_id'))
+        product = int(request.POST.get('product'))
+        userid = int(request.POST.get('user'))
         user = get_object_or_404(Customer, id=userid)
         product = get_object_or_404(Product, id=product)
         comment = Comment.objects.create(
@@ -36,7 +37,8 @@ class CreateComment(View):
         )
         comment.save()
         comment = Comment.objects.filter(id=comment.id)
-        return JsonResponse({'comment': list(comment.values('content', 'customer', 'product', 'rating', 'created')), 'user': user.name})
+        return JsonResponse({'comment': list(comment.values('id', 'content', 'customer', 'product', 'rating', 'created')), 'user': user.name})
+
 
 class DeleteComment(View):
     def post(self, request, pk):

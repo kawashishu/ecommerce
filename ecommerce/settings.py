@@ -287,8 +287,8 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+LOGIN_URL = 'signin'
+LOGOUT_URL = 'index'
 LOGIN_REDIRECT_URL = '/'
 
 

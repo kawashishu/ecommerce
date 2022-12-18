@@ -1,206 +1,296 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load post_tags %}
+{% extends 'base.html' %} {% load i18n %} {% load static %} {% load post_tags %}
 {% block content %}
-<body>
-    <!-- Breadcrumb Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Home</a>
-                    <span class="breadcrumb-item active">Shopping Cart</span>
-                </nav>
-            </div>
+
+<!--====== App Content ======-->
+<div class="app-content">
+  <!--====== Section 1 ======-->
+  <div class="u-s-p-y-60">
+    <!--====== Section Content ======-->
+    <div class="section__content">
+      <div class="container">
+        <div class="breadcrumb">
+          <div class="breadcrumb__wrap">
+            <ul class="breadcrumb__list">
+              <li class="has-separator">
+                <a href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="is-marked">
+                <a href="{% url 'cart' %}">Cart</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- Breadcrumb End -->
+  </div>
+  <!--====== End - Section 1 ======-->
 
-
-    <!-- Cart Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-light table-borderless table-hover text-center mb-0">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        {% for product in products %}
-                        <tr>
-                            <td class="align-middle"><img src="/ecommerce/media/{{product.avatar}}" alt="product" style="width: 50px; ">{{product.title}}</td>
-                            {% multiply product.price currency as price %}
-                            <td class="align-middle">{{price}} {% get_icon_currency currency_name %}</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button onclick="add( {{product.id}} )" class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control countInput form-control-sm bg-secondary border-0 text-center" value="{{ quantity|get_item:product.id }}">
-                                    <div class="input-group-btn">
-                                        <button onclick="add( {{product.id}} )" class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            {% multiply price quantity|get_item:product.id as sum_total_product %}
-                            <td class="align-middle">{{sum_total_product}} {% get_icon_currency currency_name %}</td>
-                            <td class="productid" style="display: None;">{{product.id}}</td>
-                            <td class="align-middle"><button onclick="removeCart({{product.id}} )" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+  <!--====== Section 2 ======-->
+  <div class="u-s-p-b-60">
+    <!--====== Section Intro ======-->
+    <div class="section__intro u-s-m-b-60">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section__text-wrap">
+              <h1 class="section__heading u-c-secondary">SHOPPING CART</h1>
             </div>
-            <div class="col-lg-4">
-                <form class="mb-30" method="post">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
-                        <div class="input-group-append">
-                            <a onclick="applyCoupon()" type="submit" class="btn btn-primary">Apply Coupon</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--====== End - Section Intro ======-->
+
+    <!--====== Section Content ======-->
+    <div class="section__content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
+            <div class="table-responsive">
+              <table class="table-p">
+                <tbody>
+                  <!--====== Row ======-->
+                  {% for product in products %}
+                  <tr>
+                    <td>
+                      <div class="table-p__box">
+                        <div class="table-p__img-wrap">
+                          <img
+                            class="u-img-fluid"
+                            src="/ecommerce/media/{{ product.avatar }}"
+                            alt=""
+                          />
                         </div>
+                        <div class="table-p__info">
+                          <span class="table-p__name">
+                            <a href="product-detail.html"
+                              >{{product.name}}</a
+                            ></span
+                          >
+
+                          <span class="table-p__category">
+                            <a href="shop-side-version-2.html"
+                              >{{product.category}}</a
+                            ></span
+                          >
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      {% multiply product.price currency as price %}
+                      <span class="table-p__price"
+                        >{% get_icon_currency currency_name %} {{price}}</span
+                      >
+                    </td>
+                    <td>
+                      <div class="table-p__input-counter-wrap">
+                        <!--====== Input Counter ======-->
+                        <div class="input-counter">
+                          <span
+                            class="input-counter__minus fas fa-minus"
+                          ></span>
+
+                          <input
+                            class="input-counter__text input-counter--text-primary-style"
+                            type="text"
+                            value="1"
+                            data-min="1"
+                            data-max="1000"
+                          />
+
+                          <span class="input-counter__plus fas fa-plus"></span>
+                        </div>
+                        <!--====== End - Input Counter ======-->
+                      </div>
+                    </td>
+                    <td>
+                      <div class="table-p__del-wrap">
+                        <a
+                          onclick="removeCart({{product.id}})"
+                          class="far fa-trash-alt table-p__delete-link"
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  <!--====== End - Row ======-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="route-box">
+              <div class="route-box__g1">
+                <a class="route-box__link" href="{% url 'index' %}"
+                  ><i class="fas fa-long-arrow-alt-left"></i>
+
+                  <span>CONTINUE SHOPPING</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--====== End - Section Content ======-->
+  </div>
+  <!--====== End - Section 2 ======-->
+
+  <!--====== Section 3 ======-->
+  <div class="u-s-p-b-60">
+    <!--====== Section Content ======-->
+    <div class="section__content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
+            <form class="f-cart">
+              <div class="row">
+                <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                  <div class="f-cart__pad-box">
+                    <h1 class="gl-h1">ESTIMATE SHIPPING AND TAXES</h1>
+
+                    <span class="gl-text u-s-m-b-30"
+                      >Enter your destination to get a shipping estimate.</span
+                    >
+                    <div class="u-s-m-b-30">
+                      <!--====== Select Box ======-->
+
+                      <label class="gl-label" for="shipping-country"
+                        >COUNTRY *</label
+                      ><select
+                        class="select-box select-box--primary-style"
+                        id="shipping-country"
+                      >
+                        <option selected value="">Choose Country</option>
+                        <option value="uae">United Arab Emirate (UAE)</option>
+                        <option value="uk">United Kingdom (UK)</option>
+                        <option value="us">United States (US)</option>
+                      </select>
+                      <!--====== End - Select Box ======-->
                     </div>
-                </form>
-                {% if coupon %}
-                    {% to_int coupon.discount_amount as discount_amount %}
-                        <div class="d-flex justify-content-between">
-                            <p class="current_coupon">You are currently using coupon {{coupon.code}}: - {% multiply discount_amount currency %} {% get_icon_currency currency_name %}</p> 
-                            <a onclick="removeCoupon()" class="btn btn-primary cancle_coupon">Cancle</a>
-                        </div>
-                {% else %}
-                        <div class="d-flex justify-content-between">
-                            <p class="current_coupon">You not using coupon</p>
-                            <a onclick="removeCoupon()" class="btn btn-primary cancle_coupon d-none">Cancle</a>
-                        </div>
-                {% endif %}
-                    <div class="dropdown-wishlist mb-3 mt-2">
-                                <a  class="btn btn-primary">Your Coupon</a>
-                                <div class="dropdown-content">
-                                {% for c in list_coupons %}
-                                    <a >{{c.code}} : - {{c.discount_amount}} {% get_icon_currency currency_name %}</a>
-                                {% endfor %}
-                                </div>
+                    <div class="u-s-m-b-30">
+                      <!--====== Select Box ======-->
+
+                      <label class="gl-label" for="shipping-state"
+                        >STATE/PROVINCE *</label
+                      ><select
+                        class="select-box select-box--primary-style"
+                        id="shipping-state"
+                      >
+                        <option selected value="">Choose State/Province</option>
+                        <option value="al">Alabama</option>
+                        <option value="al">Alaska</option>
+                        <option value="ny">New York</option>
+                      </select>
+                      <!--====== End - Select Box ======-->
                     </div>
-                    <br>
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
-                <div class="bg-light p-30 mb-5">
-                    <div class="border-bottom pb-2">
-                        <div class="d-flex justify-content-between mb-3">
-                            <h6>Subtotal</h6>
-                            {% multiply total currency as total %}
-                            <h6 class="total" > {{total}} {% get_icon_currency currency_name %}</h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            {% multiply shipping currency as shipping %}
-                            <h6 class="font-weight-medium"> {{shipping}} {% get_icon_currency currency_name %}</h6>
-                        </div>
+                    <div class="u-s-m-b-30">
+                      <label class="gl-label" for="shipping-zip"
+                        >ZIP/POSTAL CODE *</label
+                      >
+
+                      <input
+                        class="input-text input-text--primary-style"
+                        type="text"
+                        id="shipping-zip"
+                        placeholder="Zip/Postal Code"
+                      />
                     </div>
-                    <div class="pt-2">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5>Total</h5>
-                            {% summation total shipping as sum_total %}
-                            {% if coupon %}
-                            {% to_int coupon.discount_amount as discount_amount %}
-                            {% multiply discount_amount currency as discount_amount %}
-                            <h5 class="sumtotal" > {% subtraction sum_total  discount_amount %} <del>{{sum_total}}</del> {% get_icon_currency currency_name %}</h5>  
-                            {% else %}
-                            <h5 class="sumtotal" > {{sum_total}} {% get_icon_currency currency_name %}</h5>  
-                            {% endif %}
-                        </div>
-                        
-                        <a href="{% url 'checkout' %}" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</a>
+                    <div class="u-s-m-b-30">
+                      <a
+                        class="f-cart__ship-link btn--e-transparent-brand-b-2"
+                        href="{% url 'cart' %}"
+                        >CALCULATE SHIPPING</a
+                      >
                     </div>
+
+                    <span class="gl-text"
+                      >Note: There are some countries where free shipping is
+                      available otherwise our flat rate charges or country
+                      delivery charges will be apply.</span
+                    >
+                  </div>
                 </div>
-            </div>
+                <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                  <div class="f-cart__pad-box">
+                    <h1 class="gl-h1">NOTE</h1>
+
+                    <span class="gl-text u-s-m-b-30"
+                      >Add Special Note About Your Product</span
+                    >
+                    <div>
+                      <label for="f-cart-note"></label
+                      ><textarea
+                        class="text-area text-area--primary-style"
+                        id="f-cart-note"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                  <div class="f-cart__pad-box">
+                    <div class="u-s-m-b-30">
+                      <table class="f-cart__table">
+                        <tbody>
+                          <tr>
+                            <td>SHIPPING</td>
+                            {% multiply shipping currency as shipping %}
+                            <td>
+                              {% get_icon_currency currency_name %}{{shipping}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>SUBTOTAL</td>
+                            {% multiply total currency as total %}
+                            <td>
+                              {% get_icon_currency currency_name %}{{total}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>GRAND TOTAL</td>
+                            <td>
+                              {% get_icon_currency currency_name %}
+                              {{total|add:shipping}}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div>
+                      <button class="btn btn--e-brand-b-2" type="submit">
+                        PROCEED TO CHECKOUT
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- Cart End -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-      function removeCart(id){
-        const object = event.target
-        $.ajax({
-          url:  "{% url 'cart-list' %}",
-          type: 'POST',
-            data: {
-                'id': id,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-          success: function(response){
-            $(object).closest('tr').remove()
-            $('.total').html(response +" " + "{% get_icon_currency currency_name %}")
-            $('.sumtotal').html(response + " " + "{% get_icon_currency currency_name %}" )
-          }
-        })
-      }
+    <!--====== End - Section Content ======-->
+  </div>
+  <!--====== End - Section 3 ======-->
+</div>
+<!--====== End - App Content ======-->
 
-      function add(id){
-        const object = event.target
-        $.ajax({
-          url:  "{% url 'btn' %}",
-          type: 'POST',
-            data: {
-                'id': id,
-                'btn': object.className,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-          success: function(total){
-            $('.total').html(total + " " + "{% get_icon_currency currency_name %}")
-            var total = parseInt(total) + {{shipping}}
-            $('.sumtotal').html(total + " " + "{% get_icon_currency currency_name %}" )
-            
-            if ( object.className == "fa fa-plus") {
-                object.closest('td').querySelector('.countInput').value = parseInt(object.closest('td').querySelector('.countInput').value) + 1
-            }
-            else {
-                object.closest('td').querySelector('.countInput').value = parseInt(object.closest('td').querySelector('.countInput').value) - 1
-            }
-          }
-     })
-   }
-
-   function applyCoupon(){
-        const object = event.target
-        const code = object.closest('form').querySelector('input').value
-        $.ajax({
-          url:  "{% url 'apply_coupon' %}",
-          type: 'POST',
-            data: {
-                'code': code,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-          success: function(response){
-            $('.current_coupon').html(response)
-            $('.cancle_coupon').removeClass('d-none')
-          }
-     })
-   }
-
-   function removeCoupon(){
-        $.ajax({
-          url:  "{% url 'remove_coupon' %}",
-          type: 'POST',
-            data: {
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-          success: function(response){
-            $('.cancle_coupon').addClass('d-none')
-            $('.current_coupon').text('You not using coupon')
-          }
-     })}
-    </script>
-
-
-</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  function removeCart(id) {
+    const object = event.target;
+    $.ajax({
+      url: "{% url 'cart-list' %}",
+      type: "POST",
+      data: {
+        id: id,
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+      },
+      success: function (response) {
+        object.closest("tr").remove();
+      },
+    });
+  }
+</script>
 
 {% endblock %}

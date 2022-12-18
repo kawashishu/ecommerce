@@ -1,7 +1,9 @@
 
+from django.dispatch import receiver
 from django.views import View
 from ..models import Customer
 from ..form import RegistrationForm, UpdateProfileForm
+from store.models import Notification
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib import messages, auth
@@ -20,7 +22,7 @@ class RegistrationView(View):
         context = {
             'form': form,
         }
-        return render(request, 'login.html', context)
+        return render(request, 'signup.html', context)
 
     def post(self, request):
         form = RegistrationForm(request.POST)
@@ -49,25 +51,25 @@ class RegistrationView(View):
                     request=request,
                     message="Please confirm your email address to complete the registration"
                 )
-                return redirect('register')
+                return redirect('signup')
             except:
                 messages.error(
                     request=request,
                     message="Email not sent"
                 )
-                return redirect('register')
+                return redirect('signup')
         else:
             messages.error(request=request, message="Register failed!")
         context = {
-            'form': form,
+            'form_signup': form,
         }
-        return render(request, 'login.html', context)
+        return render(request, 'signup.html', context)
 
 
 class LoginView(View):
     def get(self, request):
         form = RegistrationForm()
-        return render(request, 'login.html')
+        return render(request, 'signin.html', {'form_signin': form})
 
     def post(self, request):
         email = request.POST.get('email')
@@ -79,7 +81,7 @@ class LoginView(View):
             return redirect('index')
         else:
             messages.error(request=request, message="Login failed!")
-            return redirect('register')
+            return redirect('signup')
 
 
 def login(request):
@@ -118,17 +120,18 @@ def activate(request, uidb64, token):
         return redirect('/')
 
 
-@login_required(login_url="login")
+@login_required(login_url="signin")
 def logout(request):
     auth.logout(request)
     messages.success(request=request, message="You are logged out!")
     return redirect('index')
 
-
+@login_required(login_url="signin")
 class ProfileView(UpdateView):
     form_class = UpdateProfileForm
-    template_name = 'profile.html'
-    success_url = reverse_lazy('profile')
+    template_name = 'dashboard.html'
+    success_url = reverse_lazy('dashboard')
 
     def get_object(self):
         return self.request.user
+

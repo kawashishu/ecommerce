@@ -1,5 +1,5 @@
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views import View
 from store.models import Product
@@ -16,7 +16,6 @@ class CartView(View):
         coupon = request.session.get('coupon_id')
         if coupon:
             coupon = Coupon.objects.get(id=coupon)
-            print(type(coupon.discount_amount))
         list_coupons = Coupon.objects.filter(customer=request.user)
         try: 
             quantity = {i: carts.count(i) for i in carts}
@@ -60,7 +59,8 @@ class CartListView(ListView):
         id = int(request.POST.get('id'))
         remove(request, id)
         total = getTotal(request)
-        return HttpResponse(total)
+        count = len(request.session.get('cart-duplicate') or [])
+        return JsonResponse({'total': total , 'count': count }, )
 
 
 def remove(request, id):
@@ -98,7 +98,6 @@ def getQuanlity(request):
 
 # get cart
 
-
 def getCart(request):
     try:
         carts = request.session['cart-duplicate']
@@ -107,18 +106,22 @@ def getCart(request):
     except:
         return 0
 
-class WishlistView(View):
-    def post(self, request):
-        id = int(request.POST.get('id'))
-        if 'wishlist' in request.session:
-            if id in request.session['wishlist']:
-                request.session['wishlist'].remove(id)
-            else:
-                request.session['wishlist'].insert(0, id)
-        else:
-            request.session['wishlist'] = [id]
-        request.session.modified = True
-        return HttpResponse(len(request.session['wishlist']))
+# class WishlistView(View):
+#     def post(self, request):
+#         id = int(request.POST.get('id'))
+#         if 'wishlist' in request.session:
+#             if id in request.session['wishlist']:
+#                 request.session['wishlist'].remove(id)
+#             else:
+#                 request.session['wishlist'].insert(0, id)
+#         else:
+#             request.session['wishlist'] = [id]
+#         request.session.modified = True
+#         return HttpResponse(len(request.session['wishlist']))
+
+class WishListView(View):
+    def get(self, request):
+        return render(request, 'wishlist.html')
 
 
 class CartCalculator(View):
@@ -139,6 +142,7 @@ class CartCalculator(View):
                 total += product.price * quanlity[product.id]
         except:
             total = 0
+        print(request.session.get('currency'))
         total *= request.session.get('currency')
         return HttpResponse(total)
 

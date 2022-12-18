@@ -29,9 +29,10 @@ class StoreView(ListView):
 
 class SearchFilterView(View):
     def get(self, request, pk):
-        price = int(request.GET.get('price'))
+        price_pre = int(request.GET.get('price_min'))
+        price_next = int(request.GET.get('price_max'))
         products = Product.objects.filter(price__range=(
-            price * STEP_FILTER_PRICE, price * STEP_FILTER_PRICE + STEP_FILTER_PRICE)).filter(
+            price_pre, price_next)).filter(
             category=pk)
         return JsonResponse({'products': list(products.values('title', 'price', 'id', 'avatar',))})
 

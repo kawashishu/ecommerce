@@ -5,34 +5,36 @@ from django.contrib.auth.forms import UserChangeForm
 
 
 class RegistrationForm(forms.ModelForm):
-    name = forms.CharField(max_length=100)
+    name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'class': 'input-text input-text--primary-style',
+        'placeholder': 'Enter your name',
+    }))
 
-    phone = forms.CharField(max_length=50)
+    phone = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+        'class': 'input-text input-text--primary-style',
+        'placeholder': 'Enter phone number',
+    }))
 
-    email = forms.EmailField(max_length=50)
+    email = forms.EmailField(max_length=50, widget=forms.EmailInput(attrs={
+         'class': 'input-text input-text--primary-style', 
+         'placeholder': 'Enter email',
+    }))
 
     captcha = ReCaptchaField()
 
     password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Enter password'
+        'class': 'input-text input-text--primary-style',
+        'placeholder': 'Enter password',
     }))
 
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Confirm password'
+        'placeholder': 'Confirm password',
+        'class': 'input-text input-text--primary-style',
     }))
 
     class Meta:
         model = Customer
         fields = ['name', 'phone', 'email', 'password', 'confirm_password', 'captcha']
-
-    def __init__(self, *args, **kwargs):
-        super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs['placeholder'] = 'Enter your name'
-        self.fields['phone'].widget.attrs['placeholder'] = 'Enter phone number'
-        self.fields['email'].widget.attrs['placeholder'] = 'Enter email'
-
-        for field in self.fields:
-            self.fields[field].widget.attrs['class'] = 'form-control'
 
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()

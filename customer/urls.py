@@ -1,22 +1,20 @@
 from django.urls import include, path
 from customer.views import login, api, password
-from rest_framework.routers import DefaultRouter
-router = DefaultRouter()
-router.register('customer', api.CustomerViewSet, basename='customer')
+
 
 urlpatterns = [
-    # api
-    path('api/', include(router.urls)),
 
     # login social
     path ('oauth /', include ('social_django.urls', namespace = 'social')),
 
     # login views
-    path('register/', login.RegistrationView.as_view(), name='register'),
-    path('login/', login.LoginView.as_view(), name='login'),
-    path('logout/', login.logout, name='logout'),
+    path('signup/', login.RegistrationView.as_view(), name='signup'),
+    path('signin/', login.LoginView.as_view(), name='signin'),
+    path('signout/', login.logout, name='signout'),
     path('activate/<uidb64>/<token>', login.activate, name='activate'),
-    path('profile/', login.ProfileView.as_view(), name='profile'),
+    path('dashboard/', login.ProfileView, name='dashboard'),
+    # path('dashboard-edit-profile/', login.ProfileEditView.as_view(), name='dashboard-edit-profile'),
+    # path('dashboard-order/', login.OrderView.as_view, name='dashboard-order'),
 
     # password views
     path('forgot_password/', password.forgotPassword, name = 'forgot_password'),

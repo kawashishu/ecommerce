@@ -2,6 +2,7 @@
 from django import template
 from django.core.cache import cache
 from django import template
+from store.models import Product
 
 
 register = template.Library()
@@ -86,3 +87,7 @@ def subtraction(a,b):
 def to_int(value):
     return int(value)
 
+@register.simple_tag
+def get_products_in_category(category):
+    products = Product.objects.filter(category=category)
+    return products

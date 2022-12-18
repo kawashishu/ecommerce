@@ -9,6 +9,5 @@ def change_currency(request, pk):
     request.session.modified = True
     
     url = request.META.get('HTTP_REFERER')
-    
     return redirect(url)
 

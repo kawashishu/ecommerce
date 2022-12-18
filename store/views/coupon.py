@@ -10,7 +10,6 @@ from store.models import Coupon
 class ApplyCouponView(View):
     def post(self, request, *args, **kwargs):
         code = request.POST.get('code')
-        print(code)
         try:
             coupon = Coupon.objects.get(code=code)
             self.request.session['coupon_id'] = coupon.id
