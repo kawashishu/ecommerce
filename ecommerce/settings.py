@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     # models
     'store','ecommerce','customer','comment','checkout','schedule',
     # third party
-    'paypal',
     'captcha', 
     # rest framework
     'rest_framework',
