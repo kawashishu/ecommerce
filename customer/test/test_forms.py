@@ -23,8 +23,6 @@ class TestForm(TestCase):
         })
         self.client = Client()
     
-    # def test_registration_form_register(self):
-    #     self.form = self.client.post(reverse('register'), self.form)
         
         
     def test_registration_form(self):

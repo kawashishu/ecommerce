@@ -88,7 +88,6 @@
                                         <span class="js-menu-toggle"></span>
                                         <ul style="width:120px">
                                             <li>
-
                                                 <a href=" {% url 'dashboard' %}"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
                                                     <span>Account</span></a></li>
@@ -1218,13 +1217,40 @@
 
                                 <!--====== List ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                    <li>
+                                        
+                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Notifications">
 
-                                        <a href="{% url 'index' %}"><i class="fas fa-home"></i></a></li>
-                                    <li>
+                                        <a class="mini-cart-shop-link" ><i class="far fa-bell"></i>
+                                        <span class="total-item-round notifications">{{count_notifications}}</span>
+                                        </a>
 
-                                        <a class="mini-cart-shop-link" href="{% url 'wish-list' %}"><i class="far fa-heart"></i>
-                                        <span class="total-item-round wishlist">{{wishlist}}</span></a></li>
+                                        <!--====== Dropdown ======-->
+                                        <ul style="width:120px">
+                                        {% if count_notifications == 0 %}
+                                            <li>
+                                                <a><i class="fas fa-user-circle u-s-m-r-6"></i>
+
+                                                    <span class="d-inline-block text-truncate" style="max-width: 150px;">No notifications </span></a></li>
+                                        {% endif %}
+                                        {% for n in notifications %}
+                                        {% with url_notifications=n.link %}
+                                            <li>
+                                                <a href="{% url url_notifications  %}"><i class="fas fa-user-circle u-s-m-r-6"></i>
+
+                                                    <span class="d-inline-block text-truncate" style="max-width: 150px;">{{n.content}} </span></a></li>
+                                        {% endwith %}
+                                        {% endfor %}
+                                            
+                                            
+                                        </ul>
+                                        <!--====== End - Dropdown ======-->
+                                    </li>
+                                    <li>
+                                        <a class="mini-cart-shop-link" href="{% url 'wish-list' %}">
+                                            <i class="far fa-heart"></i>
+                                        <span class="total-item-round wishlist">{{wishlist}}</span>
+                                        </a>
+                                        </li>
                                     <li class="has-dropdown">
 
                                         <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>

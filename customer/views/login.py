@@ -14,6 +14,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import View, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 class RegistrationView(View):
@@ -84,22 +85,6 @@ class LoginView(View):
             return redirect('signup')
 
 
-def login(request):
-    if request.method == "POST":
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = auth.authenticate(email=email, password=password)
-        if user is not None:
-            auth.login(request=request, user=user)
-            messages.success(request=request, message="Login successful!")
-        else:
-            messages.error(request=request, message="Login failed!")
-    context = {
-        'email': email if 'email' in locals() else '',
-        'password': password if 'password' in locals() else '',
-    }
-    return render(request, 'index.html', context)
-
 
 def activate(request, uidb64, token):
     try:
@@ -126,12 +111,55 @@ def logout(request):
     messages.success(request=request, message="You are logged out!")
     return redirect('index')
 
-@login_required(login_url="signin")
-class ProfileView(UpdateView):
+
+class ProfileView(LoginRequiredMixin, View):
+    
+    def get(self, request):
+        order = request.user.order_set.all()
+        order_count = order.count()
+        context = {
+            'order': order,
+            'order_count': order_count,
+        }
+        return render(request, 'dashboard.html', context)
+
+
+def login(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = auth.authenticate(email=email, password=password)
+        if user is not None:
+            auth.login(request=request, user=user)
+            messages.success(request=request, message="Login successful!")
+        else:
+            messages.error(request=request, message="Login failed!")
+    context = {
+        'email': email if 'email' in locals() else '',
+        'password': password if 'password' in locals() else '',
+    }
+    return render(request, 'index.html', context)
+
+class EditProfileView(LoginRequiredMixin, UpdateView):
     form_class = UpdateProfileForm
-    template_name = 'dashboard.html'
-    success_url = reverse_lazy('dashboard')
+    template_name = 'dash-edit-profile.html'
+    success_url = reverse_lazy('dash-edit-profile')       
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['order'] = self.request.user.order_set.all()
+        context['order_count'] = context['order'].count()
+        return context
 
     def get_object(self):
         return self.request.user
 
+class OrderView(LoginRequiredMixin, View):
+    def get(self, request):
+        order = request.user.order_set.all()
+        order_count = order.count()
+        context = {
+            'order': order,
+            'order_count': order_count,
+        }
+        return render(request, 'dash-my-order.html', context)

@@ -36,7 +36,7 @@ def create_notifications_customer(sender,**kwargs):
         customer=kwargs['instance'],
         content=f'Welcome to our store {kwargs["instance"]}, go to profile to update your information',
         read=False,
-        link='profile'
+        link='dashboard'
     )
     Coupon.objects.create(
         code='WELCOME',

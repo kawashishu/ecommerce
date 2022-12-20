@@ -13,41 +13,42 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 
-class PasswordView(View):
-    model = Customer
+# class PasswordView(View):
+#     model = Customer
 
-    def post(self, request):
-        try:
-            email = request.POST['email']
-            user = Customer.object.get(email__exact=email)
-            current_site = get_current_site(request=request)
-            mail_subject = 'Reset your blog account.'
-            message = render_to_string('reset_password_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': default_token_generator.make_token(user)
-            })
-            send_email = EmailMessage(mail_subject, message, to=[email])
-            send_email.send()
-            messages.success(
-                request=request,
-                message="Please check your email to reset your password"
-            )
-        except:
-            messages.error(request=request, message="Email does not exist")
-            return redirect('register')
-        finally:
-            form = RegistrationForm()
-            context = {
-                'form': form,
-                'email': email.split('@')[0] if 'email' in locals() else '',
-            }
-            return render(request, 'forgot_password.html', context)
+#     def post(self, request):
+#         try:
+#             email = request.POST['email']
+#             user = Customer.object.get(email__exact=email)
+#             current_site = get_current_site(request=request)
+#             mail_subject = 'Reset your blog account.'
+#             message = render_to_string('reset_password_email.html', {
+#                 'user': user,
+#                 'domain': current_site.domain,
+#                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+#                 'token': default_token_generator.make_token(user)
+#             })
+#             send_email = EmailMessage(mail_subject, message, to=[email])
+#             send_email.send()
+#             messages.success(
+#                 request=request,
+#                 message="Please check your email to reset your password"
+#             )
+#         except:
+#             messages.error(request=request, message="Email does not exist")
+#             return redirect('register')
+#         finally:
+#             form = RegistrationForm()
+#             context = {
+#                 'form': form,
+#                 'email': email.split('@')[0] if 'email' in locals() else '',
+#             }
+#             return render(request, 'forgot_password.html', context)
 
 def forgotPassword(request):
     try:
         if request.method == 'POST':
+           
             email = request.POST.get('email')
             user = Customer.objects.get(email__exact=email)
             
@@ -93,7 +94,7 @@ def reset_password_validate(request, uidb64, token):
         return redirect('reset_password')
     else:
         messages.error(request=request, message="This link has been expired!")
-        return redirect('register')
+        return redirect('signup')
 
 
 def reset_password(request):
@@ -107,7 +108,7 @@ def reset_password(request):
             user.set_password(password)
             user.save()
             messages.success(request, message="Password reset successful!")
-            return redirect('register')
+            return redirect('signup')
         else:
             messages.error(request, message="Password do not match!") 
     form = RegistrationForm()

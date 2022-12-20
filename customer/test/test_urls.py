@@ -10,11 +10,11 @@ class TestUrls(SimpleTestCase):
         self.assertEquals(resolve(url).func.view_class, Index)
     
     def register_url_is_resolved(self):
-        url = reverse('register')
+        url = reverse('signup')
         self.assertEquals(resolve(url).func.view_class, login.RegistrationView)
         
     def login_url_is_resolved(self):
-        url = reverse('login')
+        url = reverse('signin')
         self.assertEquals(resolve(url).func.view_class, login.LoginView)
         
     def logout_url_is_resolved(self):

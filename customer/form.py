@@ -55,21 +55,18 @@ SEX_CHOICES = {
 class UpdateProfileForm(UserChangeForm):
     
     name = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control', 'placeholder': 'enter name',
+        'class': 'input-text input-text--primary-style', 'placeholder': 'enter name',
     }))
     
     phone = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control', 'placeholder': 'enter phone',
+        'class': 'input-text input-text--primary-style', 'placeholder': 'enter phone',
     }))
     address = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control', 'placeholder': 'enter address',
+        'class': 'input-text input-text--primary-style', 'placeholder': 'enter address',
     }))
-    
-    avatar = forms.ImageField(widget=forms.FileInput(attrs={
-        'class': 'form-control', 
-        }),required=False)
+
     
     password = None
     class Meta:
         model= Customer
-        fields = ['name', 'phone', 'address', 'avatar','age', 'sex']
+        fields = ['name', 'phone', 'address']

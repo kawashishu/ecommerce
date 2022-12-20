@@ -20,10 +20,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="{% url 'index' %}">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dashboard.html">My Account</a></li>
+                                        <a href=" {% url 'dashboard' %}">My Account</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -47,29 +47,17 @@
                                     <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                         <div class="dash__pad-1">
 
-                                            <span class="dash__text u-s-m-b-16">Hello, John Doe</span>
+                                            <span class="dash__text u-s-m-b-16">Hello, {{request.user.name}}</span>
                                             <ul class="dash__f-list">
                                                 <li>
 
-                                                    <a class="dash-active" href="dashboard.html">Manage My Account</a></li>
+                                                    <a class="dash-active" href="{%  url 'dashboard' %}">Manage My Account</a></li>
                                                 <li>
 
-                                                    <a href="dash-my-profile.html">My Profile</a></li>
+                                                    <a href="{% url 'dash-edit-profile' %}">My Profile</a></li>
                                                 <li>
 
-                                                    <a href="dash-address-book.html">Address Book</a></li>
-                                                <li>
-
-                                                    <a href="dash-track-order.html">Track Order</a></li>
-                                                <li>
-
-                                                    <a href="dash-my-order.html">My Orders</a></li>
-                                                <li>
-
-                                                    <a href="dash-payment-option.html">My Payment Options</a></li>
-                                                <li>
-
-                                                    <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
+                                                    <a href="{% url 'dash-order' %}">My Orders</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -81,7 +69,7 @@
 
                                                         <span class="dash__w-icon dash__w-icon-style-1"><i class="fas fa-cart-arrow-down"></i></span>
 
-                                                        <span class="dash__w-text">4</span>
+                                                        <span class="dash__w-text">{{order_count}}</span>
 
                                                         <span class="dash__w-name">Orders Placed</span></div>
                                                 </li>
@@ -99,7 +87,7 @@
 
                                                         <span class="dash__w-icon dash__w-icon-style-3"><i class="far fa-heart"></i></span>
 
-                                                        <span class="dash__w-text">0</span>
+                                                        <span class="dash__w-text">{{wishlist}}</span>
 
                                                         <span class="dash__w-name">Wishlist</span></div>
                                                 </li>
@@ -123,28 +111,9 @@
 
                                                                 <a href="dash-edit-profile.html">Edit</a></div>
 
-                                                            <span class="dash__text">John Doe</span>
+                                                            <span class="dash__text">{{ request.user.name }}</span>
 
-                                                            <span class="dash__text">johndoe@domain.com</span>
-                                                            <div class="dash__link dash__link--secondary u-s-m-t-8">
-
-                                                                <a data-modal="modal" data-modal-id="#dash-newsletter">Subscribe Newsletter</a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 u-s-m-b-30">
-                                                    <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
-                                                        <div class="dash__pad-3">
-                                                            <h2 class="dash__h2 u-s-m-b-8">ADDRESS BOOK</h2>
-
-                                                            <span class="dash__text-2 u-s-m-b-8">Default Shipping Address</span>
-                                                            <div class="dash__link dash__link--secondary u-s-m-b-8">
-
-                                                                <a href="dash-address-book.html">Edit</a></div>
-
-                                                            <span class="dash__text">4247 Ashford Drive Virginia - VA-20006 - USA</span>
-
-                                                            <span class="dash__text">(+0) 900901904</span>
+                                                            <span class="dash__text">{{request.user }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -155,10 +124,19 @@
 
                                                             <span class="dash__text-2 u-s-m-b-8">Default Billing Address</span>
 
-                                                            <span class="dash__text">4247 Ashford Drive Virginia - VA-20006 - USA</span>
+                                                            <span class="dash__text">{{request.user.address}}</span>
 
-                                                            <span class="dash__text">(+0) 900901904</span>
+                                                            <span class="dash__text">{{request.user.phone}}</span>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 u-s-m-b-30">
+                                                    <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
+                                                    
+                                                            <div class="description__container">
+                                                                <div class="description__img-wrap ">
+                                                                    <img class="u-img-fluid" src="/ecommerce/media/{{request.user.avatar}}" alt=""></div>
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -36,4 +36,5 @@ urlpatterns = [
 
     # new ui
     path('wish-list/', cart.WishListView.as_view(), name='wish-list'),
+    path('remove-wish-list/', cart.RemoveWishListView.as_view(), name='remove-wishlist'),
 ]

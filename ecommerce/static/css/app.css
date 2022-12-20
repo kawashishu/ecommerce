@@ -4783,6 +4783,18 @@ input::-ms-clear {
 
 .rev-f2__table-wrap {
   overflow: auto; }
+  .truncate {
+    max-width: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
 
 .rev-f2__table {
   width: 100%;

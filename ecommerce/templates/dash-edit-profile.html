@@ -3,6 +3,7 @@
 {% load static %}
 {% load post_tags %}
 {% block content %}
+{% load crispy_forms_tags %}
 
 
 
@@ -20,10 +21,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="{% url 'index' %}">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-edit-profile.html">My Account</a></li>
+                                        <a href="{% url 'dash-edit-profile' %}">My Account</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -47,29 +48,17 @@
                                     <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                         <div class="dash__pad-1">
 
-                                            <span class="dash__text u-s-m-b-16">Hello, John Doe</span>
+                                            <span class="dash__text u-s-m-b-16">Hello, {{request.user.name}}</span>
                                             <ul class="dash__f-list">
                                                 <li>
 
-                                                    <a class="dash-active" href="dashboard.html">Manage My Account</a></li>
+                                                    <a  href="{% url 'dashboard' %}">Manage My Account</a></li>
                                                 <li>
 
-                                                    <a href="dash-my-profile.html">My Profile</a></li>
+                                                    <a class="dash-active" href="{% url 'dash-edit-profile' %}">My Profile</a></li>
                                                 <li>
 
-                                                    <a href="dash-address-book.html">Address Book</a></li>
-                                                <li>
-
-                                                    <a href="dash-track-order.html">Track Order</a></li>
-                                                <li>
-
-                                                    <a href="dash-my-order.html">My Orders</a></li>
-                                                <li>
-
-                                                    <a href="dash-payment-option.html">My Payment Options</a></li>
-                                                <li>
-
-                                                    <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
+                                                    <a href="{% url 'dash-order' %}">My Orders</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -81,7 +70,7 @@
 
                                                         <span class="dash__w-icon dash__w-icon-style-1"><i class="fas fa-cart-arrow-down"></i></span>
 
-                                                        <span class="dash__w-text">4</span>
+                                                        <span class="dash__w-text">{{order_count}}</span>
 
                                                         <span class="dash__w-name">Orders Placed</span></div>
                                                 </li>
@@ -119,70 +108,47 @@
                                                 <a data-modal="modal" data-modal-id="#dash-newsletter">Subscribe Newsletter</a></div>
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <form class="dash-edit-p">
+                                                    <form class="dash-edit-p" method="post">
+                                                        {% csrf_token %}
+                                                        {% comment %} <div class="gl-inline">
+                                                            <div class="u-s-m-b-30">
+
+                                                                <label class="gl-label" for="reg-fname">YOUR NAME *</label>
+
+                                                                <input class="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="Your name"></div>
+                                                        </div>
                                                         <div class="gl-inline">
                                                             <div class="u-s-m-b-30">
 
-                                                                <label class="gl-label" for="reg-fname">FIRST NAME *</label>
+                                                                <label class="gl-label" for="reg-fname">YOUR PHONE *</label>
 
-                                                                <input class="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="John"></div>
-                                                            <div class="u-s-m-b-30">
-
-                                                                <label class="gl-label" for="reg-lname">LAST NAME *</label>
-
-                                                                <input class="input-text input-text--primary-style" type="text" id="reg-lname" placeholder="Doe"></div>
+                                                                <input class="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="Phone number"></div>
                                                         </div>
                                                         <div class="gl-inline">
                                                             <div class="u-s-m-b-30">
 
                                                                 <!--====== Date of Birth Select-Box ======-->
 
-                                                                <span class="gl-label">BIRTHDAY</span>
-                                                                <div class="gl-dob"><select class="select-box select-box--primary-style">
-                                                                        <option selected>Month</option>
-                                                                        <option value="male">January</option>
-                                                                        <option value="male">February</option>
-                                                                        <option value="male">March</option>
-                                                                        <option value="male">April</option>
-                                                                    </select><select class="select-box select-box--primary-style">
-                                                                        <option selected>Day</option>
-                                                                        <option value="01">01</option>
-                                                                        <option value="02">02</option>
-                                                                        <option value="03">03</option>
-                                                                        <option value="04">04</option>
-                                                                    </select><select class="select-box select-box--primary-style">
-                                                                        <option selected>Year</option>
-                                                                        <option value="1991">1991</option>
-                                                                        <option value="1992">1992</option>
-                                                                        <option value="1993">1993</option>
-                                                                        <option value="1994">1994</option>
-                                                                    </select></div>
+                                                                <span class="gl-label">Avatar</span>
+                                                                
                                                                 <!--====== End - Date of Birth Select-Box ======-->
                                                             </div>
                                                             <div class="u-s-m-b-30">
-
-                                                                <label class="gl-label" for="gender">GENDER</label><select class="select-box select-box--primary-style u-w-100" id="gender">
+                                                                <label class="gl-label" for="gender">GENDER</label>
+                                                                <select class="select-box select-box--primary-style u-w-100" id="gender">
                                                                     <option selected>Select</option>
                                                                     <option value="male">Male</option>
                                                                     <option value="male">Female</option>
-                                                                </select></div>
-                                                        </div>
-                                                        <div class="gl-inline">
-                                                            <div class="u-s-m-b-30">
-                                                                <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
-
-                                                                <span class="dash__text">johndoe@domain.com</span>
-                                                                <div class="dash__link dash__link--secondary">
-
-                                                                    <a href="#">Change</a></div>
+                                                                </select>
                                                             </div>
-                                                            <div class="u-s-m-b-30">
-                                                                <h2 class="dash__h2 u-s-m-b-8">Phone</h2>
+                                                        </div> {% endcomment %}
+                                                            {{form|crispy}}
+                                                        <div class="gl-inline">
+                                                            <div class="u-s-m-b-30 mt-3">
+                                                                <h2 class="dash__h2 u-s-m-b-8 ">E-mail</h2>
 
-                                                                <span class="dash__text">Please enter your mobile</span>
+                                                                <span class="dash__text">{{request.user.email}}</span>
                                                                 <div class="dash__link dash__link--secondary">
-
-                                                                    <a href="#">Add</a></div>
                                                             </div>
                                                         </div>
 

@@ -121,8 +121,35 @@ def getCart(request):
 
 class WishListView(View):
     def get(self, request):
-        return render(request, 'wishlist.html')
 
+        wishlist = request.session.get('wishlist') or []
+        products = Product.objects.filter(id__in=wishlist)
+        context = {
+            'products': products,
+        }
+        return render(request, 'wishlist.html', context)
+
+    def post(self, request):
+        id = int(request.POST.get('id'))
+        if 'wishlist' in request.session:
+            if id in request.session['wishlist']:
+                request.session['wishlist'].remove(id)
+            else:
+                request.session['wishlist'].insert(0, id)
+        else:
+            request.session['wishlist'] = [id]
+        request.session.modified = True
+        return HttpResponse(len(request.session['wishlist']))
+
+class RemoveWishListView(View):
+    def post(self,request):
+        id = int(request.POST.get('id'))
+        try:
+            request.session['wishlist'].remove(id)
+            request.session.modified = True
+        except:
+            return len(request.session['wishlist'] or [])
+        return 0
 
 class CartCalculator(View):
     def post(self, request):
