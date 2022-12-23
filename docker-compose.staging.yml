@@ -38,8 +38,8 @@ services:
     environment:
       - DEBUG=1
       - DJANGO_ALLOWED_HOSTS=*
-      - CELERY_BROKER=redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334/0
-      - CELERY_BACKEND=redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334/0
+      - CELERY_BROKER=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
+      - CELERY_BACKEND=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
     build: .
     image: public.ecr.aws/k8f7u6w7/ecommerce:celery
     command: celery -A ecommerce worker -l info
@@ -54,8 +54,8 @@ services:
     environment:
       - DEBUG=1
       - DJANGO_ALLOWED_HOSTS=*
-      - CELERY_BROKER=redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334/0
-      - CELERY_BACKEND=redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334/0
+      - CELERY_BROKER=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
+      - CELERY_BACKEND=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
     build: .
     command: celery -A ecommerce beat -l info
     volumes:
