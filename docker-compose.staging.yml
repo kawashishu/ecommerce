@@ -38,8 +38,8 @@ services:
     environment:
       - DEBUG=1
       - DJANGO_ALLOWED_HOSTS=*
-      - CELERY_BROKER=redis://default:6yIhwXmpa4vFgJEvqATt@containers-us-west-127.railway.app:6967
-      - CELERY_BACKEND=redis://default:6yIhwXmpa4vFgJEvqATt@containers-us-west-127.railway.app:6967
+      - CELERY_BROKER=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
+      - CELERY_BACKEND=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
     build: .
     image: public.ecr.aws/k8f7u6w7/ecommerce:celery
     command: celery -A ecommerce worker -l info
