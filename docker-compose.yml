@@ -16,8 +16,8 @@ services:
         environment:
             - DEBUG=1
             - DJANGO_ALLOWED_HOSTS=*
-            - CELERY_BROKER=redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334
-            - CELERY_BACKEND=redis://redis-19334.c12.us-east-1-4.ec2.cloud.redislabs.com:19334
+            - CELERY_BROKER=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
+            - CELERY_BACKEND=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
         depends_on:
             - db
             - redis
@@ -37,8 +37,8 @@ services:
     environment:
             - DEBUG=1
             - DJANGO_ALLOWED_HOSTS=*
-            - CELERY_BROKER=redis://default:6yIhwXmpa4vFgJEvqATt@containers-us-west-127.railway.app:6967
-            - CELERY_BACKEND=redis://default:6yIhwXmpa4vFgJEvqATt@containers-us-west-127.railway.app:6967
+            - CELERY_BROKER=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
+            - CELERY_BACKEND=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
     build: .
     command: celery -A ecommerce worker -l info
     volumes:
@@ -51,8 +51,8 @@ services:
       environment:
             - DEBUG=1
             - DJANGO_ALLOWED_HOSTS=*
-            - CELERY_BROKER=redis://default:6yIhwXmpa4vFgJEvqATt@containers-us-west-127.railway.app:6967
-            - CELERY_BACKEND=redis://default:6yIhwXmpa4vFgJEvqATt@containers-us-west-127.railway.app:6967
+            - CELERY_BROKER=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
+            - CELERY_BACKEND=rediss://red-cdiecr4gqg4aiismv5qg:oRgwYmOdBkyGsbYAEXtGfbxgrPMSoXxF@oregon-redis.render.com:6379/0
       build: .
       command: celery -A ecommerce beat -l info
       volumes:
