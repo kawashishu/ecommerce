@@ -144,17 +144,17 @@
                   ></a>
                 </li>
                 {% endif %}
-                <li class="is-active">
-                  <a href="?page={{ products.number }}">{{products.number}}</a>
+                <li class=" {% if products.number == 1 %} is-active {% endif  %}">
+                  <a href="?page={{ products.number }}">1</a>
                 </li>
-                <li>
+                <li class=" {% if products.number == 2 %} is-active {% endif  %}">
                   <a href="?page={{ products.number|add:1 }}"
-                    >{{products.number|add:1}}</a
+                    >2</a
                   >
                 </li>
-                <li>
+                <li class=" {% if products.number == 3 %} is-active {% endif  %}">
                   <a href="?page={{ products.number|add:2 }}"
-                    >{{products.number|add:2}}</a
+                    >3</a
                   >
                 </li>
                 {% if products.has_next %}

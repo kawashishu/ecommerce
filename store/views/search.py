@@ -7,6 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import DetailView, ListView
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from ..models import Product
 
@@ -57,11 +58,23 @@ class SearchAllView(View):
             request.session['related_search'] = [query]
 
         request.session.modified = True
+        
         related_search = request.session.get('related_search') or []
         products = Product.objects.filter(decripstion__icontains=query)
 
+        paginate_by = 4
+        paginator = Paginator(products, paginate_by)
+        page_number = request.GET.get("page")
+        try:
+            contacts = paginator.page(page_number)
+        except PageNotAnInteger:
+            contacts = paginator.page(1)
+        except EmptyPage:
+            contacts = paginator.page(paginator.num_pages)
+
         context = {
-            'products': products,
+            'products': contacts,
             'related_search': related_search,
+
         }
         return render(request, 'shop.html', context=context)
