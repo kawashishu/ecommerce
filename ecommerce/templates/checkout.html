@@ -161,6 +161,13 @@
                                                 <div class="checkout-f__payment">
                                                     <div>
                                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">PLACE ORDER</button></div>
+                                                <div id="paypal-button-container"></div>
+
+                                                </div>
+                                                <div class="checkout-f__payment">
+                                                   
+                                                <div id="paypal-button-container"></div>
+                                                
                                                 </div>
                                             </div>
                                         </div>
@@ -318,7 +325,7 @@
     'Content-Type': 'application/json',
     'Token': '20c677d9-815a-11ed-a2ce-1e68bf6263c5'
   };
-  const response = await fetch('https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province', { headers });
+  const response = await fetch('https://online-gateway.ghn.vn/shiip/public-api/master-data/province', { headers });
   const data = await response.json();
   const select = document.getElementById('shipping-country');
   
@@ -347,7 +354,7 @@ select.addEventListener('change', async function() {
   };
   console.log(body)
   
-  const response = await fetch('https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district', { 
+  const response = await fetch('https://online-gateway.ghn.vn/shiip/public-api/master-data/district', { 
     method: 'POST',
     headers,
     body: JSON.stringify(body)
@@ -383,7 +390,7 @@ select.addEventListener('change', async function() {
     district_id: districtId
   };
 
-  const response = await fetch('https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id', { 
+  const response = await fetch('https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id', { 
     method: 'POST',
     headers,
     body: JSON.stringify(body)
@@ -434,7 +441,7 @@ select.addEventListener('change', async function() {
     "coupon": null
     };
   
-  const response = await fetch('https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee', { 
+  const response = await fetch('https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee', { 
     method: 'POST',
     headers,
     body: JSON.stringify(body)
@@ -463,5 +470,41 @@ select.addEventListener('change', async function() {
 
 
 </script>
+
+<!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AaDfzCm3qDJ2rfsHBo8F2EhEOlCiyR7crtOtjDxsuKX8pQm5dspyfTpJ_fwb6FmskWhV1V0yZNcBFe_U"></script>
+
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '{{ sumtotal }}'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+                    // Successful capture! For demo purposes:
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    var transaction = orderData.purchase_units[0].payments.captures[0];
+                    alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                    // Replace the above to show a success message within this page, e.g.
+                    //const element = document.getElementById('paypal-button-container');
+                    //element.innerHTML = '';
+                    //element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                    // Or go to another URL:  actions.redirect('thank_you.html');
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
 
 {% endblock %}
