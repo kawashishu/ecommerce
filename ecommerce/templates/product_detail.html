@@ -400,9 +400,18 @@
                           <div class="review-o__info u-s-m-b-8">
                             <span class="review-o__name">{{comment.customer.name}}</span>
 
+
                             <span class="review-o__date"
                               >{{comment.created}}</span
                             >
+                            {% if comment.customer == request.user %}
+                            <button
+                            onclick="deleteComment('{{comment.id}}', '{{comment.product}}')"
+                            class="btn btn--e-brand-shadow"
+                          >
+                            Delete
+                          </button>
+                            {% endif %}
                           </div>
                           <div
                             class="review-o__rating gl-rating-style u-s-m-b-8"
@@ -1019,7 +1028,7 @@
                           
                           <button
                             onclick="deleteComment('${comment[0].id}', '${comment[0].product}')"
-                            class="btn btn-sm btn-danger"
+                            class="btn btn--e-brand-shadow"
                           >
                             Delete
                           </button>
