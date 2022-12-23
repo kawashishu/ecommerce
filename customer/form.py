@@ -65,8 +65,12 @@ class UpdateProfileForm(UserChangeForm):
         'class': 'input-text input-text--primary-style', 'placeholder': 'enter address',
     }))
 
+    avatar = forms.ImageField(widget=forms.FileInput(attrs={
+        'class': 'input-text input-text--primary-style', 'style':'display:none;', 'id':"images"
+        }),required=False)
+
     
     password = None
     class Meta:
         model= Customer
-        fields = ['name', 'phone', 'address']
+        fields = ['name', 'phone', 'address', 'avatar']

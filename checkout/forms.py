@@ -8,30 +8,27 @@ PAYMENT_CHOICES = {
     ('M', 'Momo'),
 }
 
-class CheckoutForm(forms.Form):
+class BillingAddressForm(forms.Form):
+
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Name Address', 'class': 'input-text input-text--primary-style' }), required=False, max_length=50)
 
     mobilephone = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
-        'placeholder': 'Mobile Phone','class': 'form-control'}))
+        'placeholder': 'Mobile Phone','class': 'input-text input-text--primary-style'}))
 
     street_address = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Your address', 'class': 'form-control' }))
+        'placeholder': 'Street Address', 'class': 'input-text input-text--primary-style' }))
 
     apartment_address = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'placeholder': 'Apartment or suite', 'class': 'form-control' }))
+        'placeholder': 'Apartment or Suite', 'class': 'input-text input-text--primary-style' }))
 
-    country = CountryField(blank_label='select country').formfield(
+    country = CountryField(blank_label='Select Country').formfield(
         widget=CountrySelectWidget(attrs={
-            'class': 'custom-select d-block w-100',
+            'class': 'select-box select-box--primary-style',
         }))
 
-    zip = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
-        'class': 'form-control' }))
 
-    same_billing_address = forms.BooleanField(required=False ,widget=forms.CheckboxInput())
     
-    save_info = forms.BooleanField(required=False ,widget=forms.CheckboxInput(
-        attrs={'class': 'custom-control-input', 'id': 'newaccount'}))
-
-    payment_option = forms.ChoiceField(widget=forms.RadioSelect, choices=PAYMENT_CHOICES, required = False)
+    
 
 

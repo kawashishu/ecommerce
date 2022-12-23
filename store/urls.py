@@ -1,14 +1,16 @@
 
 from django.urls import path
-from .views import detail, category, cart, currency, search, order, coupon
+
+from .views import detail, category, cart, currency, search, order, coupon, notification
 
 
 urlpatterns = [
     path('', search.StoreView.as_view(), name='shop'),
-    path('filter/<int:pk>', search.SearchFilterView.as_view(), name='filter'),
+    path('filter/', search.SearchFilterView.as_view(), name='filter'),
     path('search_product/<int:pk>',
-         search.SearchFormView.as_view(), name='search_product'),
-
+         search.SearchCategoryView.as_view(), name='search_by_category'),
+     path('search_product/',
+         search.SearchAllView.as_view(), name='search_all_product'),
     path('category/productdetail/<int:pk>',
          detail.ProductDetail.as_view(), name='productdetail'),
     path('category/productdetail/<int:pk>/createcomment/',
@@ -28,7 +30,7 @@ urlpatterns = [
     path('currency/change/<str:pk>/',
          currency.change_currency, name='change_currency'),
 
-    path('billing/', order.BillingView.as_view(), name='billing'),
+    path('dashboard-order/', order.OrderView.as_view(), name='dash-order'),
 
     # coupon
     path('apply-coupon/', coupon.ApplyCouponView.as_view(), name='apply_coupon'),
@@ -37,4 +39,7 @@ urlpatterns = [
     # new ui
     path('wish-list/', cart.WishListView.as_view(), name='wish-list'),
     path('remove-wish-list/', cart.RemoveWishListView.as_view(), name='remove-wishlist'),
+
+    # seen notifications
+     path('seen-notifications/<int:pk>/', notification.seen_notifications, name='seen-notifications'),
 ]

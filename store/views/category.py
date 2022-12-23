@@ -12,6 +12,8 @@ class CategoryView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         products = Product.objects.filter(category=self.kwargs['pk'])
+        count = products.count()
+        related_search = self.request.session.get('related_search') or []
         paginator = Paginator(products, self.paginate_by)
         page_number = self.request.GET.get("page")
         try:
@@ -20,7 +22,11 @@ class CategoryView(DetailView):
             contacts = paginator.page(1)
         except EmptyPage:
             contacts = paginator.page(paginator.num_pages)
-        context['products'] = contacts
+        context = {
+            'products': contacts,
+            'count': count,
+            'related_search': related_search,
+        }
         return context
 
 class CategorySortView(DetailView):
@@ -36,7 +42,7 @@ class CategorySortView(DetailView):
         if sort == 'asc':
             context['products'] = Product.objects.filter(
                 category=self.kwargs['pk']).order_by(attr)
-        else:
+        else: 
             context['products'] = Product.objects.filter(
                 category=self.kwargs['pk']).order_by(f'-{attr}')
 

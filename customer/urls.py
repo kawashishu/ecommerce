@@ -12,17 +12,17 @@ urlpatterns = [
     path('signin/', login.LoginView.as_view(), name='signin'),
     path('signout/', login.logout, name='signout'),
     path('activate/<uidb64>/<token>', login.activate, name='activate'),
+
+    # dashboard views
     path('dashboard/', login.ProfileView.as_view(), name='dashboard'),
     path('dashboard-edit-profile/', login.EditProfileView.as_view(), name='dash-edit-profile'),
-    path('dashboard-order/', login.OrderView.as_view(), name='dash-order'),
+    
     
     # password views
     path('forgot_password/', password.forgotPassword, name = 'forgot_password'),
     path('reset_password_validate/<uidb64>/<token>', password.reset_password_validate, name='reset_password_validate'),
     path('reset_password/', password.reset_password, name='reset_password'),
 
-    #update profile
-    # path('dash-profile/', api.ProfileView.as_view(), name='profile'),
 
 
 ]

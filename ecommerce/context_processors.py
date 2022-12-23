@@ -25,8 +25,6 @@ def message_processor(request):
     # get product in carts
     shopping_list = Product.objects.filter(id__in=shopping_list)
     # get product in list
-
-    print(shopping_list)
     wishlist = len(request.session.get('wishlist') or [])
 
     currency = request.session.get('currency') or 1

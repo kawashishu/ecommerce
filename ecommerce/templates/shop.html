@@ -10,21 +10,19 @@
           <div class="shop-p">
             <div class="shop-p__toolbar u-s-m-b-30">
               <div class="shop-p__meta-wrap u-s-m-b-60">
-                <span class="shop-p__meta-text-1">FOUND 18 RESULTS</span>
+                {% if count %}
+                <span class="shop-p__meta-text-1">FOUND {{count}} RESULTS</span>
+                {% else %}
+                <span class="shop-p__meta-text-1">FOUND {{products.count}} RESULTS</span>
+                {% endif %}
                 <div class="shop-p__meta-text-2">
                   <span>Related Searches:</span>
-
+                  {% for tag in related_search %}
                   <a class="gl-tag btn--e-brand-shadow" href="#"
-                    >men's clothing</a
+                    >{{tag}}</a
                   >
+                  {% endfor %}
 
-                  <a class="gl-tag btn--e-brand-shadow" href="#"
-                    >mobiles & tablets</a
-                  >
-
-                  <a class="gl-tag btn--e-brand-shadow" href="#"
-                    >books & audible</a
-                  >
                 </div>
               </div>
               <div class="shop-p__tool-style">
@@ -37,34 +35,32 @@
 
                   <span class="js-shop-list-target">List</span>
                 </div>
-                <form>
+                <div class="tool-style__group u-s-m-b-8">
+                  {% comment %} <span 
+                    > <a href="{% url 'sort_categories' product.id 'views' 'esc' %}">Best Popularity</a> </span
+                  >
+
+                  <span ><a href="{% url 'sort_categories' product.id 'price' 'asc' %}">Price Up</a></span>
+ 
+                  <span ><a href="{% url 'sort_categories' product.id 'price' 'desc' %}">Price Down</a></span> {% endcomment %}
+                </div>
+                {% comment %} <form>
                   <div class="tool-style__form-wrap">
                     <div class="u-s-m-b-8">
                       <select class="select-box select-box--transparent-b-2">
-                        <option>Show: 8</option>
-                        <option selected>Show: 12</option>
-                        <option>Show: 16</option>
-                        <option>Show: 28</option>
-                      </select>
-                    </div>
-                    <div class="u-s-m-b-8">
-                      <select class="select-box select-box--transparent-b-2">
-                        <option selected>Sort By: Newest Items</option>
-                        <option>Sort By: Latest Items</option>
-                        <option>Sort By: Best Selling</option>
                         <option>Sort By: Best Rating</option>
                         <option>Sort By: Lowest Price</option>
                         <option>Sort By: Highest Price</option>
                       </select>
                     </div>
                   </div>
-                </form>
+                </form> {% endcomment %}
               </div>
             </div>
             <div class="shop-p__collection">
-              <div class="row is-grid-active">
+              <div class="row is-grid-active product_lists">
                 {% for product in products %}
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6 products-container">
                   <div class="product-m">
                     <div class="product-m__thumb">
                       <a
@@ -88,7 +84,7 @@
                       </div>
                       <div class="product-m__add-cart">
                         <a
-                          onclick="addcart({{product.id}})"
+                          onclick="addCart({{product.id}})"
                           class="btn--e-brand"
                           data-modal="modal"
                           data-modal-id="#add-to-cart-{{product.id}}"
@@ -98,22 +94,23 @@
                     </div>
                     <div class="product-m__content">
                       <div class="product-m__category">
-                        <a href="shop-side-version-2.html">{{category.name}}</a>
+                        <a href="{% url 'categories' product.category.id  %}">{{product.category.name}}</a>
                       </div>
+                      <p style="display:none" id="category_id">{{product.category.id}}</p>
                       <div class="product-m__name">
                         <a href="{% url 'productdetail' product.id %}"
                           >{{product.name}}</a
                         >
                       </div>
                       <div class="product-m__rating gl-rating-style">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i
-                        ><i class="fas fa-star-half-alt"></i
-                        ><i class="far fa-star"></i><i class="far fa-star"></i>
-
-                        <span class="product-m__review">(23)</span>
+                      {% to_int product.rating as rating %}
+                      {% for count in 0|ranged:rating %}  
+                        <i class="fas fa-star"></i>
+                        {% endfor %}
                       </div>
                       <div class="product-m__price">
-                        {% get_icon_currency currency_name %} {{product.price}}
+                      {% multiply product.price currency as price %}
+                        {% get_icon_currency currency_name %} {{price|floatformat:0}}
                       </div>
                       <div class="product-m__hover">
                         <div class="product-m__preview-description">
@@ -122,7 +119,8 @@
                         <div class="product-m__wishlist">
                           <a
                             class="far fa-heart"
-                            href="#"
+                            onclick="addWishList({{product.id}})"
+                            data-modal="modal" data-modal-id="#add-to-wishlist-{{product.id}}"
                             data-tooltip="tooltip"
                             data-placement="top"
                             title="Add to Wishlist"
@@ -218,120 +216,6 @@
             <div class="u-s-m-b-30">
               <div class="shop-w">
                 <div class="shop-w__intro-wrap">
-                  <h1 class="shop-w__h">RATING</h1>
-
-                  <span
-                    class="fas fa-minus shop-w__toggle"
-                    data-target="#s-rating"
-                    data-toggle="collapse"
-                  ></span>
-                </div>
-                <div class="shop-w__wrap collapse show" id="s-rating">
-                  <ul class="shop-w__list gl-scroll">
-                    <li>
-                      <div class="rating__check">
-                        <input type="checkbox" />
-                        <div class="rating__check-star-wrap">
-                          <i class="fas fa-star"></i><i class="fas fa-star"></i
-                          ><i class="fas fa-star"></i><i class="fas fa-star"></i
-                          ><i class="fas fa-star"></i>
-                        </div>
-                      </div>
-
-                      <span class="shop-w__total-text">(2)</span>
-                    </li>
-                    <li>
-                      <div class="rating__check">
-                        <input type="checkbox" />
-                        <div class="rating__check-star-wrap">
-                          <i class="fas fa-star"></i><i class="fas fa-star"></i
-                          ><i class="fas fa-star"></i><i class="fas fa-star"></i
-                          ><i class="far fa-star"></i>
-
-                          <span>& Up</span>
-                        </div>
-                      </div>
-
-                      <span class="shop-w__total-text">(8)</span>
-                    </li>
-                    <li>
-                      <div class="rating__check">
-                        <input type="checkbox" />
-                        <div class="rating__check-star-wrap">
-                          <i class="fas fa-star"></i><i class="fas fa-star"></i
-                          ><i class="fas fa-star"></i><i class="far fa-star"></i
-                          ><i class="far fa-star"></i>
-
-                          <span>& Up</span>
-                        </div>
-                      </div>
-
-                      <span class="shop-w__total-text">(10)</span>
-                    </li>
-                    <li>
-                      <div class="rating__check">
-                        <input type="checkbox" />
-                        <div class="rating__check-star-wrap">
-                          <i class="fas fa-star"></i><i class="fas fa-star"></i
-                          ><i class="far fa-star"></i><i class="far fa-star"></i
-                          ><i class="far fa-star"></i>
-
-                          <span>& Up</span>
-                        </div>
-                      </div>
-
-                      <span class="shop-w__total-text">(12)</span>
-                    </li>
-                    <li>
-                      <div class="rating__check">
-                        <input type="checkbox" />
-                        <div class="rating__check-star-wrap">
-                          <i class="fas fa-star"></i><i class="far fa-star"></i
-                          ><i class="far fa-star"></i><i class="far fa-star"></i
-                          ><i class="far fa-star"></i>
-
-                          <span>& Up</span>
-                        </div>
-                      </div>
-
-                      <span class="shop-w__total-text">(1)</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="u-s-m-b-30">
-              <div class="shop-w">
-                <div class="shop-w__intro-wrap">
-                  <h1 class="shop-w__h">SHIPPING</h1>
-
-                  <span
-                    class="fas fa-minus shop-w__toggle"
-                    data-target="#s-shipping"
-                    data-toggle="collapse"
-                  ></span>
-                </div>
-                <div class="shop-w__wrap collapse show" id="s-shipping">
-                  <ul class="shop-w__list gl-scroll">
-                    <li>
-                      <!--====== Check Box ======-->
-                      <div class="check-box">
-                        <input type="checkbox" id="free-shipping" />
-                        <div class="check-box__state check-box__state--primary">
-                          <label class="check-box__label" for="free-shipping"
-                            >Free Shipping</label
-                          >
-                        </div>
-                      </div>
-                      <!--====== End - Check Box ======-->
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="u-s-m-b-30">
-              <div class="shop-w">
-                <div class="shop-w__intro-wrap">
                   <h1 class="shop-w__h">PRICE</h1>
 
                   <span
@@ -371,66 +255,6 @@
                 </div>
               </div>
             </div>
-            <div class="u-s-m-b-30">
-              <div class="shop-w">
-                <div class="shop-w__intro-wrap">
-                  <h1 class="shop-w__h">MANUFACTURER</h1>
-
-                  <span
-                    class="fas fa-minus shop-w__toggle"
-                    data-target="#s-manufacturer"
-                    data-toggle="collapse"
-                  ></span>
-                </div>
-                <div class="shop-w__wrap collapse show" id="s-manufacturer">
-                  <ul class="shop-w__list-2">
-                    <li>
-                      <div class="list__content">
-                        <input type="checkbox" checked />
-
-                        <span>Calvin Klein</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="list__content">
-                        <input type="checkbox" />
-
-                        <span>Diesel</span>
-                      </div>
-
-                      <span class="shop-w__total-text">(2)</span>
-                    </li>
-                    <li>
-                      <div class="list__content">
-                        <input type="checkbox" />
-
-                        <span>Polo</span>
-                      </div>
-
-                      <span class="shop-w__total-text">(2)</span>
-                    </li>
-                    <li>
-                      <div class="list__content">
-                        <input type="checkbox" />
-
-                        <span>Tommy Hilfiger</span>
-                      </div>
-
-                      <span class="shop-w__total-text">(9)</span>
-                    </li>
-                    <li>
-                      <div class="list__content">
-                        <input type="checkbox" />
-
-                        <span>Ndoge</span>
-                      </div>
-
-                      <span class="shop-w__total-text">(3)</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
             <div class="u-s-m-b-30"></div>
           </div>
         </div>
@@ -459,13 +283,10 @@
                     <a href="{% url 'index' %} ">Home</a>
                   </li>
                   <li class="has-separator">
-                    <a href="shop-side-version-2.html">Electronics</a>
-                  </li>
-                  <li class="has-separator">
-                    <a href="shop-side-version-2.html">DSLR Cameras</a>
+                    <a href="{% url 'categories' product.category.id %}">{{product.category.name}}</a>
                   </li>
                   <li class="is-marked">
-                    <a href="shop-side-version-2.html">Nikon Cameras</a>
+                    <a href="{% url 'productdetail' product.id %}">{{product.name}}</a>
                   </li>
                 </ul>
               </div>
@@ -495,13 +316,11 @@
                 </div>
                 <div>
                   <div class="pd-detail__inline">
-                    <span class="pd-detail__price"
-                      >{% get_icon_currency currency_name %}
-                      {{product.price}}</span
+                  {% multiply product.price currency as price %}
+                    < class="pd-detail__price"
+                      >{% get_icon_currency currency_name %} {{price|floatformat:0}}
+                      </span
                     >
-
-                    <span class="pd-detail__discount">(76% OFF)</span
-                    ><del class="pd-detail__del">$28.97</del>
                   </div>
                 </div>
                 <div class="u-s-m-b-15">
@@ -510,9 +329,6 @@
                     ><i class="fas fa-star"></i><i class="fas fa-star"></i
                     ><i class="fas fa-star-half-alt"></i>
 
-                    <span class="pd-detail__review u-s-m-l-4">
-                      <a href="product-detail.html">23 Reviews</a></span
-                    >
                   </div>
                 </div>
                 <div class="u-s-m-b-15">
@@ -669,8 +485,8 @@
                                         <span class="success__name">{{product.name}}</span>
 
                                         <span class="success__quantity">Quantity: 1</span>
-
-                                        <span class="success__price"> {% get_icon_currency currency_name %} {{product.price}}</span></div>
+                                        {% multiply product.price currency as price %}
+                                        <span class="success__price"> {% get_icon_currency currency_name %} {{price|floatformat:0}}</span></div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
@@ -691,6 +507,49 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="add-to-wishlist-{{product.id}}">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content modal-radius modal-shadow">
+
+                    <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="success u-s-m-b-30">
+                                    <div class="success__text-wrap"><i class="fas fa-check"></i>
+
+                                        <span>Item is added successfully!</span></div>
+                                    <div class="success__img-wrap">
+
+                                        <img class="u-img-fluid" src="/ecommerce/media/{{product.avatar}}" alt=""></div>
+                                    <div class="success__info-wrap">
+
+                                        <span class="success__name">{{product.name}}</span>
+
+                                        <span class="success__quantity">Quantity: 1</span>
+                                        {% multiply product.price currency as price %}
+
+                                        <span class="success__price"> {% get_icon_currency currency_name %} {{price|floatformat:0}}</span></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="s-option">
+
+                                    <span class="s-option__text">1 item (s) in your wishlist</span>
+                                    <div class="s-option__link-box">
+
+                                        <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
+
+                                        <a class="s-option__link btn--e-white-brand-shadow" href="{% url 'wish-list' %}">VIEW WISHLIST</a>
+
+                                        <a class="s-option__link btn--e-brand-shadow" href="{%  url 'checkout' %}">PROCEED TO CHECKOUT</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endfor %}
   <!--====== End - Add to Cart Modal ======-->
 
@@ -701,28 +560,96 @@
   type="text/javascript"
 ></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
-  // find ul element with class shop-p__pagination and remove class is_active, then add class is_active to the clicked element
-  $(".shop-p__pagination li").click(function () {
-    $(".shop-p__pagination li").removeClass("is_active");
-    $(this).addClass("is_active");
-  });
 
+  function AppendProducts(data) {
+    $(".products-container").remove();
+    let htmls = '';
+    products = data.products;
+    for (let i = 0; i < products.length; i++) {
+      url_productdetail = "{% url 'productdetail' 1 %}";
+      url_productdetail = url_productdetail.replace("1", products[i].id);
+      htmls += `<div class="col-lg-3 col-md-4 col-sm-6 products-container">
+                  <div class="product-m">
+                    <div class="product-m__thumb">
+                      <a
+                        class="aspect aspect--bg-grey aspect--square u-d-block"
+                        href="${url_productdetail}"
+                      >
+                        <img
+                          class="aspect__img"
+                          src="/ecommerce/media/${products[i].avatar}"
+                          alt=""
+                      /></a>
+                      <div class="product-m__quick-look">
+                        <a
+                          class="fas fa-search"
+                          data-modal="modal"
+                          data-modal-id="#quick-look-${products[i].id}"
+                          data-tooltip="tooltip"
+                          data-placement="top"
+                          title="Quick Look"
+                        ></a>
+                      </div>
+                      <div class="product-m__add-cart">
+                        <a
+                          onclick="addCart(${products[i].id})"
+                          class="btn--e-brand"
+                          data-modal="modal"
+                          data-modal-id="#add-to-cart-${products[i].id}"
+                          >Add to Cart</a
+                        >
+                      </div>
+                    </div>
+                    <div class="product-m__content">
+                      <div class="product-m__name">
+                        <a href="${url_productdetail}"
+                          >{{product.name}}</a
+                        >
+                      </div>
+                      <div class="product-m__rating gl-rating-style">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i
+                        ><i class="fas fa-star-half-alt"></i
+                        ><i class="far fa-star"></i><i class="far fa-star"></i>
+
+                      </div>
+                      <div class="product-m__price">
+                        {% get_icon_currency currency_name %} ${products[i].price}
+                      </div>
+                      <div class="product-m__hover">
+                        <div class="product-m__preview-description">
+                          <span>${products[i].decripstion}</span>
+                        </div>
+                        <div class="product-m__wishlist">
+                          <a
+                            class="far fa-heart"
+                            onclick="addWishList(${products[i].id})"
+                            data-tooltip="tooltip"
+                            data-placement="top"
+                            title="Add to Wishlist"
+                          ></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
+    }
+    $(".product_lists").append(htmls);
+  }
   // search product by price ( min, max )
 
   $(".filter_price").click(() => {
+    const pk = $("#category_id").text();
     const price_min = $("#price-min").val();
     const price_max = $("#price-max").val();
-    console.log(price_min, price_max);
-
+    
     $.ajax({
-      url: "{% url 'filter' product.category.id %}",
+      url: "{% url 'filter' %}",
       type: "GET",
       data: {
         price_min: price_min,
         price_max: price_max,
+        pk: pk,
       },
       success: function (data) {
         AppendProducts(data);
@@ -730,30 +657,8 @@
     });
   });
 
-  // append products to the page
-  function AppendProducts(data) {
-    $(".products-container").remove();
-    let htmls = "";
-    products = data.products;
-    for (let i = 0; i < products.length; i++) {
-      id = products[i].id;
-      htmls += ``;
-    }
-    $(".products-item").append(htmls);
-  }
+ 
 
-  function addcart(id) {
-    $.ajax({
-      url: "{% url 'cart' %}",
-      type: "POST",
-      data: {
-        id: id,
-        csrfmiddlewaretoken: "{{ csrf_token }}",
-      },
-      success: function (count) {
-        $(".shopping-cart").html(count);
-      },
-    });
-  }
+  
 </script>
 {% endblock %}

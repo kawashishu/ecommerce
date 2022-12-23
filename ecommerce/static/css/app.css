@@ -3739,9 +3739,13 @@ input::-ms-clear {
   background-color: rgba(0, 148, 68, 0.14);
   color: #009444; }
 
-.badge--delivered {
+.badge--arrived {
   background-color: rgba(255, 69, 0, 0.14);
   color: #ff4500; }
+
+.badge--enroute {
+  background-color: rgba(255, 0, 153, 0.14);
+  color: #ff00ee; }
 
 @media (max-width: 991px) {
   .dash__box--w {
@@ -6230,6 +6234,10 @@ input::-ms-clear {
   -webkit-animation-name: fadeInLeft;
           animation-name: fadeInLeft; }
 
+.private_id {
+  display: none;
+}
+
 .owl-item.active .shop-now-link {
   -webkit-animation-delay: 2s;
           animation-delay: 2s;
@@ -6427,3 +6435,11 @@ input::-ms-clear {
 #js-product-detail-modal-thumbnail:hover .pt-prev, #js-product-detail-modal-thumbnail:hover .pt-next {
   opacity: .8; }
 
+.avatar {
+  margin-top: 15px;
+  margin-left: 75px;
+}
+
+.update_avatar {
+  margin-left: 22px;
+}

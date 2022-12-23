@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Notification, Order, OrderDetail, Category, Coupon, ProductImage
+from .models import Product, Notification, Order,Category, Coupon, ProductImage, DetailProduct
 from customer.models import Customer
 
 
@@ -16,6 +16,12 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['category', 'status', 'title', 'price', 'decripstion']
     inlines = [ProductImageInline]
 
+class DetailProductAdmin(admin.ModelAdmin):
+    list_display = ['product', 'width', 'height', 'weight', 'length']
+    search_fields = ['product', 'width', 'height', 'weight', 'length']
+    list_filter = ['product', 'width', 'height', 'weight', 'length']
+
+admin.site.register(DetailProduct, DetailProductAdmin)
 
 class NotificationAdmin(admin.ModelAdmin):
     list_display = ['content', 'customer', 'read']
@@ -31,7 +37,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_per_page = 20
 
 admin.site.register(Order, OrderAdmin)
-admin.site.register(OrderDetail)
 
 
 class CategoryAdmin(admin.ModelAdmin):

@@ -1,6 +1,8 @@
 
 from django.dispatch import receiver
 from django.views import View
+
+from store.models import Order
 from ..models import Customer
 from ..form import RegistrationForm, UpdateProfileForm
 from store.models import Notification
@@ -115,11 +117,14 @@ def logout(request):
 class ProfileView(LoginRequiredMixin, View):
     
     def get(self, request):
-        order = request.user.order_set.all()
-        order_count = order.count()
+        order = Order.objects.filter(customer=request.user)
+        order_arrived = order.filter(state='Arrived')
+        orders_count = order.count()
         context = {
             'order': order,
-            'order_count': order_count,
+            'orders_count': orders_count,
+            'order_arrived': order_arrived,
+
         }
         return render(request, 'dashboard.html', context)
 
@@ -147,19 +152,16 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['order'] = self.request.user.order_set.all()
-        context['order_count'] = context['order'].count()
+        context['orders'] = self.request.user.order_set.all()
+        context['orders_count'] = context['orders'].count()
         return context
+    
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        messages.success(self.request, 'Your profile has been updated successfully!')
+        return super().form_valid(form)
 
     def get_object(self):
         return self.request.user
 
-class OrderView(LoginRequiredMixin, View):
-    def get(self, request):
-        order = request.user.order_set.all()
-        order_count = order.count()
-        context = {
-            'order': order,
-            'order_count': order_count,
-        }
-        return render(request, 'dash-my-order.html', context)
+

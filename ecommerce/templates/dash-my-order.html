@@ -69,18 +69,9 @@
 
                                                         <span class="dash__w-icon dash__w-icon-style-1"><i class="fas fa-cart-arrow-down"></i></span>
 
-                                                        <span class="dash__w-text">{{order_count}}</span>
+                                                        <span class="dash__w-text">{{orders_count}}</span>
 
                                                         <span class="dash__w-name">Orders Placed</span></div>
-                                                </li>
-                                                <li>
-                                                    <div class="dash__w-wrap">
-
-                                                        <span class="dash__w-icon dash__w-icon-style-2"><i class="fas fa-times"></i></span>
-
-                                                        <span class="dash__w-text">0</span>
-
-                                                        <span class="dash__w-name">Cancel Orders</span></div>
                                                 </li>
                                                 <li>
                                                     <div class="dash__w-wrap">
@@ -115,120 +106,48 @@
                                                     </select></div>
                                             </form>
                                             <div class="m-order__list">
+                                            {% for order in orders %}
                                                 <div class="m-order__get">
                                                     <div class="manage-o__header u-s-m-b-30">
                                                         <div class="dash-l-r">
                                                             <div>
-                                                                <div class="manage-o__text-2 u-c-secondary">Order #305423126</div>
-                                                                <div class="manage-o__text u-c-silver">Placed on 26 Oct 2016 09:08:37</div>
+                                                                <div class="manage-o__text-2 u-c-secondary">Order #30542312{{order.id}}</div>
+                                                                <div class="manage-o__text u-c-silver">Placed on {{order.created}}</div>
                                                             </div>
-                                                            <div>
-                                                                <div class="dash__link dash__link--brand">
 
-                                                                    <a href="dash-manage-order.html">MANAGE</a></div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="manage-o__description">
                                                         <div class="description__container">
                                                             <div class="description__img-wrap">
 
-                                                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></div>
-                                                            <div class="description-title">Yellow Wireless Headphone</div>
+                                                                <img class="u-img-fluid" src="/ecommerce/media/{{request.user.avatar}}" alt=""></div>
+                                                            <div class="description-title">{{order.note}}</div>
+
                                                         </div>
                                                         <div class="description__info-wrap">
                                                             <div>
+                                                            {% if order.state == 'PR' %}
+                                                                <span class="manage-o__badge badge--processing">Processing</span>
+                                                            {% elif order.state == 'SH' %}
+                                                                <span class="manage-o__badge badge--shipped">Shipped</span>
+                                                            {% elif order.state == 'EN' %}
+                                                                <span class="manage-o__badge badge--enroute">Enroute</span>
+                                                            {% elif order.state == 'AR' %}
+                                                                <span class="manage-o__badge badge--arrived">Arrived</span>
+                                                            {% endif %}
 
-                                                                <span class="manage-o__badge badge--processing">Processing</span></div>
-                                                            <div>
+                                                            </div>
 
-                                                                <span class="manage-o__text-2 u-c-silver">Quantity:
 
-                                                                    <span class="manage-o__text-2 u-c-secondary">1</span></span></div>
-                                                            <div>
+                                                                <span class="manage-o__text-2 u-c-silver" >Total:
 
-                                                                <span class="manage-o__text-2 u-c-silver">Total:
-
-                                                                    <span class="manage-o__text-2 u-c-secondary">$16.00</span></span></div>
+                                                                    <span class="manage-o__text-2 u-c-secondary">{% get_icon_currency currency_name %}{% multiply order.total currency %}</span></span></div>
                                                         </div>
                                                     </div>
+                                                {% endfor %}
                                                 </div>
-                                                <div class="m-order__get">
-                                                    <div class="manage-o__header u-s-m-b-30">
-                                                        <div class="dash-l-r">
-                                                            <div>
-                                                                <div class="manage-o__text-2 u-c-secondary">Order #305423126</div>
-                                                                <div class="manage-o__text u-c-silver">Placed on 26 Oct 2016 09:08:37</div>
-                                                            </div>
-                                                            <div>
-                                                                <div class="dash__link dash__link--brand">
-
-                                                                    <a href="dash-manage-order.html">MANAGE</a></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="manage-o__description">
-                                                        <div class="description__container">
-                                                            <div class="description__img-wrap">
-
-                                                                <img class="u-img-fluid" src="images/product/women/product8.jpg" alt=""></div>
-                                                            <div class="description-title">New Dress D Nice Elegant</div>
-                                                        </div>
-                                                        <div class="description__info-wrap">
-                                                            <div>
-
-                                                                <span class="manage-o__badge badge--shipped">Shipped</span></div>
-                                                            <div>
-
-                                                                <span class="manage-o__text-2 u-c-silver">Quantity:
-
-                                                                    <span class="manage-o__text-2 u-c-secondary">1</span></span></div>
-                                                            <div>
-
-                                                                <span class="manage-o__text-2 u-c-silver">Total:
-
-                                                                    <span class="manage-o__text-2 u-c-secondary">$16.00</span></span></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="m-order__get">
-                                                    <div class="manage-o__header u-s-m-b-30">
-                                                        <div class="dash-l-r">
-                                                            <div>
-                                                                <div class="manage-o__text-2 u-c-secondary">Order #305423126</div>
-                                                                <div class="manage-o__text u-c-silver">Placed on 26 Oct 2016 09:08:37</div>
-                                                            </div>
-                                                            <div>
-                                                                <div class="dash__link dash__link--brand">
-
-                                                                    <a href="dash-manage-order.html">MANAGE</a></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="manage-o__description">
-                                                        <div class="description__container">
-                                                            <div class="description__img-wrap">
-
-                                                                <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></div>
-                                                            <div class="description-title">New Fashion D Nice Elegant</div>
-                                                        </div>
-                                                        <div class="description__info-wrap">
-                                                            <div>
-
-                                                                <span class="manage-o__badge badge--delivered">Delivered</span></div>
-                                                            <div>
-
-                                                                <span class="manage-o__text-2 u-c-silver">Quantity:
-
-                                                                    <span class="manage-o__text-2 u-c-secondary">1</span></span></div>
-                                                            <div>
-
-                                                                <span class="manage-o__text-2 u-c-silver">Total:
-
-                                                                    <span class="manage-o__text-2 u-c-secondary">$16.00</span></span></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            
                                             </div>
                                         </div>
                                     </div>

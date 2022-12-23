@@ -25,6 +25,7 @@ class ProductDetail(DetailView):
 class CreateComment(View):
     def post(self, request, pk):
         content = request.POST.get('content')
+        rating = int(request.POST.get('rating'))
         product = int(request.POST.get('product'))
         userid = int(request.POST.get('user'))
         user = get_object_or_404(Customer, id=userid)
@@ -33,7 +34,7 @@ class CreateComment(View):
             content=content,
             product=product,
             customer=user,
-            rating=5,
+            rating=rating,
         )
         comment.save()
         comment = Comment.objects.filter(id=comment.id)

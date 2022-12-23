@@ -351,7 +351,7 @@
         $this.countdown(finalDate, function (event) {
           $this.html(
             event.strftime(
-              '<div class="countdown__content"><div><span class="countdown__value">%D</span><span class="countdown__key">Days</span></div></div><div class="countdown__content"><div><span class="countdown__value">%H</span><span class="countdown__key">Hours</span></div></div><div class="countdown__content"><div><span class="countdown__value">%M</span><span class="countdown__key">Mins</span></div></div><div class="countdown__content"><div><span class="countdown__value">%S</span><span class="countdown__key">Secs</span></div></div>'
+              '<div class="countdown__content"><div><span class="countdown__value days">%D</span><span class="countdown__key">Days</span></div></div><div class="countdown__content"><div><span class="countdown__value hours">%H</span><span class="countdown__key">Hours</span></div></div><div class="countdown__content"><div><span class="countdown__value minutes">%M</span><span class="countdown__key">Mins</span></div></div><div class="countdown__content"><div><span class="countdown__value seconds">%S</span><span class="countdown__key">Secs</span></div></div>'
             )
           );
         });
@@ -370,6 +370,7 @@
           var $input = $(this).parent().find("input");
           var count = parseInt($input.val()) + 1; // Number + Number
           $input.val(count).change();
+
         });
       // Attach Click event to minus button
       $collectionInputCounter

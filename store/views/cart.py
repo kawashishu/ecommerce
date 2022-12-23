@@ -12,6 +12,8 @@ class CartView(View):
     
     def get(self, request):
         carts = request.session.get('cart-duplicate')
+        shipping_fee = request.session.get('shipping_fee') or 0
+        print(shipping_fee, "shipping_fee")
         total = 0
         coupon = request.session.get('coupon_id')
         if coupon:
@@ -26,16 +28,16 @@ class CartView(View):
             context = {
                 'products': products,
                 'total': int(total),
-                'SumTotal': int(total + SHIPPING_CHARGE),
+                'SumTotal': int(total + shipping_fee),
                 'quantity': quantity,
-                'shipping': SHIPPING_CHARGE,
+                'shipping': shipping_fee,
                 'list_coupons': list_coupons,
                 'coupon': coupon,
             }
         except:
             context = {
                 'total': 0,
-                'shipping': SHIPPING_CHARGE,
+                'shipping': shipping_fee,
             }
         return render(request, 'cart.html', context)
 
@@ -44,12 +46,15 @@ class CartView(View):
         if 'cart' in request.session:
             if id in request.session['cart']:
                 request.session['cart-duplicate'].insert(0, id)
+                print(request.session['cart-duplicate'],"duplicate")
             else:
                 request.session['cart'].insert(0, id)
                 request.session['cart-duplicate'].insert(0, id)
+                print(request.session['cart-duplicate'], "None_duplicate")
         else:
             request.session['cart'] = [id]
             request.session['cart-duplicate'] = [id]
+            print(request.session['cart-duplicate'])
         request.session.modified = True
         return HttpResponse(len(request.session['cart-duplicate']))
 
@@ -106,19 +111,6 @@ def getCart(request):
     except:
         return 0
 
-# class WishlistView(View):
-#     def post(self, request):
-#         id = int(request.POST.get('id'))
-#         if 'wishlist' in request.session:
-#             if id in request.session['wishlist']:
-#                 request.session['wishlist'].remove(id)
-#             else:
-#                 request.session['wishlist'].insert(0, id)
-#         else:
-#             request.session['wishlist'] = [id]
-#         request.session.modified = True
-#         return HttpResponse(len(request.session['wishlist']))
-
 class WishListView(View):
     def get(self, request):
 
@@ -148,16 +140,16 @@ class RemoveWishListView(View):
             request.session['wishlist'].remove(id)
             request.session.modified = True
         except:
-            return len(request.session['wishlist'] or [])
-        return 0
+            return HttpResponse("error")
+        return HttpResponse(len(request.session.get('wishlist') or []))
 
 class CartCalculator(View):
     def post(self, request):
         id = int(request.POST.get('id'))
         btn = request.POST.get('btn')
-        if btn == 'fa fa-plus':
+        if btn == 'fa-plus':
             request.session['cart-duplicate'].insert(0, id)
-        elif btn == 'fa fa-minus':
+        elif btn == 'fa-minus':
             request.session['cart-duplicate'].remove(id)
         request.session.modified = True
         carts = request.session.get('cart-duplicate')
@@ -169,7 +161,6 @@ class CartCalculator(View):
                 total += product.price * quanlity[product.id]
         except:
             total = 0
-        print(request.session.get('currency'))
-        total *= request.session.get('currency')
+        total *= request.session.get('currency') or 1
         return HttpResponse(total)
 

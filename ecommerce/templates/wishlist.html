@@ -59,7 +59,7 @@
 
                                 <!--====== Wishlist Product ======-->
                                 {% for product in products %}
-                                <div class="w-r u-s-m-b-30">
+                                <div class="w-r u-s-m-b-30 wishlist_item">
                                     <div class="w-r__container">
                                         <div class="w-r__wrap-1">
                                             <div class="w-r__img-wrap">
@@ -162,20 +162,6 @@
 ></script>
 <script>
 
-function removeWishlist(id) {
-    $.ajax({
-      url: "{% url 'remove-wishlist' %}",
-      type: 'POST',
-      data: {
-        id: id,
-        csrfmiddlewaretoken: '{{ csrf_token }}',
-      },
-      success: function (count) {
-        $(this).parent().parent().parent().remove()
-        $('.wishlist').text(count)
-      },
-    })
-}
 
     function addWishList(id) {
     $.ajax({
@@ -186,6 +172,7 @@ function removeWishlist(id) {
         csrfmiddlewaretoken: '{{ csrf_token }}',
       },
       success: function (count) {
+        
         $('.wishlist').text(count)
       },
     })
@@ -199,6 +186,8 @@ function addCart(id) {
         csrfmiddlewaretoken: "{{ csrf_token }}",
       },
       success: function (count) {
+        // in this, find the class of wishlist_item and remove
+
         $(".shopping-cart").html(count);
       },
     });
