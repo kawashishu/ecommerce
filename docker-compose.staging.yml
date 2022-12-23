@@ -24,11 +24,11 @@ services:
   db:
     image: public.ecr.aws/k8f7u6w7/ecommerce:postgres
     environment:
-      - POSTGRES_DB=djangoec
+      - POSTGRES_DB=railway
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_PASSWORD=ECvmwJOFqN40X1nJIyiB
     ports:
-      - "5432:5432"
+      - "7022:7022"
     volumes:
       - pgdata:/var/lib/postgresql/data
   celery:

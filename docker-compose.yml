@@ -25,11 +25,11 @@ services:
   db:
     image: postgres
     environment:
-      - POSTGRES_DB=ecommerce
+      - POSTGRES_DB=railway
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123456
+      - POSTGRES_PASSWORD=ECvmwJOFqN40X1nJIyiB
     ports:
-      - "5432:5432"
+      - "7022:7022"
     volumes: 
       - pgdata:/var/lib/postgresql/data
   celery:
