@@ -12,9 +12,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from store.views.cart import getTotal
 from store.models import Product
 
+
 class CheckoutView(View):
     @method_decorator(login_required, name='dispatch')
-    
     def get(self, *args, **kwargs):
         shipping_fee = self.request.session.get('shipping_fee') or 0
         form = BillingAddressForm()
@@ -24,8 +24,10 @@ class CheckoutView(View):
             'total': int(total),
             'sumtotal': int(total) + shipping_fee,
             'shipping': shipping_fee,
-            'default_billing_address': BillingAddress.objects.filter(email=self.request.user, default=True).first(),
-            'billing_address': BillingAddress.objects.filter(email=self.request.user)
+            'default_billing_address': BillingAddress.objects.filter(
+                email=self.request.user, default=True).first(),
+            'billing_address': BillingAddress.objects.filter(
+                email=self.request.user)
         }
         return render(self.request, "checkout.html", context)
 
@@ -33,13 +35,14 @@ class CheckoutView(View):
         try:
             note = self.request.POST.get('order-note')
             print(self.request.POST)
-            billing_address = BillingAddress.objects.get(email=self.request.user, default=True)
+            billing_address = BillingAddress.objects.get(
+                email=self.request.user, default=True)
             order = Order(
                 billing_address=billing_address,
-                state = Order.PROCESS,
+                state=Order.PROCESS,
                 customer=self.request.user,
                 note=note,
-                total = getTotal(self.request)
+                total=getTotal(self.request)
 
             )
             billing_address.save()
@@ -50,9 +53,10 @@ class CheckoutView(View):
             messages.success(self.request, "Order successfully")
             return redirect("dash-order")
         except ObjectDoesNotExist:
-                print("You do not have an active order")
-                messages.error(self.request, "You do not have an active order")
-                return redirect("dash-order")
+            print("You do not have an active order")
+            messages.error(self.request, "You do not have an active order")
+            return redirect("dash-order")
+
 
 def process_order(request):
     if request.user.is_authenticated:
@@ -65,12 +69,14 @@ def process_order(request):
                     product.quantity -= quantity[product.id]
                     product.save()
                 else:
-                    messages.error(request, f"Product {product.name} is out of stock")
+                    messages.error(request,
+                                   f"Product {product.name} is out of stock")
                     return False
-        except:
-            messages.error(request, "Something error, try it again...1 :)))")
+        except Exception as e:
+            messages.error(request, e)
             return False
     return True
+
 
 def save_billing_address(request):
     form = BillingAddressForm(request.POST or None)
@@ -95,13 +101,16 @@ def save_billing_address(request):
                 billing_address.save()
             else:
                 return redirect("checkout")
-        except:
+        except Exception as e:
+            messages.error(request, e)
             return redirect("checkout")
     return redirect("checkout")
 
+
 def set_default_billing_address(request):
     if request.method == 'POST':
-        default_billing_address = BillingAddress.objects.get(email=request.user, default=True)
+        default_billing_address = BillingAddress.objects.get(
+            email=request.user, default=True)
         if default_billing_address:
             default_billing_address.default = False
             default_billing_address.save()
@@ -116,11 +125,11 @@ def set_default_billing_address(request):
         messages.error(request, "Something error, try it again")
         return redirect("checkout")
 
+
 def set_shipping_fee(request):
     shipping_fee = int(request.POST.get('shipping_fee'))
     if request.method == 'POST':
-            request.session['shipping_fee'] = shipping_fee
-            return HttpResponse(status=200)
+        request.session['shipping_fee'] = shipping_fee
+        return HttpResponse(status=200)
     else:
-        messages.error(request, "Something error, try it again")
         return HttpResponse(status=400)

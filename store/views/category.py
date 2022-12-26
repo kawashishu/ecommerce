@@ -1,7 +1,6 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import DetailView, ListView
-from store.models import Category, Product
+from django.views.generic import DetailView
+from store.models import Product
 
 
 class CategoryView(DetailView):
@@ -29,6 +28,7 @@ class CategoryView(DetailView):
         }
         return context
 
+
 class CategorySortView(DetailView):
     model = Product
     template_name = 'shop.html'
@@ -42,7 +42,7 @@ class CategorySortView(DetailView):
         if sort == 'asc':
             context['products'] = Product.objects.filter(
                 category=self.kwargs['pk']).order_by(attr)
-        else: 
+        else:
             context['products'] = Product.objects.filter(
                 category=self.kwargs['pk']).order_by(f'-{attr}')
 

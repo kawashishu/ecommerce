@@ -8,8 +8,9 @@ from store.models import Coupon
 
 SHIPPING_CHARGE = 8
 
+
 class CartView(View):
-    
+
     def get(self, request):
         carts = request.session.get('cart-duplicate')
         shipping_fee = request.session.get('shipping_fee') or 0
@@ -19,7 +20,7 @@ class CartView(View):
         if coupon:
             coupon = Coupon.objects.get(id=coupon)
         list_coupons = Coupon.objects.filter(customer=request.user)
-        try: 
+        try:
             quantity = {i: carts.count(i) for i in carts}
             products = Product.objects.filter(id__in=carts)
             for product in products:
@@ -34,7 +35,7 @@ class CartView(View):
                 'list_coupons': list_coupons,
                 'coupon': coupon,
             }
-        except:
+        except TypeError:
             context = {
                 'total': 0,
                 'shipping': shipping_fee,
@@ -46,7 +47,7 @@ class CartView(View):
         if 'cart' in request.session:
             if id in request.session['cart']:
                 request.session['cart-duplicate'].insert(0, id)
-                print(request.session['cart-duplicate'],"duplicate")
+                print(request.session['cart-duplicate'], "duplicate")
             else:
                 request.session['cart'].insert(0, id)
                 request.session['cart-duplicate'].insert(0, id)
@@ -65,7 +66,7 @@ class CartListView(ListView):
         remove(request, id)
         total = getTotal(request)
         count = len(request.session.get('cart-duplicate') or [])
-        return JsonResponse({'total': total , 'count': count }, )
+        return JsonResponse({'total': total, 'count': count}, )
 
 
 def remove(request, id):
@@ -74,9 +75,10 @@ def remove(request, id):
         while id in request.session['cart-duplicate']:
             request.session['cart-duplicate'].remove(id)
         request.session.modified = True
-    except:
-        return HttpResponse("error")
+    except ValueError:
+        return False
     return True
+
 
 def getTotal(request):
     try:
@@ -87,10 +89,8 @@ def getTotal(request):
         for product in products:
             total += product.price * quanlity[product.id]
         return total
-    except:
+    except TypeError:
         return 0
-
-# get quanlity
 
 
 def getQuanlity(request):
@@ -98,18 +98,20 @@ def getQuanlity(request):
         carts = request.session['cart-duplicate']
         quanlity = {i: carts.count(i) for i in carts}
         return quanlity
-    except:
-        return 1
+    except TypeError:
+        return 0
 
 # get cart
+
 
 def getCart(request):
     try:
         carts = request.session['cart-duplicate']
         products = Product.objects.filter(id__in=carts)
         return products
-    except:
+    except TypeError:
         return 0
+
 
 class WishListView(View):
     def get(self, request):
@@ -133,15 +135,17 @@ class WishListView(View):
         request.session.modified = True
         return HttpResponse(len(request.session['wishlist']))
 
+
 class RemoveWishListView(View):
-    def post(self,request):
+    def post(self, request):
         id = int(request.POST.get('id'))
         try:
             request.session['wishlist'].remove(id)
             request.session.modified = True
-        except:
-            return HttpResponse("error")
+        except ValueError:
+            return False
         return HttpResponse(len(request.session.get('wishlist') or []))
+
 
 class CartCalculator(View):
     def post(self, request):
@@ -159,8 +163,7 @@ class CartCalculator(View):
             products = Product.objects.filter(id__in=carts)
             for product in products:
                 total += product.price * quanlity[product.id]
-        except:
+        except TypeError:
             total = 0
         total *= request.session.get('currency') or 1
         return HttpResponse(total)
-

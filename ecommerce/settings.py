@@ -15,7 +15,6 @@ from pathlib import Path
 import environ
 from os.path import join
 from django.utils.translation import gettext_lazy as _
-from django_redis import get_redis_connection
 
 
 env = environ.Env(
@@ -27,12 +26,12 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+8@f-v21+%1e2y1ldv0b#wdepav9biwb$%qq!02x=x6tk5nrh2'
+SECRET_KEY = 'django-insecure-+8@f-v21+%1e2y1\
+              ldv0b#wdepav9biwb$%qq!02x=x6tk5nrh2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,9 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # models
-    'store','ecommerce','customer','comment','checkout','schedule',
+    'store', 'ecommerce', 'customer', 'comment', 'checkout', 'schedule',
     # third party
-    'captcha', 
+    'captcha',
     # rest framework
     'rest_framework',
     'allauth',
@@ -77,7 +76,7 @@ INSTALLED_APPS = [
 ]
 
 # notification
-# 
+#
 
 
 SITE_ID = 1
@@ -86,7 +85,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware', # new, for language
+    'django.middleware.locale.LocaleMiddleware',  # new, for language
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -115,7 +114,7 @@ CRISPY_TEMPLATE_PACK = 'uni_form'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ join(BASE_DIR, 'django_i18n_example','templates')],
+        'DIRS': [join(BASE_DIR, 'django_i18n_example', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,7 +140,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-     "default": {
+    "default": {
         "ENGINE": env("DATABASE_ENGINE"),
         "NAME": env("DATABASE_NAME"),
         "USER": env("DATABASE_USER"),
@@ -159,16 +158,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.\
+        password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.\
+        password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.\
+            password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.\
+            password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -198,7 +201,7 @@ USE_TZ = True
 STATIC_URL = './static/'
 
 MEDIA_URL = '/ecommerce/media/'
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'ecommerce/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'ecommerce/media')
 
 
 # Enable our static JS file serving
@@ -206,7 +209,6 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'ecommerce/media')
 LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
-
 
 
 # Static files (CSS, JavaScript, Images)
@@ -226,12 +228,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTH settings
 AUTH_USER_MODEL = 'customer.Customer'
 
-# gsgpagurqlgfsrmx : password email 
+# gsgpagurqlgfsrmx : password email
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'bruce.nguyen.goldenowl@gmail.com'
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = 587 
+EMAIL_PORT = 587
 
 # captcha
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
@@ -291,14 +293,13 @@ LOGOUT_URL = 'index'
 LOGIN_REDIRECT_URL = '/'
 
 
-
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
-SOCIALACCOUNT_LOGIN_ON_GET=True
+SOCIALACCOUNT_LOGIN_ON_GET = True
 # mantory
 ACCOUNT_VERIFICATION_REQUIRED = 'mandatory'
 
@@ -314,7 +315,7 @@ CELERY_TIMEZONE = 'Asia/Ho_Chi_Minh'
 #  CELERY BEAT
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
-# deploy 
+# deploy
 
 # Cache
 CACHES = {
@@ -333,7 +334,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 CSRF_TRUSTED_ORIGINS = ['https://demo.vleaf.xyz']

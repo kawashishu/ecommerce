@@ -1,7 +1,5 @@
 
-from multiprocessing import context
 from django.shortcuts import redirect, render
-from django.views import View
 from ..models import Customer
 from ..form import RegistrationForm
 from django.contrib import messages
@@ -48,10 +46,10 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 def forgotPassword(request):
     try:
         if request.method == 'POST':
-           
+
             email = request.POST.get('email')
             user = Customer.objects.get(email__exact=email)
-            
+
             current_site = get_current_site(request=request)
 
             mail_subject = 'Reset your password'
@@ -62,11 +60,13 @@ def forgotPassword(request):
                 'token': default_token_generator.make_token(user)
             })
             send_email = EmailMessage(mail_subject, message, to=[email])
-            
+
             send_email.send()
-            
+
             messages.success(
-                request=request, message="Password reset email has been sent to your email address")
+                request=request,
+                message="Password reset email has \
+                been sent to your email address")
 
     except Exception:
         messages.error(request=request, message="Account does not exist!")
@@ -77,8 +77,6 @@ def forgotPassword(request):
             'email': email.split('@')[0] if 'email' in locals() else '',
         }
         return render(request, "forgot_password.html", context=context)
-
-
 
 
 def reset_password_validate(request, uidb64, token):
@@ -110,10 +108,9 @@ def reset_password(request):
             messages.success(request, message="Password reset successful!")
             return redirect('signup')
         else:
-            messages.error(request, message="Password do not match!") 
+            messages.error(request, message="Password do not match!")
     form = RegistrationForm()
     context = {
         'form': form,
     }
     return render(request, 'reset_password.html', context)
-

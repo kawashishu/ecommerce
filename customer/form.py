@@ -16,8 +16,8 @@ class RegistrationForm(forms.ModelForm):
     }))
 
     email = forms.EmailField(max_length=50, widget=forms.EmailInput(attrs={
-         'class': 'input-text input-text--primary-style', 
-         'placeholder': 'Enter email',
+        'class': 'input-text input-text--primary-style',
+        'placeholder': 'Enter email',
     }))
 
     captcha = ReCaptchaField()
@@ -34,43 +34,50 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Customer
-        fields = ['name', 'phone', 'email', 'password', 'confirm_password', 'captcha']
+        fields = ['name', 'phone', 'email',
+                  'password', 'confirm_password', 'captcha']
 
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
-    
+
         if password != confirm_password:
             raise forms.ValidationError(
                 'Password does not match!'
             )
+
 
 SEX_CHOICES = {
     ('W', 'Women'),
     ('M', 'Man'),
 }
 
-    
+
 class UpdateProfileForm(UserChangeForm):
-    
+
     name = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'input-text input-text--primary-style', 'placeholder': 'enter name',
+        'class': 'input-text input-text--primary-style',
+        'placeholder': 'enter name',
     }))
-    
+
     phone = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'input-text input-text--primary-style', 'placeholder': 'enter phone',
+        'class': 'input-text input-text--primary-style',
+        'placeholder': 'enter phone',
     }))
     address = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'input-text input-text--primary-style', 'placeholder': 'enter address',
+        'class': 'input-text input-text--primary-style',
+        'placeholder': 'enter address',
     }))
 
     avatar = forms.ImageField(widget=forms.FileInput(attrs={
-        'class': 'input-text input-text--primary-style', 'style':'display:none;', 'id':"images"
-        }),required=False)
+        'class': 'input-text input-text--primary-style',
+        'style': 'display:none;',
+        'id': "images"
+    }), required=False)
 
-    
     password = None
+
     class Meta:
-        model= Customer
+        model = Customer
         fields = ['name', 'phone', 'address', 'avatar']

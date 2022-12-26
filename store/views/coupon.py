@@ -1,9 +1,5 @@
-from django.http import JsonResponse
-from django.shortcuts import HttpResponse, HttpResponseRedirect, redirect, render
+from django.shortcuts import HttpResponse
 from django.views import View
-from django.views.generic import FormView
-from django.urls import reverse_lazy
-from store.forms import CouponForm
 from store.models import Coupon
 
 
@@ -15,7 +11,9 @@ class ApplyCouponView(View):
             self.request.session['coupon_id'] = coupon.id
         except Coupon.DoesNotExist:
             return HttpResponse('Coupon does not exist', status=404)
-        return HttpResponse(f'Congratolations. Coupon {coupon.code} applied', status=200)
+        return HttpResponse(f'Congratolations.\
+                            Coupon {coupon.code} applied', status=200)
+
 
 class RemoveCouponView(View):
     def post(self, *args, **kwargs):

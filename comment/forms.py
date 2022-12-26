@@ -1,6 +1,6 @@
 from django import forms
-from django import forms
 from comment.models import Comment
+
 
 class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -14,7 +14,7 @@ class CommentForm(forms.ModelForm):
         comment.customer = self.customer
         comment.save()
         return comment
+
     class Meta:
         model = Comment
-        fields = ['content', 'rating',]
-        
+        fields = ['content', 'rating', ]

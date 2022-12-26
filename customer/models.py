@@ -1,10 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import  AbstractBaseUser, BaseUserManager, PermissionsMixin
-from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import \
+    AbstractBaseUser, BaseUserManager, PermissionsMixin
+
 # Create your models here.
 
+
 class MyCustomerManager(BaseUserManager):
-    def create_user(self, name, email,phone, password=None, **extra_fields):
+    def create_user(self, name, email, phone, password=None, **extra_fields):
         if not email:
             raise ValueError('Email address is required')
 
@@ -12,9 +14,9 @@ class MyCustomerManager(BaseUserManager):
             raise ValueError('User name is required')
 
         user = self.model(
-            email=self.normalize_email(email=email),  
+            email=self.normalize_email(email=email),
             name=name,
-            phone = phone,
+            phone=phone,
             password=password,
             **extra_fields,
         )
@@ -23,27 +25,30 @@ class MyCustomerManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, name, email, phone, password=None, **extra_fields):
-        
+    def create_superuser(self, name, email, phone,
+                         password=None, **extra_fields):
+
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
 
-
         user = self.create_user(
             name=name,
             email=email,
-            phone = phone,
+            phone=phone,
             password=password,
             **extra_fields,
         )
         return user
 
+
 SEX_CHOICES = (
-        ('F', 'Female',),
-        ('M', 'Male',),
-        ('U', 'Unsure',),
-    )
+    ('F', 'Female',),
+    ('M', 'Male',),
+    ('U', 'Unsure',),
+)
+
+
 class Customer(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=200)
     email = models.CharField(max_length=200, unique=True)
@@ -52,14 +57,15 @@ class Customer(AbstractBaseUser, PermissionsMixin):
     address = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
-    avatar = models.ImageField(upload_to='images_customer', default='images_customer/default.png')
+    avatar = models.ImageField(upload_to='images_customer',
+                               default='images_customer/default.png')
     age = models.IntegerField(default=0)
     sex = models.CharField(
         max_length=1,
         choices=SEX_CHOICES,
         default='U',
     )
-    
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'phone']
 
@@ -73,4 +79,3 @@ class Customer(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-

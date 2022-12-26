@@ -1,7 +1,6 @@
 
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.views import View
 from django.views.generic import DetailView
 from comment.models import Comment
@@ -38,7 +37,9 @@ class CreateComment(View):
         )
         comment.save()
         comment = Comment.objects.filter(id=comment.id)
-        return JsonResponse({'comment': list(comment.values('id', 'content', 'customer', 'product', 'rating', 'created')), 'user': user.name})
+        return JsonResponse({'comment': list(comment.values(
+            'id', 'content', 'customer', 'product', 'rating', 'created')),
+            'user': user.name})
 
 
 class DeleteComment(View):

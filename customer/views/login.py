@@ -1,11 +1,9 @@
 
-from django.dispatch import receiver
 from django.views import View
 
 from store.models import Order
 from ..models import Customer
 from ..form import RegistrationForm, UpdateProfileForm
-from store.models import Notification
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib import messages, auth
@@ -15,9 +13,10 @@ from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.views.generic import View, UpdateView
+from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+
 
 class RegistrationView(View):
     def get(self, request):
@@ -38,7 +37,7 @@ class RegistrationView(View):
             user = Customer.objects.create_user(
                 name=name, email=email, password=password, phone=phone)
             user.save()
-            
+
             current_site = get_current_site(request=request)
             mail_subject = 'Activate your blog account.'
             message = render_to_string('active_email.html', {
@@ -52,10 +51,11 @@ class RegistrationView(View):
                 send_email.send()
                 messages.success(
                     request=request,
-                    message="Please confirm your email address to complete the registration"
+                    message="Please confirm your email \
+                    address to complete the registration"
                 )
                 return redirect('signup')
-            except:
+            except Exception:
                 messages.error(
                     request=request,
                     message="Email not sent"
@@ -87,7 +87,6 @@ class LoginView(View):
             return redirect('signup')
 
 
-
 def activate(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -98,9 +97,11 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        auth.login(request=request, user=user, backend='django.contrib.auth.backends.ModelBackend')
+        auth.login(request=request, user=user,
+                   backend='django.contrib.auth.backends.ModelBackend')
         messages.success(
-            request=request, message="Your account is activated, please login!")
+            request=request,
+            message="Your account is activated, please login!")
         return render(request, 'index.html')
     else:
         messages.error(request=request, message="Activation link is invalid!")
@@ -115,7 +116,7 @@ def logout(request):
 
 
 class ProfileView(LoginRequiredMixin, View):
-    
+
     def get(self, request):
         order = Order.objects.filter(customer=request.user)
         order_arrived = order.filter(state='Arrived')
@@ -145,23 +146,23 @@ def login(request):
     }
     return render(request, 'index.html', context)
 
+
 class EditProfileView(LoginRequiredMixin, UpdateView):
     form_class = UpdateProfileForm
     template_name = 'dash-edit-profile.html'
-    success_url = reverse_lazy('dash-edit-profile')       
+    success_url = reverse_lazy('dash-edit-profile')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['orders'] = self.request.user.order_set.all()
         context['orders_count'] = context['orders'].count()
         return context
-    
+
     def form_valid(self, form):
         print(form.cleaned_data)
-        messages.success(self.request, 'Your profile has been updated successfully!')
+        messages.success(self.request,
+                         'Your profile has been updated successfully!')
         return super().form_valid(form)
 
     def get_object(self):
         return self.request.user
-
-
