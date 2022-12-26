@@ -14,7 +14,6 @@ class CartView(View):
     def get(self, request):
         carts = request.session.get('cart-duplicate')
         shipping_fee = request.session.get('shipping_fee') or 0
-        print(shipping_fee, "shipping_fee")
         total = 0
         coupon = request.session.get('coupon_id')
         if coupon:
@@ -47,15 +46,12 @@ class CartView(View):
         if 'cart' in request.session:
             if id in request.session['cart']:
                 request.session['cart-duplicate'].insert(0, id)
-                print(request.session['cart-duplicate'], "duplicate")
             else:
                 request.session['cart'].insert(0, id)
                 request.session['cart-duplicate'].insert(0, id)
-                print(request.session['cart-duplicate'], "None_duplicate")
         else:
             request.session['cart'] = [id]
             request.session['cart-duplicate'] = [id]
-            print(request.session['cart-duplicate'])
         request.session.modified = True
         return HttpResponse(len(request.session['cart-duplicate']))
 
@@ -82,7 +78,7 @@ def remove(request, id):
 
 def getTotal(request):
     try:
-        carts = request.session['cart-duplicate']
+        carts = request.session.get('cart-duplicate') or []
         quanlity = {i: carts.count(i) for i in carts}
         products = Product.objects.filter(id__in=carts)
         total = 0

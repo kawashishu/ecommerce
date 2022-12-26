@@ -22,6 +22,6 @@ class Index(ListView):
 
 def message_processor(request):
     try:
-        return len(request.session['cart-duplicate'])
+        return len(request.session.get('cart-duplicate'))
     except KeyError:
         return 0
