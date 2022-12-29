@@ -84,6 +84,10 @@ def subtraction(a,b):
     return round(a-b,2)
 
 @register.simple_tag
+def minus(a,b):
+    return round(a-b,2)
+
+@register.simple_tag
 def to_int(value):
     return int(value)
 

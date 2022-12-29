@@ -2,21 +2,25 @@ from datetime import datetime, timedelta
 from django.dispatch import receiver
 from django.shortcuts import render
 from django.views import View
-from store.models import Order, Notification, Coupon
+from store.models import Order, Notification, Coupon, OrderItem
 from django.db.models import signals
 from customer.models import Customer
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView
 
 
 class OrderView(LoginRequiredMixin, View):
     def get(self, request):
         # get 5 last order
         orders = Order.objects.filter(customer=request.user).\
-                               order_by('-created')[:5]
-        orders_count = orders.count()
+            order_by('-created')[:5]
+        print(orders.count())
+        order_items = OrderItem.objects.filter(order__in=orders)
+        orders_items_count = order_items.count()
         context = {
             'orders': orders,
-            'orders_count': orders_count,
+            'order_items': order_items,
+            'orders_items_count': orders_items_count,
         }
         return render(request, 'dash-my-order.html', context)
 
@@ -29,6 +33,20 @@ def create_notifications_order(sender, **kwargs):
         read=False,
         link='dash-order'
     )
+
+
+# class ManageOrderView(LoginRequiredMixin, View):
+#     def get(self, request, pk):
+#         order_items = OrderItem.objects.get(id=pk)
+#         context = {
+#             'order_items': order_items,
+#         }
+#         return render(request, 'dash-manage-order.html', context)
+
+class ManageOrderView(LoginRequiredMixin, DetailView):
+    model = OrderItem
+    template_name = 'dash-manage-order.html'
+    context_object_name = 'order_item'
 
 
 @receiver(signals.post_save, sender=Customer)

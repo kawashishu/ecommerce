@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 from .models import Product, Notification, Order, \
     Category, Coupon, ProductImage, DetailProduct
@@ -37,14 +38,6 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(Notification, NotificationAdmin)
 
 
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'state', 'customer', 'billing_address']
-    search_fields = ['id', 'state']
-    list_per_page = 20
-
-
-admin.site.register(Order, OrderAdmin)
-
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'image', 'description']
@@ -59,3 +52,28 @@ class CouponAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Coupon, CouponAdmin)
+
+def calculate_revenue_stats(orders):
+    
+    return "revenue_stats"
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['id',  'customer', 'billing_address']
+    search_fields = ['id','customer', 'billing_address']
+    list_per_page = 20
+
+    actions = ['calculate_revenue_stats']
+
+    def calculate_revenue_stats(self, request, queryset):
+        # Retrieve the selected orders
+        orders = queryset.all()
+        # Calculate the revenue statistics
+        stats = calculate_revenue_stats(orders)
+        # Display the revenue statistics in the Django admin interface
+        self.message_user(request, _('Revenue statistics: %(stats)s') % {'stats': stats})
+ 
+admin.site.register(Order, OrderAdmin)
+
+
+
+

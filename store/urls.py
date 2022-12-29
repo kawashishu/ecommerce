@@ -37,12 +37,14 @@ urlpatterns = [
 
     path('dashboard-order/',
          order.OrderView.as_view(), name='dash-order'),
+    path('dashboard-manage-order/<int:pk>/', order.ManageOrderView.as_view(),
+         name='dash-order-detail'),
 
     # coupon
-    path('apply-coupon/',
-         coupon.ApplyCouponView.as_view(), name='apply_coupon'),
+    path('apply-coupon/<int:pk>/',
+         coupon.apply_coupon, name='apply_coupon'),
     path('remove-coupon/',
-         coupon.RemoveCouponView.as_view(), name='remove_coupon'),
+         coupon.remove_coupon, name='remove_coupon'),
 
     # new ui
     path('wish-list/',

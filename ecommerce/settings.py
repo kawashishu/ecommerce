@@ -73,6 +73,9 @@ INSTALLED_APPS = [
     # form
     'crispy_forms',
     'django_countries',
+
+    # django-channels
+    'channels',
 ]
 
 # notification
@@ -114,7 +117,7 @@ CRISPY_TEMPLATE_PACK = 'uni_form'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [join(BASE_DIR, 'django_i18n_example', 'templates')],
+        'DIRS': [Path(BASE_DIR) /'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,6 +131,9 @@ TEMPLATES = [
 
                 # Context processor for cart
                 'ecommerce.context_processors.message_processor',
+                'ecommerce.context_processors.extend_admin_context',
+
+
             ],
         },
     }
@@ -158,20 +164,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.\
-        password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.\
-        password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.\
-            password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.\
-            password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -198,10 +200,10 @@ USE_L10N = True
 USE_TZ = True
 
 # Set by default
-STATIC_URL = './static/'
+STATIC_URL = '/static/'
 
-MEDIA_URL = '/ecommerce/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'ecommerce/media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Enable our static JS file serving
@@ -215,10 +217,6 @@ TIME_ZONE = 'UTC'
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-# MEDIA_URL = '/ecommerce/media/'
-# MEDIA_ROOT = BASE_DIR / 'ecommerce/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -303,6 +301,8 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 # mantory
 ACCOUNT_VERIFICATION_REQUIRED = 'mandatory'
 
+# ASGI Django Channels
+ASGI_APPLICATION = 'ecommerce.routing.application'
 
 # Celery setting
 CELERY_BROKER_URL = env('REDIS_URL')

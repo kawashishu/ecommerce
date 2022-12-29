@@ -1,7 +1,7 @@
 
 from django.views import View
 
-from store.models import Order
+from store.models import Order, OrderItem
 from ..models import Customer
 from ..form import RegistrationForm, UpdateProfileForm
 from django.contrib.auth.decorators import login_required
@@ -118,14 +118,12 @@ def logout(request):
 class ProfileView(LoginRequiredMixin, View):
 
     def get(self, request):
-        order = Order.objects.filter(customer=request.user)
-        order_arrived = order.filter(state='Arrived')
-        orders_count = order.count()
-        context = {
-            'order': order,
-            'orders_count': orders_count,
-            'order_arrived': order_arrived,
+        order = Order.objects.filter(customer=request.user).order_by('-id')[:3]
+        order_items = OrderItem.objects.filter(order__in=order).order_by('-id')[:5]
 
+        
+        context = {
+            'order_items': order_items,
         }
         return render(request, 'dashboard.html', context)
 

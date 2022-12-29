@@ -10,7 +10,6 @@ SHIPPING_CHARGE = 8
 
 
 class CartView(View):
-
     def get(self, request):
         carts = request.session.get('cart-duplicate')
         shipping_fee = request.session.get('shipping_fee') or 0
@@ -21,10 +20,10 @@ class CartView(View):
         list_coupons = Coupon.objects.filter(customer=request.user)
         try:
             quantity = {i: carts.count(i) for i in carts}
+            print(quantity)
             products = Product.objects.filter(id__in=carts)
             for product in products:
                 total += product.price * quantity[product.id]
-
             context = {
                 'products': products,
                 'total': int(total),
@@ -92,8 +91,8 @@ def getTotal(request):
 def getQuanlity(request):
     try:
         carts = request.session['cart-duplicate']
-        quanlity = {i: carts.count(i) for i in carts}
-        return quanlity
+        quantity = {i: carts.count(i) for i in carts}
+        return quantity
     except TypeError:
         return 0
 

@@ -9,12 +9,12 @@ PAGINATOR_NUMBER = 8
 
 class Index(ListView):
     model = Category
-    template_name = 'index.html'
+    template_name = './index.html'
     paginate_by = PAGINATOR_NUMBER
     context_object_name = 'categories'
 
     def get_context_data(self, **kwargs):
-        products = Product.objects.filter(status=False)
+        products = Product.objects.filter(rating__gte=5).order_by('-views')[:8]
         context = super().get_context_data(**kwargs)
         context['products'] = products
         return context

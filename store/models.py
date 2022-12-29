@@ -125,6 +125,9 @@ class Order(models.Model):
         choices=ORDER_STATUS_CHOICES,
         default=PROCESS,
     )
+    total_shipping_fee = models.FloatField(default=0, blank=True, null=True)
+    coupon = models.ForeignKey(
+        'Coupon', on_delete=models.CASCADE, default=None, blank=True, null=True)
 
     class Meta:
         db_table = 'order'
@@ -133,13 +136,36 @@ class Order(models.Model):
         return self.customer.email
 
 
+class OrderItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    price = models.FloatField()
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    shipping_fee = models.FloatField(default=0, blank=True, null=True)
+    state = models.CharField(
+        max_length=2,
+        choices=Order.ORDER_STATUS_CHOICES,
+        default=Order.PROCESS,
+    )
+
+    class Meta:
+        db_table = 'orderitem'
+
+    def __str__(self):
+        return self.product.name
+
+
 class Coupon(models.Model):
     code = models.CharField(max_length=50)
     expiration_date = models.DateField()
-    discount_amount = models.DecimalField(max_digits=5, decimal_places=2)
+    discount_amount = models.FloatField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE,
                                  related_name='coupons', default=None,
                                  blank=True, null=True)
+    is_use = models.BooleanField(default=False)
+    image = models.ImageField(
+        upload_to='images_coupon', blank=True, null=True)
+    decription = models.TextField(default="", blank=True, null=True)
 
     class Meta:
         db_table = 'coupon'
