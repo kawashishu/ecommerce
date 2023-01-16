@@ -1,8 +1,8 @@
 # chat/routing.py
 from django.urls import re_path
 
-from . import consumers
+from notifications.consumers import consumers_notifications
 
 websocket_urlpatterns = [
-    re_path(r"ws/notifications/(?P<room_name>\w+)/$", consumers.ChatConsumer.as_asgi()),
+    re_path(r"ws/notifications/(?P<room_name>\w+)/$", consumers_notifications.NotificationsConsumer.as_asgi()),
 ]

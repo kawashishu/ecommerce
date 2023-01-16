@@ -278,6 +278,8 @@
         </nav>
         <!--====== End - Nav 1 ======-->
 
+        
+
         <!--====== Nav 2 ======-->
         <nav class="secondary-nav-wrapper">
           <div class="container">
@@ -1960,33 +1962,11 @@
     <div id="fb-root"></div>
 
     <!-- Your Plugin chat code -->
-    <div id="fb-customer-chat" class="fb-customerchat"></div>
+    <div id="fb-customer-chat" class="fb-customerchat">
+      
 
-    <script>
-      var chatbox = document.getElementById("fb-customer-chat");
-      chatbox.setAttribute("page_id", "100569799202511");
-      chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
+    </div>
 
-    <!-- Your SDK code -->
-    <script>
-      window.fbAsyncInit = function () {
-        FB.init({
-          xfbml: true,
-          version: "v15.0",
-        });
-      };
-
-      (function (d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "facebook-jssdk");
-    </script>
 
     <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
     <script>
@@ -2070,6 +2050,43 @@
           },
         });
       }
+    </script>
+
+    <script>
+       const userId = "{{ request.user.id }}"
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/notifications/'
+            + userId
+            + '/'
+        );
+      
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            console.log(data)
+            let new_notifications = `
+              <li>
+                <a href="{% url 'seen-notifications' 1  %}"
+                  ><i class="fas fa-user-circle u-s-m-r-6"></i>
+
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 150px"
+                    >{{qwe}}
+                  </span></a
+                >
+              </li>
+              `
+            $('notifications').text = count_notifications + 1;
+            $('seen_notifications').innerHTML += new_notifications;
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+
     </script>
 
     <script
