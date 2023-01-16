@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     'django_countries',
 
     # django-channels
-    'channels',
+    'channels', 'notifications',
 ]
 
 # notification
@@ -302,7 +302,17 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 ACCOUNT_VERIFICATION_REQUIRED = 'mandatory'
 
 # ASGI Django Channels
-ASGI_APPLICATION = 'ecommerce.routing.application'
+ASGI_APPLICATION = 'ecommerce.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [env('REDIS_URL')],
+        },
+    },
+}
+
 
 # Celery setting
 CELERY_BROKER_URL = env('REDIS_URL')

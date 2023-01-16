@@ -98,6 +98,24 @@ class Notification(models.Model):
         db_table = 'notification'
 
 
+class Coupon(models.Model):
+    code = models.CharField(max_length=50)
+    expiration_date = models.DateField()
+    discount_amount = models.FloatField()
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,
+                                 related_name='coupons', default=None,
+                                 blank=True, null=True)
+    is_use = models.BooleanField(default=False)
+    image = models.ImageField(
+        upload_to='images_coupon', blank=True, null=True)
+    decription = models.TextField(default="", blank=True, null=True)
+
+    class Meta:
+        db_table = 'coupon'
+
+    def __str__(self):
+        return self.code
+
 class Order(models.Model):
     PROCESS = 'PR'
     SHIPPED = 'SH'
@@ -127,7 +145,7 @@ class Order(models.Model):
     )
     total_shipping_fee = models.FloatField(default=0, blank=True, null=True)
     coupon = models.ForeignKey(
-        'Coupon', on_delete=models.CASCADE, default=None, blank=True, null=True)
+        Coupon, on_delete=models.CASCADE, default=None, blank=True, null=True)
 
     class Meta:
         db_table = 'order'
@@ -155,20 +173,3 @@ class OrderItem(models.Model):
         return self.product.name
 
 
-class Coupon(models.Model):
-    code = models.CharField(max_length=50)
-    expiration_date = models.DateField()
-    discount_amount = models.FloatField()
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,
-                                 related_name='coupons', default=None,
-                                 blank=True, null=True)
-    is_use = models.BooleanField(default=False)
-    image = models.ImageField(
-        upload_to='images_coupon', blank=True, null=True)
-    decription = models.TextField(default="", blank=True, null=True)
-
-    class Meta:
-        db_table = 'coupon'
-
-    def __str__(self):
-        return self.code
