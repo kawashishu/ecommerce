@@ -39,12 +39,12 @@ admin.site.register(Notification, NotificationAdmin)
 
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class CategorieAdmin(admin.ModelAdmin):
     list_display = ['name', 'image', 'description']
     search_fields = ['name', 'id']
 
 
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Category, CategorieAdmin)
 
 
 class CouponAdmin(admin.ModelAdmin):
