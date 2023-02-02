@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     'django_countries',
 
     # django-channels
-    'channels', 'notifications',
+    'channels',
 ]
 
 # notification
@@ -192,7 +192,7 @@ LANGUAGES = (
 )
 
 # Turned on by default
-USE_I18N = True
+USE_I18N = False
 
 # Turned on by default
 USE_L10N = True
