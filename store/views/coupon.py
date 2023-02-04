@@ -7,7 +7,7 @@ from store.models import Coupon
 def apply_coupon(request, pk):
         try:
             coupon = Coupon.objects.get(id=pk)
-            request.session['coupon_id'] = coupon.id
+            request.session['coupon_id'] = int(coupon.id)
         except Coupon.DoesNotExist:
             return redirect('checkout', status=404)
         return redirect('checkout')

@@ -154,7 +154,6 @@
                                                     <a>Expiration date: {{use_coupon.expiration_date}}</a></span>
                 
                                                 <span class="mini-product__name">
-                
                                                     <a>{{use_coupon.decription}}</a></span>
                 
                                                 <span class="mini-product__price">-
@@ -221,10 +220,10 @@
                                 <div class="o-summary__box">
                                     <h1 class="checkout-f__h1">PAYMENT INFORMATION</h1>
                                     <div class="checkout-f__payment">
-                                        <div>
+                                        {% comment %} <div>
                                             <button class="btn btn--e-transparent-brand-b-2 " id="submit_form_checkout"
                                                 type="submit">PLACE ORDER</button>
-                                        </div>
+                                        </div> {% endcomment %}
 
                                     </div>
                                     <div class="checkout-f__payment">
@@ -589,7 +588,7 @@
         Swal.fire({
             icon: 'question',
             title: 'Are you sure ?',
-            text: 'You will be redirected to PayPal',
+            text: 'You will be checkout with PayPal',
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'Yes',

@@ -12,6 +12,7 @@ class Category(models.Model):
 
     class Meta:
         db_table = 'categories'
+        verbose_name = 'categorie'
 
     def to_json(self):
         return {
@@ -107,7 +108,7 @@ class Coupon(models.Model):
                                  blank=True, null=True)
     is_use = models.BooleanField(default=False)
     image = models.ImageField(
-        upload_to='images_coupon', blank=True, null=True)
+        upload_to='images_coupon', blank=True, null=True, default='images_coupon/coupon.png')
     decription = models.TextField(default="", blank=True, null=True)
 
     class Meta:

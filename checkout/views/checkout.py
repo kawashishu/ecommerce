@@ -63,10 +63,10 @@ class CheckoutView(View):
                 note = self.request.POST.get('order-note')
                 use_coupon_id = self.request.POST.get('use_coupon_id')
                 sumtotal = self.request.POST.get('sumtotal')
-                sumtotal = int(sumtotal.replace(',0', ''))
 
                 billing_address = BillingAddress.objects.get(
-                    email=self.request.user, default=True)
+                    email=self.request.user, default=True,
+                    )
                 if use_coupon_id:
                     coupon = Coupon.objects.get(id=use_coupon_id)
                     coupon.is_use = True

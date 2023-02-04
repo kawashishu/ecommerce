@@ -7,6 +7,7 @@ from django.db.models import signals
 from customer.models import Customer
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
+import random
 
 
 class OrderView(LoginRequiredMixin, View):
@@ -21,6 +22,7 @@ class OrderView(LoginRequiredMixin, View):
             'orders': orders,
             'order_items': order_items,
             'orders_items_count': orders_items_count,
+            'shipping-fee': 0,
         }
         return render(request, 'dash-my-order.html', context)
 
@@ -59,7 +61,8 @@ def create_notifications_customer(sender, **kwargs):
     )
     Coupon.objects.create(
         code='WELCOME',
-        discount_amount=10,
+        discount_amount=random.randint(10, 50),
         expiration_date=datetime.now() + timedelta(days=30),
-        customer=kwargs['instance']
+        customer=kwargs['instance'],
+        image='images_coupon/coupon.png',
     )

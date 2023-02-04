@@ -92,22 +92,6 @@
                                     <h1 class="dash__h1 u-s-m-b-30">Order Details</h1>
                                     <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
                                         <div class="dash__pad-2">
-                                            <div class="dash-l-r">
-                                                <div>
-                                                    <div class="manage-o__text-2 u-c-secondary">Order #30542312{{order_item.id}}</div>
-                                                    <div class="manage-o__text u-c-silver">Placed on {{order_item.order.created}}</div>
-                                                </div>
-                                                
-                                                <div>
-                                                    <div class="manage-o__text-2 u-c-silver">Total:
-
-                                                        <span class="manage-o__text-2 u-c-secondary">{% get_icon_currency currency_name %}{% multiply order_item.order.total currency %}</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
-                                        <div class="dash__pad-2">
                                             <div class="manage-o">
                                                 <div class="manage-o__header u-s-m-b-30">
                                                     <div class="manage-o__icon"><i class="fas fa-box u-s-m-r-5"></i>
@@ -193,39 +177,6 @@
                                                     <span class="dash__text-2">{{order_item.order.billing_address}}</span>
 
                                                     <span class="dash__text-2">{{order_item.order.mobilephone}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="dash__box dash__box--bg-white dash__box--shadow dash__box--w">
-                                                <div class="dash__pad-3">
-                                                    <h2 class="dash__h2 u-s-m-b-8">Billing Address</h2>
-                                                    <h2 class="dash__h2 u-s-m-b-8">{{request.user.name}}</h2>
-
-                                                    <span class="dash__text-2">4247 Ashford Drive Virginia - VA-20006 - USA</span>
-
-                                                    <span class="dash__text-2"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="dash__box dash__box--bg-white dash__box--shadow u-h-100">
-                                                <div class="dash__pad-3">
-                                                    <h2 class="dash__h2 u-s-m-b-8">Total Summary</h2>
-                                                    <div class="dash-l-r u-s-m-b-8">
-                                                        <div class="manage-o__text-2 u-c-secondary">Subtotal</div>
-                                                        <div class="manage-o__text-2 u-c-secondary">{% get_icon_currency currency_name %} {% multiply order_item.price currency %}</div>
-                                                    </div>
-                                                    <div class="dash-l-r u-s-m-b-8">
-                                                        <div class="manage-o__text-2 u-c-secondary">Shipping Fee</div>
-                                                        <div class="manage-o__text-2 u-c-secondary">{% get_icon_currency currency_name %} {% multiply order_item.shipping_fee currency %}</div>
-                                                    </div>
-                                                    <div class="dash-l-r u-s-m-b-8">
-                                                        <div class="manage-o__text-2 u-c-secondary">Total</div>
-                                                        {% with order_item.price|add:order_item.shipping_fee as total %}
-                                                        <div class="manage-o__text-2 u-c-secondary">{% get_icon_currency currency_name %} {% multiply total currency %}</div>
-                                                        {% endwith %}
-                                                    </div>
-
-                                                    <span class="dash__text-2">Paid by Cash on Delivery</span>
                                                 </div>
                                             </div>
                                         </div>
