@@ -3,81 +3,36 @@
     "model": "store.category",
     "pk": 1,
     "fields": {
-        "name": "Men clothing",
-        "image": "images_category/product6.7f91aa6e9e8819bdb41444ac1e4493c1.jpg",
-        "description": "A category of men's clothing would refer to a group of clothing items that are designed for men to wear. These could include items such as shirts, pants, suits, and other types of clothing that are specifically designed for men. The category of men's clothing would typically be distinct from categories of women's clothing, children's clothing, and unisex clothing."
+        "name": "Smartphones",
+        "image": "images_category/600x600_crop_iphone-12-pro-max-128gb-cu.jpg",
+        "description": "A smartphone is a cellular telephone with an integrated computer and other features not originally associated with telephones such as an operating system, web browsing, and the ability to run software applications."
+    }
+},
+{
+    "model": "store.category",
+    "pk": 2,
+    "fields": {
+        "name": "Camera",
+        "image": "images_category/10036326-may-anh-canon-eos-3000d-kit-ef-s-18-55mm-den-1.jpg",
+        "description": "Description: The Canon printer app brings you Wi-Fi connectivity so that you can print from your smartphone or tablet. Use the application to"
     }
 },
 {
     "model": "store.category",
     "pk": 3,
     "fields": {
-        "name": "Woman Clothing",
-        "image": "images_category/product12.a4ffa8dd9feab8534c64fed416ee2108.jpg",
-        "description": "A category of women's clothing would refer to a group of clothing items that are designed for women to wear. These could include items such as dresses, skirts, blouses, and other types of clothing that are specifically designed for women. The category of women's clothing would typically be distinct from categories of men's clothing, children's clothing, and unisex clothing. Within the category of women's clothing, there may be subcategories based on the type of clothing, such as formalwear, casual wear, and activewear."
+        "name": "Laptop",
+        "image": "images_category/macbook-air-2020-1.jpg",
+        "description": "\"MacBook\" is a term used for a brand of Mac notebook computers that Apple started producing in 2006. The American multinational corporation created MacBook ..."
     }
 },
 {
     "model": "store.category",
     "pk": 4,
     "fields": {
-        "name": "Laptops",
-        "image": "images_category/product29.06d588da4521b71d1decdc8ba3d8227d.jpg",
-        "description": "A category of laptops would refer to a group of portable computers that share certain characteristics or features. Laptops are a type of computer that can be easily carried and used in various locations, and they are typically smaller and lighter than desktop computers. Within the category of laptops, there may be subcategories based on specific features or uses, such as gaming laptops, business laptops, and budget laptops. Laptops may also be distinguished by their operating systems, such as laptops that run on the Windows, macOS, or Chrome OS operating systems."
-    }
-},
-{
-    "model": "store.category",
-    "pk": 5,
-    "fields": {
-        "name": "Smartphones",
-        "image": "images_category/product10.86540bae8f0a8a031e114bae924193f3.jpg",
-        "description": "A category of headphones would refer to a group of audio devices that share certain characteristics or features. Headphones are devices that are worn on or around the head, and they allow users to listen to audio from a variety of sources, such as a music player, a computer, or a smartphone."
-    }
-},
-{
-    "model": "store.category",
-    "pk": 6,
-    "fields": {
-        "name": "TV's",
-        "image": "images_category/product34.26bb538fabe6e48bc8fa9e42e1c5b6ac.jpg",
-        "description": "A category of TVs would refer to a group of television sets that share certain characteristics or features. TVs are devices that are used to display video and audio content, and they come in a variety of sizes and styles. Within the category of TVs, there may be subcategories based on specific features or uses, such as smart TVs, 4K TVs, and curved TVs. TVs may also be distinguished by their display technology, such as LCD, LED, and OLED TVs. Additionally, TVs may be classified by their screen size, such as small TVs, medium-sized TVs, and large TVs."
-    }
-},
-{
-    "model": "store.category",
-    "pk": 7,
-    "fields": {
-        "name": "Headphones",
-        "image": "images_category/product3.207dd89cb8b11937ace9524c6c84fb78.jpg",
-        "description": "A category of headphones would refer to a group of audio devices that share certain characteristics or features. Headphones are devices that are worn on or around the head, and they allow users to listen to audio from a variety of sources, such as a music player, a computer, or a smartphone. Within the category of headphones, there may be subcategories based on specific features or uses, such as noise-canceling headphones, wireless headphones, and sports headphones. Headphones may also be distinguished by their design, such as over-ear headphones, on-ear headphones, and earbud headphones."
-    }
-},
-{
-    "model": "store.category",
-    "pk": 8,
-    "fields": {
-        "name": "Sports Gadgets",
-        "image": "images_category/product13.7bb6f0ba0fd71d7c18cf99f82521af11.jpg",
-        "description": "Sports gadgets are electronic or mechanical devices that are designed to be used in sports and physical activities. These gadgets can provide useful information and feedback to help athletes improve their performance, and they can also enhance the overall experience of participating in sports. Examples of sports gadgets could include fitness trackers, heart rate monitors, sports watches, and GPS devices. These gadgets may be specialized for specific sports, such as running, cycling, or swimming, and they may come with various features and capabilities depending on the intended use and user preferences."
-    }
-},
-{
-    "model": "store.category",
-    "pk": 9,
-    "fields": {
-        "name": "DSLR",
-        "image": "images_category/product5.d64c6669989febaa19da24fa1615ce0a.jpg",
-        "description": "DSLR stands for Digital Single-Lens Reflex. It is a type of digital camera that uses a mirror and a prism system to direct light from the lens to the viewfinder, allowing the user to see exactly what the lens is seeing. This allows the photographer to compose the shot and focus the lens manually, giving them more control over the final image. DSLR cameras are typically larger and heavier than other types of digital cameras, and they are commonly used by professional and enthusiast photographers. They offer a variety of advanced features, such as interchangeable lenses, manual controls, and high-resolution sensors, which allow users to capture high-quality images in a wide range of lighting conditions."
-    }
-},
-{
-    "model": "store.category",
-    "pk": 10,
-    "fields": {
-        "name": "Tablet's",
-        "image": "images_category/product21.4ed23636c44e26ee2777bfa50af7ba89.jpg",
-        "description": "A tablet is a mobile device with a touchscreen display that is larger than a smartphone's. It is typically smaller than a laptop or desktop computer and is portable, making it convenient for use while on the go. Tablets are often used for browsing the internet, streaming videos, playing games, and other tasks that are typically performed on a smartphone or computer. Some tablets also come with a stylus for writing or drawing on the screen. There are many different tablets available on the market from various manufacturers, with a wide range of sizes, specifications, and features."
+        "name": "Headphone",
+        "image": "images_category/637955569082653401_HASP-TAINGHE-SOUNDMAX-AH335-AVT.jpg",
+        "description": ""
     }
 }
 ]

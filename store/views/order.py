@@ -31,7 +31,7 @@ class OrderView(LoginRequiredMixin, View):
 def create_notifications_order(sender, **kwargs):
     Notification.objects.create(
         customer=kwargs['instance'].customer,
-        content='Your order is process',
+        content='Your order is processing',
         read=False,
         link='dash-order'
     )

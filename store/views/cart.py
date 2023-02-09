@@ -20,7 +20,6 @@ class CartView(View):
         list_coupons = Coupon.objects.filter(customer=request.user)
         try:
             quantity = {i: carts.count(i) for i in carts}
-            print(quantity)
             products = Product.objects.filter(id__in=carts)
             for product in products:
                 total += product.price * quantity[product.id]

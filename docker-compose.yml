@@ -10,7 +10,7 @@ services:
                  python manage.py loaddata fixtures/Category.json &&
                  python manage.py loaddata fixtures/Customer.json &&
                  python manage.py loaddata fixtures/Product.json &&
-                 python manage.py runserver 0.0.0.0:8000"
+                 python manage.py runserver 127.0.0.0:5000"
         volumes:
             - .:/usr/src/app/
         expose:

@@ -229,7 +229,7 @@ AUTH_USER_MODEL = 'customer.Customer'
 # gsgpagurqlgfsrmx : password email
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'bruce.nguyen.goldenowl@gmail.com'
+EMAIL_HOST_USER = 'huuphuong130301@gmail.com'
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 

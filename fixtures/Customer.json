@@ -1,22 +1,66 @@
 [
 {
     "model": "customer.customer",
-    "pk": 10,
+    "pk": 1,
     "fields": {
-        "last_login": "2023-01-16T11:29:07.951Z",
+        "last_login": "2023-02-08T18:01:17.236Z",
         "is_superuser": true,
         "name": "admin",
         "email": "admin",
-        "password": "pbkdf2_sha256$390000$SJnywemXlEwUBapGgFnZBb$Hk40xsYYmNKLRPL54I4S86lQmQ4tiBwaZyt9fznGWVI=",
+        "password": "pbkdf2_sha256$390000$G7yF3Ce6vYYWxDMsjiE7T4$EJF4ZS0GAteEvqpxhNM9tIVAtgpndIPDAyZiCWrqwio=",
         "phone": "admin",
         "address": "",
-        "created": "2023-01-16T10:38:41.433Z",
+        "created": "2023-02-07T14:57:47.796Z",
         "status": false,
         "avatar": "images_customer/default.png",
         "age": 0,
         "sex": "U",
         "is_active": true,
         "is_staff": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 2,
+    "fields": {
+        "last_login": null,
+        "is_superuser": false,
+        "name": "Nguyen Huu Phuong",
+        "email": "cici91@systemyear.us",
+        "password": "pbkdf2_sha256$390000$r7JWzEpp5kpyKESJ7qwCbl$iDvt97mExRtpx1VKkntxrUCnSymgoXn4omPn5+GOdGs=",
+        "phone": "0967207313",
+        "address": "",
+        "created": "2023-02-07T15:33:22.125Z",
+        "status": false,
+        "avatar": "images_customer/default.png",
+        "age": 0,
+        "sex": "U",
+        "is_active": true,
+        "is_staff": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "customer.customer",
+    "pk": 3,
+    "fields": {
+        "last_login": "2023-02-07T15:41:41.343Z",
+        "is_superuser": false,
+        "name": "Nguyen Huu Phuong",
+        "email": "gikoga4077@brandoza.com",
+        "password": "pbkdf2_sha256$390000$zuZIriYyxK6ihB2nnjva3Z$BliuUV2TZP8ZGqC9mkdOaKp6u5DatIf1spWQy0f/GZE=",
+        "phone": "0967207313",
+        "address": "",
+        "created": "2023-02-07T15:41:16.141Z",
+        "status": false,
+        "avatar": "images_customer/default.png",
+        "age": 0,
+        "sex": "U",
+        "is_active": true,
+        "is_staff": false,
         "groups": [],
         "user_permissions": []
     }
