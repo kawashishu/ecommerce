@@ -10,7 +10,6 @@ class CategoryView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(self.kwargs['pk'])
         products = Product.objects.filter(category=self.kwargs['pk'])
         count = products.count()
         related_search = self.request.session.get('related_search') or []
@@ -18,19 +17,15 @@ class CategoryView(DetailView):
         page_number = self.request.GET.get("page")
         try:
             contacts = paginator.page(page_number)
-            print("try")
         except PageNotAnInteger:
             contacts = paginator.page(1)
-            print("PageNotAnInteger")
         except EmptyPage:
             contacts = paginator.page(paginator.num_pages)
-            print("EmptyPage")
         context = {
             'products': contacts,
             'count': count,
             'related_search': related_search,
         }
-        print("context")
         return context
 
 

@@ -24,7 +24,7 @@ def message_processor(request):
 
     menu_wishlist = request.session.get('wishlist') or []
     wishlist_products = Product.objects.filter(id__in=menu_wishlist)
-
+    
     shopping_list = request.session.get('cart-duplicate') or []
     carts = len(shopping_list)
     # get product in carts
