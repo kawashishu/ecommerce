@@ -68,6 +68,7 @@
                     </td>
                     <td>
                       {% multiply product.price currency as price %}
+                      {% caltulator_sale_price price product.discount as price %}
                       {% multiply price quantity|get_item:product.id as price %}
                       <span class="table-p__price">{% get_icon_currency currency_name %} {{price|floatformat:0}}</span>
                     </td>

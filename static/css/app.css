@@ -1120,10 +1120,8 @@ input::-ms-clear {
 
 .product-o__discount {
   font-weight: 600;
-  margin-left: 30px;
   color: #333333;
-  font-size: 14px;
-  text-decoration: line-through; }
+  font-size: 14px; }
 
 .product-o__countdown-wrap {
   margin-top: 16px; }

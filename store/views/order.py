@@ -15,7 +15,6 @@ class OrderView(LoginRequiredMixin, View):
         # get 5 last order
         orders = Order.objects.filter(customer=request.user).\
             order_by('-created')[:5]
-        print(orders.count())
         order_items = OrderItem.objects.filter(order__in=orders)
         orders_items_count = order_items.count()
         context = {
@@ -36,14 +35,6 @@ def create_notifications_order(sender, **kwargs):
         link='dash-order'
     )
 
-
-# class ManageOrderView(LoginRequiredMixin, View):
-#     def get(self, request, pk):
-#         order_items = OrderItem.objects.get(id=pk)
-#         context = {
-#             'order_items': order_items,
-#         }
-#         return render(request, 'dash-manage-order.html', context)
 
 class ManageOrderView(LoginRequiredMixin, DetailView):
     model = OrderItem

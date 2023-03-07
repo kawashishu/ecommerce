@@ -17,6 +17,9 @@ class Index(ListView):
         products = Product.objects.filter(rating__gte=5).order_by('-views')[:8]
         context = super().get_context_data(**kwargs)
         context['products'] = products
+        # get products have discount > 30
+        products_sale = Product.objects.filter(discount__gte=30).order_by('-discount')[:4]
+        context['products_sale'] = products_sale
         return context
 
 

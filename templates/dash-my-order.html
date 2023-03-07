@@ -93,13 +93,6 @@
                                             <h1 class="dash__h1 u-s-m-b-14">My Orders</h1>
 
                                             <span class="dash__text u-s-m-b-30">Here you can see all products that have been delivered.</span>
-                                            <form class="m-order u-s-m-b-30">
-                                                <div class="m-order__select-wrapper">
-
-                                                    <label class="u-s-m-r-8" for="my-order-sort">Show:</label><select class="select-box select-box--primary-style" id="my-order-sort">
-                                                        <option selected>Last 5 orders</option>
-                                                    </select></div>
-                                            </form>
                                             <div class="m-order__list">
                                             {% for item in order_items %}
                                                 <div class="m-order__get">

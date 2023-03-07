@@ -74,8 +74,9 @@
                                                 <span class="w-r__category">
 
                                                     <a href="{% url 'categories' product.category.id %}">{{product.category}}</a></span>
-
-                                                <span class="w-r__price">{% get_icon_currency currency_name %} {% multiply product.price currency %}
+                                                    {% multiply product.price currency as price %}
+                                                    {% caltulator_sale_price price product.discount as price %}
+                                                <span class="w-r__price">{% get_icon_currency currency_name %} {{price|floatformat:0}}
 
                                                     </div>
                                         </div>

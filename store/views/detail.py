@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import DetailView
 from comment.models import Comment
 from customer.models import Customer
-from ..models import Product
+from ..models import Product, OrderItem, Order
 
 
 class ProductDetail(DetailView):
@@ -18,6 +18,23 @@ class ProductDetail(DetailView):
         context['products'] = Product.objects.filter(
             category=self.object.category).exclude(id=self.object.id)
         self.object.views += 1
+
+        mean = 0
+        for comment in context['comments']:
+            mean += comment.rating
+        if len(context['comments']) > 0:
+            mean = ( mean / len(context['comments']) ) + 0.4
+        mean = int(round(mean, 0))
+        context['mean'] = mean
+
+        if self.request.user.is_authenticated:
+            customer = self.request.user
+            check_buy = OrderItem.objects.filter(
+                order__customer=customer, product=self.object)
+            if check_buy.exists():
+                context['check_buy'] = 1
+            else:
+                context['check_buy'] = 0
         return context
 
 

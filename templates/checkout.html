@@ -202,8 +202,8 @@
                                                 {% multiply sumtotal currency as sumtotal %}
                                                 {% if use_coupon %}
                                                 {% multiply use_coupon.discount_amount currency as discount %}
-                                                {% minus sumtotal discount as sumtotal %}
-                                                <td class="grandtotal"> {{ sumtotal  }} {% get_icon_currency currency_name %} <del>{{ sumtotal }} {% get_icon_currency currency_name %}</del>  </td>
+                                                {% minus sumtotal discount as sumtotal_sale %}
+                                                <td class="grandtotal"> {{ sumtotal_sale  }} {% get_icon_currency currency_name %} <del>{{ sumtotal}} {% get_icon_currency currency_name %}</del>  </td>
                                                 <input type="hidden" name="sumtotal" value="{{ sumtotal }}">
                                                 {% else %}
                                                     <td class="grandtotal">{{ sumtotal }}

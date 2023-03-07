@@ -21,8 +21,13 @@ class CartView(View):
         try:
             quantity = {i: carts.count(i) for i in carts}
             products = Product.objects.filter(id__in=carts)
+
             for product in products:
-                total += product.price * quantity[product.id]
+                if product.quantity <= 0:
+                    products.exclude(id=product.id)
+                else:
+                    total += int( product.price - (product.price * product.discount / 100) ) * quantity[product.id]
+            total = round(total,0)
             context = {
                 'products': products,
                 'total': int(total),
@@ -81,7 +86,8 @@ def getTotal(request):
         products = Product.objects.filter(id__in=carts)
         total = 0
         for product in products:
-            total += product.price * quanlity[product.id]
+            total += int( product.price - (product.price * product.discount / 100)  )  * quanlity[product.id]
+        total = round(total,0)
         return total
     except TypeError:
         return 0
@@ -156,7 +162,8 @@ class CartCalculator(View):
             quanlity = {i: carts.count(i) for i in carts}
             products = Product.objects.filter(id__in=carts)
             for product in products:
-                total += product.price * quanlity[product.id]
+                total += int( product.price - (product.price * product.discount / 100) ) * quanlity[product.id]
+            total = round(total,0)
         except TypeError:
             total = 0
         total *= request.session.get('currency') or 1

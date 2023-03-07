@@ -95,3 +95,7 @@ def to_int(value):
 def get_products_in_category(category):
     products = Product.objects.filter(category=category)
     return products
+
+@register.simple_tag
+def caltulator_sale_price(price, sale):
+    return round((price - (price * sale / 100)), 0)
